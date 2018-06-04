@@ -1,0 +1,96 @@
+\documentclass[12pt]{article}
+
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{amsmath,amsthm}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{rotating}
+\usepackage[authoryear]{natbib}
+\usepackage{fullpage}
+\usepackage{booktabs}
+\usepackage{supertabular}
+\usepackage{pdflscape}
+\usepackage{longtable}
+\usepackage[doublespacing]{setspace}
+\usepackage{rotfloat}
+\usepackage{caption}
+
+\begin{document}
+
+Aim: write down a preference structure that captures both a household's intertemporal decision over which periods to allocate resources to, their decision of when to retire and the intraperiod allocation of resources across different consumption goods. 
+
+We want to capture the possibility that leisure may be substitutable or complementary with different consumption goods.
+
+One possible way of modelling this is to follow Blundell et al (1994) and specify period specific preferences using a conditional indirect utility function:
+\begin{equation*}
+U(\mathbf{p},x,d)=F(V(\mathbf{p},x,d),d),
+\end{equation*}
+where $\mathbf{p}$ is the vector of (within period) prices for the consumption goods, $x$ is total expenditure on these goods and $d$ is a dummy variable equal to 1 if the household is working and 0 if it is retired.
+
+$V(\mathbf{p},x,d)$ governs the intra-temporal allocation problem of how the household allocates his period budget across goods. This function depends on labour supply (i.e. $d$) denoting that we will allow preferences to vary with retirement.
+
+\noindent \textbf{Example: An Almost Ideal Demand System}\\
+In this case:
+\begin{equation*}
+V(\mathbf{p},x,d)=\frac{1}{b(\mathbf{p},d)}\left(\ln x-\ln a(\mathbf{p},d) \right)
+\end{equation*}
+where the price indices are:
+\begin{align*}
+\ln a(\mathbf{p},d) =& \alpha_0+\sum_j \left(\alpha_j+\alpha_j^d d \right)\ln p_j +\frac{1}{2}\sum_j \sum_k \gamma_{jk}\ln p_j \ln p_k\\
+\ln b(\mathbf{p},d) =& \sum_j \left(\beta_j+\beta_j^d d \right) \ln p_j
+\end{align*}
+Roy's Identify yields the budget share demand equations in which the share of spending on good $i$, $w_i$, is given by:
+\begin{equation*}
+w_i=\left(\alpha_i+\alpha_i^d d \right)+\sum_j \gamma_{jk}\ln p_k + \left(\beta_i+\beta_i^d d \right)\left(\ln x-\ln a(\mathbf{p},d) \right)
+\end{equation*}
+In this specification labour supply is allowed to change both the intercept and how ``real spending'' affects the budget share.
+\newline
+
+\noindent Conditional on the form of $V(.)$, the function $F(.)$ governs intertemporal decisions -- i.e. how much expenditure to allocate to each period and when to retire. The dependence on $d$ captures that labour supply also is non-separable from the decision over how much resources to allocate to each period.
+
+\noindent \textbf{Example: CRRA utility}\\
+Suppose:
+\begin{equation*}
+F(V_t,d_t)=\frac{1}{(1+\delta)^t}\left(\phi+\phi^d d_t\right)\frac{V_t^{(1-\sigma)}}{1-\sigma}
+\end{equation*}
+This allows labour supply to directly shift (either upwards or downwards) the marginal utility of an extra unit of expenditure $\frac{\partial F_t}{\partial x_t}$.
+\newline
+
+\noindent I guess a noddy version of the whole problem might look something like the following. Suppose households die aged $T$. Let $A_0$ denote inherited assets, $A_T$ assets the household bequeaths on death and $y_t$ denote earnings if the household is working. The household chooses the timing of retirement $\tilde{t}$ -- for $t<\tilde{t}$ $d_t=1$, for $t\geq\tilde{t}$ $d_t=0$ -- and the stream of consumption $\{c_{t1},...,c_{tJ}\}_{t=1}^{T}$. The maximization problem facing the household at time $0$ can be written:
+\begin{equation*}
+\max_{\{\{x_s\}_{s=0}^{T},\tilde{t}\}}\mathbb{E}_0\sum_{t=0}^T \frac{1}{(1+\delta)^t}(\phi+\phi^d d_t(\tilde{t}))\frac{V_t(x_t,d_t(\tilde{t}))^{(1-\sigma)}}{1-\sigma}
+\end{equation*}
+subject to
+\begin{align*}
+V_t(x_t,d_t(\tilde{t}))=&\bigg\{\max_{\{c_{1t},\dots,c_{Jt}\}}U(\mathbf{c}_t,d_t)\text{ subject to }\mathbf{p}_t\mathbf{c}_t=x_t\bigg\}\\
+\sum_{t=0}^{T}\frac{1}{1+r_t}x_t+y_T=&y_0+\sum_{t=0}^{\tilde{t}-1}\frac{1}{(1+r_t)^t}y_t
+\end{align*}
+
+Some comments
+\begin{itemize}
+\item We use the fact that utility is additively seperable across periods to split the problem into an intratemporal allocation problem (allocating $x_t$ across the consumption goods $j$) and an inter-temporal one (decision of how to allocate resources across periods and when to retire). This raises the possibility that we might be able to estimate the two parts of the problem separately -- whether this would work depends on how we treat the errors in the intra-temporal part of the problem.
+\item In particular, consider the AIDS model, and let $\epsilon_i$ denote the ``error term'' on the budget share demand, so:
+\begin{equation*}
+w_i=\left(\alpha_i+\alpha_i^d d \right)+\sum_j \gamma_{jk}\ln p_k + \left(\beta_i+\beta_i^d d \right)\left(\ln x-\ln a(\mathbf{p},d) \right)+\epsilon_i
+\end{equation*}
+If $\epsilon_i$ is random (either measurement error, or non-forecasted variations in period demands) then it seems reasonable that it plays no role in the inter-termporal problem. However, if it represents unaccounted for preference heterogeneity or a forecastable spike in demand for the good, then I guess households will take it into account in their inter-temporal resource allocation. In this case the indirect utility function embeds a stochastic compenent and is given by:
+\begin{equation*}
+V(\mathbf{p},x,d)=\frac{1}{b(\mathbf{p},d)}\left(\ln x-\ln a(\mathbf{p},d,\boldsymbol{\epsilon})\right)
+\end{equation*}
+where:
+\begin{align*}
+\ln a(\mathbf{p},d,\boldsymbol{\epsilon}) =& \alpha_0+\sum_j \left(\alpha_j+\alpha_j^d d+\epsilon_j \right)\ln p_j +\frac{1}{2}\sum_j \sum_k \gamma_{jk}\ln p_j \ln p_k
+\end{align*}
+In this case the errors enter the budget share additively and non-addivitely through $\ln a(\mathbf{p},d,\boldsymbol{\epsilon})$, which will make estimation considerably more awkward.
+\item Regardless of how we estimate the model we will need an instrument for $x_t$ (as a shock to demand for good $i$ can be expected to raise both the budget share of that good and total expenditure). Meaures of income (contemporary, lagged, permanent) are obvious candidate instruments.
+\item We might also worry about $d$ being endogeneous. However, as retirement is a once in a lifetime decision it seems less obvious that this will be driven by within period shocks to good demands.
+\item As written the model does not have an explicit role for time use. If households either work full time or are retired and the rest of their time is leisure, the time constraint is pretty trival -- leisure$=T-d*$full time hours -- and the way we've written the problem captures this. However, if the household can also spend time in home production and therefore food enters the utility function as the output of a home production function that combines ingredients and cooking time, things are more complicated and I don't think the framework as written here fully captures it.
+\item We'll need to think what to do about the fact households contains multiple people. Maybe assume the labour supply decision of the second earning is exogeneous?
+\item I like the idea of being parsimonious wrt to preference heterogeneity and seeing how far we can get in explaining the patterns in the data with our model structure. However, given the panel in the PSID, one form of heterogeneity that may be nice to include is fixed effects in the $\alpha_i$ parameters. 
+\end{itemize}
+
+
+
+\end{document}

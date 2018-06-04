@@ -1,0 +1,130 @@
+==========================================================================================
+
+CAMS 2003 V2.0
+
+Note to Users: This codebook is designed to match the distribution dataset. 
+Codebook metadata are derived from the data collection instrument.
+If you have questions concerning codebook layout or content please bring
+them to the attention of the HRS staff at hrsquest@isr.umich.edu.
+
+Printing recommendation: Set margins (left/right/top/bottom) to .5 inch; print
+in portrait orientation using a mono-space 10-point font.
+
+==========================================================================================
+
+Section C: DEMOGRAPHICS  (Respondent)
+
+==========================================================================================
+
+C1_03          C1. MARITAL STATUS
+         Section: C     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         .................................................................................
+          1710           1.  Married
+            90           2.  Living with a partner
+            49           3.  Separated
+           385           4.  Divorced
+           841           5.  Widowed
+           115           6.  Never married
+             4           7.  Other, specify (includes single and combinations of valid
+                             responses)
+            60       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+C2M1_03        C2M1. WORKING STATUS - 1
+         Section: C     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         .................................................................................
+           867           1.  Working now
+            20           2.  Temporarily laid off/sick leave
+            52           3.  Unemployed and looking for work
+           401           4.  Disabled
+          1673           5.  Retired
+           165           6.  Homemaker
+             5           7.  Others
+            23           8.  Part time/less than part time employment
+             1           9.  Volunteer/caregiving/babysitting
+            47       Blank.  Inap/Not checked
+
+
+==========================================================================================
+
+C2M2_03        C2M2. WORKING STATUS - 2
+         Section: C     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         .................................................................................
+                         1.  Working now
+             4           2.  Temporarily laid off/sick leave
+             2           3.  Unemployed and looking for work
+            14           4.  Disabled
+           355           5.  Retired
+           336           6.  Homemaker
+             1           7.  Others
+            39           8.  Part time/less than part time employment
+             8           9.  Volunteer/caregiving/babysitting
+          2495       Blank.  Inap/Not checked
+
+
+==========================================================================================
+
+C2M3_03        C2M3. WORKING STATUS - 3
+         Section: C     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         .................................................................................
+                         1.  Working now
+                         2.  Temporarily laid off/sick leave
+             1           3.  Unemployed and looking for work
+                         4.  Disabled
+             3           5.  Retired
+            50           6.  Homemaker
+                         7.  Others
+            12           8.  Part time/less than part time employment
+             7           9.  Volunteer/caregiving/babysitting
+          3181       Blank.  Inap/Not checked
+
+
+==========================================================================================
+
+C2M4_03        C2M4. WORKING STATUS - 4
+         Section: C     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         .................................................................................
+                         1.  Working now
+                         2.  Temporarily laid off/sick leave
+                         3.  Unemployed and looking for work
+                         4.  Disabled
+             1           5.  Retired
+             2           6.  Homemaker
+                         7.  Others
+                         8.  Part time/less than part time employment
+             2           9.  Volunteer/caregiving/babysitting
+          3249       Blank.  Inap/Not checked
+
+
+==========================================================================================
+
+C4_03          C4. WHO ANSWER QUESTIONNAIRE
+         Section: C     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         .................................................................................
+          2941           1.  Respondent
+            68           2.  Respondent's spouse or partner
+            63           3.  Respondent's son/-in-law or daughter/-in-law
+            19           4.  Other relative (sibs, grandkids, etc.)
+            17           5.  Non-relative (friends, caregivers, nurses, etc.)
+           146       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+C5_03          C5. SECTION C TIME
+         Section: C     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3026                   0-120.  Range of values
+           228                   Blank.  Inap/Missing
+
+
+==========================================================================================

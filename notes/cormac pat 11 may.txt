@@ -1,0 +1,193 @@
+Notes 7 May
+
+1. Keep Aguiar Hurst pictures, add version with fixed effects
+
+2. Consumption around retirement:
+	- Go to tertiles
+	- Do all years and post 2005
+	- Retirement:
+		Head - last job ended due to quitting, resigned, retired, n/a
+		50 and 80, never return to work
+	- TODO - Is there some way of identidying the partial retirees. Perhaps if they report both retired and working in emp_status_head, emp_status_head_2, or emp_status_head_3
+	- Four versions:
+		- Spouse never works
+		- Spouse always works
+		- Spouse has same* retirement transition *for +/- one wave
+		- Spouse has a different retirement transition
+	- Consider 3 year moving average
+
+	- Some comprehensive categorization
+
+1		- Food at home
+		- Food stamps
+
+
+2		- Food away
+
+
+3		- Utilities
+		- Home insurance
+		- Imputed Rent
+		
+4		- Health Insurance
+		- Health Services
+		- *Repairs
+
+
+5		- Education
+		- Childcare
+
+6		- Gasoline
+		- Transportation
+
+
+7		- *Vacations/Trips
+		- *Recreation
+
+
+8		- *Clothing
+
+
+
+
+Subsequent:
+	- Do these with HH FE, time Deatoned
+	- Changes at HH level, percentiles.
+	-CAMS RAND data
+
+
+Question for Martin:
+	- Why we need instrument in AIDS for x? Just measurement error?
+	- Problems with estimating AIDS outside the model
+
+
+Durables
+		- Furnishing
+
+
+
+			
+Next steps as of 25 May:
+-expenditure graphs with common scale  (remove the rescale option)
+-label for axes
+-caption in the graph with number of HHs (put it in a note) use note()
+
+- Section 8 of the latex doc
+	-cleaning figures
+	-add standard errors
+	-unsmoothed version
+- Section 9
+	-8 expenditure categories and 5 spouse categories
+	-smoothed version
+	-\subsection{Spouse Never Works}
+
+
+-move to regsave for these plots... so later we can add controls
+-3 year MA or 5 year MA (tssmooth)
+-to compute SEs for MA... regress expenditure on time period. test whether it's equal to zero, loop over time periods
+test (coef L.coef L2.coef)/3
+produces se
+
+-todo: why does the number of obs in each tertile change?
+
+Just in case
+https://www.stata.com/manuals/g-2graphtwowayrarea.pdf
+https://tex.stackexchange.com/questions/28333/continuous-v-per-chapter-section-numbering-of-figures-tables-and-other-docume
+
+Tuesday, May 29
+1. Find the Smoothed Standard for both sections of graphs in section 8 and 9.  
+	-  Fixed effect to the regression. 
+	- Do not control for anything (may be later, control for kids) 
+
+3. Just drop the Early Retirees
+4. Do all the dropping consistently. Early.
+5. Take the people who retire early. check their education. If college graduate= top, 	high school drop out = botton. 
+	Between put in the middle. 
+6. Go with heads social security income
+7. Take the maximum (?)
+
+Wednesday, May 30, 2018
+
+1. Spouse retired before the head of household and after the head of the household
+
+2. Drop the unsmoothed
+3. put the def 5 in the first
+4. one more definition
+5. controlling for time?? 
+6. age period  - multicollinearity problem. 
+	cohort effects/ time effects/ 
+	patrick has the code for this. We can use it. 
+7. Do the coefficients add up? For the categories to total imputed categories? 
+	Check this. 
+8. Add clothing and recreation?
+
+9. Demand model for 0 working, one working, 2 working
+10. Life cycle modeling: 
+Every household. One in four type. 
+ - High and low men and women income. 
+ - We keep five groups. 
+ Every household has two different entries. 
+ 	- for household A:
+ 	 - enter in the dataset twice, consumption data same, labor supply data will be different.
+
+ - Who are the head of household? Are they all male or female?
+ - What if they are not couple? 
+ 		- which group of definition are they included in? 
+ - Singles add a new definition on the spouse group
+
+ - Income for different definition of spouse retirement
+ - In page 8, relabel work related expenditure graph. 
+
+Update at the end of: 
+Friday June 01, 2018
+
+1. Spouse retired before the head of household and after the head of the household
+	DONE. Added in the defination.
+ 	Def-6 - Spouse retires after the head
+ 	Def 7 - Spouse retires before the head
+ 	Def 8 - Retirement of the head when the head is single
+
+2. Drop the unsmoothed from section 8
+	DONE
+
+3. put the def 5 in the first
+ 	DONE. Now the category starts with 1 - Ignoring the Spouse.
+
+4. Age Period  - multicollinearity problem. 
+	DONE. Added this in both section 9 and 10. Section 9 is mean expenditure of total non durables. 
+	Section 10 is - mean expenditure on each categorical variable 
+
+7. Do the coefficients add up? For the categories to total imputed categories? 
+	Added this in the section 8. We have checked the sum for defination of spouse retirement for the first three category only. 
+
+8. Add clothing and recreation?
+	Added clothing and recreation in section 10. 
+
+QUESTIONS to THINK:
+1. Retirement defination should we change. 
+		When spouse retires after the head, we have very small number of observations. (4, 6, 4)
+
+
+Meeting June 01, 2018, Friday
+- Add Error bands (-15, 15) in retirement x axis
+   Done
+2. Subtract health expenditure from total non-durables
+   Done
+3. Add in controls for number for kids
+   Added. dummy for one, dummy for two, dummy for three or more
+ 
+
+ Monday, June 04
+ 1. Side by side for expenditure with health and non health in total non-durables
+ For each spouse definition, 3 graphs:
+   a.  Total spending including health and education
+   b.  side by side: one subtracting health  and one subtracting both health and   		education
+
+ Drawing the regression table
+ 	1. Child
+ 	2. Age
+ 	3. put retirement dummy
+ 	One version with age/ and one without age
+
+Different columns
+

@@ -1,0 +1,516 @@
+==========================================================================================
+
+2001 CONSUMPTION AND ACTIVITIES MAIL SURVEY (Final Release, Version 3.0, 03/31/2011)
+
+Note to Users: This program is designed to create a codebook that matches the 
+distribution dataset. Codebook content is derived from Blaise .bmi metadata.
+If you have any questions or suggestions concerning codebook layout or content 
+please bring them to the attention of the HRS staff at hrsquest@isr.umich.edu. 
+
+Printing recommendation: Set margins (left/right/top/bottom) to .5 inch; print in
+portrait orientation using a mono-space 10-point font.
+
+==========================================================================================
+
+Section A: IDENTIFICATION VARIABLES AND ACTIVITIES  (Respondent)
+
+==========================================================================================
+
+HHID       HOUSEHOLD IDENTIFIER
+           Section: A    Level: R    Type: Character    Width: 6    Decimals: 0
+        ..................................................................................
+         3866      010001-213479. Range of values
+
+==========================================================================================
+
+PN         PERSON NUMBER
+           Section: A    Level: R    Type: Character    Width: 3    Decimals: 0
+        ..................................................................................
+         2362                010. Person Number
+           56                011. Person Number
+            1                012. Person Number
+         1023                020. Person Number
+            6                021. Person Number
+          199                030. Person Number
+            5                031. Person Number
+          212                040. Person Number
+            2                041. Person Number
+
+==========================================================================================
+
+GSUBHH     2000 SUB-HOUSEHOLD IDENTIFIER
+           Section: A    Level: R    Type: Character    Width: 1    Decimals: 0
+        ..................................................................................
+         3674                  0. Original sample household - no split from divorce                                   or separation of spouses or partners
+          106                  1. Split household - one half of couple from SUBHH                                   0 and new spouse or partner, if any
+           76                  2. Split household - other half of couple from SUBHH                                   0 and new spouse or partner, if any
+            6                  5. Split household - one half of couple from SUBHH                                   1 or 2
+            4                  7. Reunited household - respondents from split household                                   reunite
+
+==========================================================================================
+
+GPN_SP     2000 SPOUSE/PARTNER PERSON NUMBER
+           Section: A    Level: R    Type: Character    Width: 3    Decimals: 0
+        ..................................................................................
+          857                010. Spouse person number
+           67                011. Spouse person number
+            3                012. Spouse person number
+          874                020. Spouse person number
+           13                021. Spouse person number
+          125                030. Spouse person number
+            4                031. Spouse person number
+          156                040. Spouse person number
+            6                041. Spouse person number
+         1761              Blank. No spouse/partner
+
+==========================================================================================
+
+QNR01      2001 CAMS QUESTIONNAIRE IDENTIFIER
+           Section: A    Level: R    Type: Character    Width: 5    Decimals: 0
+        ..................................................................................
+         3866        14001-19106. Range of values
+
+==========================================================================================
+
+A1_01      A1. Watch TV
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you actually spend last week watching programs or movies/           videos on TV?
+
+        ..................................................................................
+         3785              0-126. Range of values
+           81              Blank. Inap/Missing
+
+==========================================================================================
+
+A2_01      A2. Read papers/mags
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you actually spend last week reading newspapers or magazines?
+
+        ..................................................................................
+         3789              0-100. Range of values
+           77              Blank. Inap/Missing
+
+==========================================================================================
+
+A3_01      A3. Read books
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you actually spend last week reading books?
+
+        ..................................................................................
+         3776               0-80. Range of values
+           90              Blank. Inap/Missing
+
+==========================================================================================
+
+A4_01      A4. Listen music
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you actually spend last week listening to music?
+
+        ..................................................................................
+         3718              0-140. Range of values
+          148              Blank. Inap/Missing
+
+==========================================================================================
+
+A5_01      A5. Sleep/Nap
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you actually spend last week sleeping and napping (including            at night)?
+
+        ..................................................................................
+         3792              0-168. Range of values
+           74              Blank. Inap/Missing
+
+==========================================================================================
+
+A6_01      A6. Walk
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you actually spend last week walking?
+
+        ..................................................................................
+         3753              0-165. Range of values
+          113              Blank. Inap/Missing
+
+==========================================================================================
+
+A7_01      A7. Sports/Exercise
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you actually spend last week participating in sports            or other exercise activities?
+
+        ..................................................................................
+         3759               0-90. Range of values
+          107              Blank. Inap/Missing
+
+==========================================================================================
+
+A8_01      A8. Visit in person
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you actually spend last week visiting in person with            friends, neighbors, or relatives?
+
+        ..................................................................................
+         3777              0-168. Range of values
+           89              Blank. Inap/Missing
+
+==========================================================================================
+
+A9_01      A9. Phone/Letters/Email
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you actually spend last week communicating by telephone,            letters or e-mail with friends, neighbors, or relatives?
+
+        ..................................................................................
+         3789              0-165. Range of values
+           77              Blank. Inap/Missing
+
+==========================================================================================
+
+A10_01     A10. Work for pay
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you actually spend last week working for pay?
+
+        ..................................................................................
+         3782              0-168. Range of values
+           84              Blank. Inap/Missing
+
+==========================================================================================
+
+A11_01     A11. Use computer
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you actually spend last week using the computer?
+
+        ..................................................................................
+         3739              0-100. Range of values
+          127              Blank. Inap/Missing
+
+==========================================================================================
+
+A12_01     A12. Pray/meditate
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you actually spend last week praying or meditating?
+
+        ..................................................................................
+         3686              0-168. Range of values
+          180              Blank. Inap/Missing
+
+==========================================================================================
+
+A13_01     A13. House cleaning
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you actually spend last week house cleaning?
+
+        ..................................................................................
+         3757              0-140. Range of values
+          109              Blank. Inap/Missing
+
+==========================================================================================
+
+A14_01     A14. Wash/Iron/Mend
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you actually spend last week washing, ironing, or mending            clothes?
+
+        ..................................................................................
+         3801               0-75. Range of values
+           65              Blank. Inap/Missing
+
+==========================================================================================
+
+A15_01     A15. Yard work/garden
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you actually spend last week yard work or gardening?
+
+        ..................................................................................
+         3793               0-80. Range of values
+           73              Blank. Inap/Missing
+
+==========================================================================================
+
+A16_01     A16. Shop/Run errands
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you actually spend last week shopping or running errands?
+
+        ..................................................................................
+         3778               0-60. Range of values
+           88              Blank. Inap/Missing
+
+==========================================================================================
+
+A17_01     A17. Meals Prep/Clean-up
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you actually spend last week preparing meals and cleaning            up afterwards?
+
+        ..................................................................................
+         3785               0-75. Range of values
+           81              Blank. Inap/Missing
+
+==========================================================================================
+
+A18_01     A18. Personal grooming
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you actually spend last week personal grooming and            hygiene, such as bathing and dressing?
+
+        ..................................................................................
+         3788              0-105. Range of values
+           78              Blank. Inap/Missing
+
+==========================================================================================
+
+A19_01     A19. Pet care
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you actually spend last week caring for pets?
+
+        ..................................................................................
+         3786              0-168. Range of values
+           80              Blank. Inap/Missing
+
+==========================================================================================
+
+A20_01     A20. Show affection
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you actually spend last week physically showing affection            for others through hugging, kissing, etc?
+
+        ..................................................................................
+         3667              0-168. Range of values
+          199              Blank. Inap/Missing
+
+==========================================================================================
+
+A21_01     A21. Help Others
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you spend last month helping friends, neighbors, or            relatives who did not live with you and did not pay you for the help?
+
+        ..................................................................................
+         3751              0-684. Range of values
+          115              Blank. Inap/Missing
+
+==========================================================================================
+
+A22_01     A22. Volunteer work
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you spend last month doing volunteer work for religious,            educational, health-related, or other charitable organizations?
+
+        ..................................................................................
+         3756              0-720. Range of values
+          110              Blank. Inap/Missing
+
+==========================================================================================
+
+A23_01     A23. Religious attendance
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you spend last month attending religious services?
+
+        ..................................................................................
+         3758              0-210. Range of values
+          108              Blank. Inap/Missing
+
+==========================================================================================
+
+A24_01     A24. Attend meetings
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you spend last month attending meetings of clubs or            religious groups?
+
+        ..................................................................................
+         3734               0-82. Range of values
+          132              Blank. Inap/Missing
+
+==========================================================================================
+
+A25_01     A25. Money management
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you spend last month taking care of finances or investments,            such as banking, paying bills, balancing the checkbook, doing taxes, etc?
+
+        ..................................................................................
+         3768              0-215. Range of values
+           98              Blank. Inap/Missing
+
+==========================================================================================
+
+A26_01     A26. Self Care
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you spend last month treating or managing an existing            medical condition of your own?
+
+        ..................................................................................
+         3688              0-744. Range of values
+          178              Blank. Inap/Missing
+
+==========================================================================================
+
+A27_01     A27. Play cards/games/puzzles
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you spend last month playing cards or games, or solving            puzzles?
+
+        ..................................................................................
+         3766              0-600. Range of values
+          100              Blank. Inap/Missing
+
+==========================================================================================
+
+A28_01     A28. Concerts/Movies/Lectures
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you spend last month attending concerts, movies, or            lectures, or visiting museums?
+
+        ..................................................................................
+         3764              0-100. Range of values
+          102              Blank. Inap/Missing
+
+==========================================================================================
+
+A29_01     A29. Sing/Play music
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you spend last month singing or playing a musical instrument?
+
+        ..................................................................................
+         3768              0-100. Range of values
+           98              Blank. Inap/Missing
+
+==========================================================================================
+
+A30_01     A30. Arts and crafts
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you spend last month doing arts and crafts projects,            including knitting, embroidery, or painting?
+
+        ..................................................................................
+         3770              0-630. Range of values
+           96              Blank. Inap/Missing
+
+==========================================================================================
+
+A31_01     A31. Home improvements
+           Section: A    Level: R    Type: Numeric    Width: 6    Decimals: 2
+
+           How many hours did you spend last month doing home improvements, including            painting, redecorating, or making home repairs?
+
+        ..................................................................................
+         3764              0-672. Range of values
+          102              Blank. Inap/Missing
+
+==========================================================================================
+
+A32_01     A32. Days away overnight
+           Section: A    Level: R    Type: Numeric    Width: 1    Decimals: 0
+
+           How many days in the last twelve months were you away from home on overnight            trips or vacations? (Check one.)
+
+        ..................................................................................
+         1036                  0. ZERO DAYS
+          864                  1. 1-7 DAYS
+          601                  2. 8-14 DAYS
+          434                  3. 15-21 DAYS
+          868                  4. 22 OR MORE DAYS
+           63              Blank. Inap/Missing
+
+==========================================================================================
+
+A33_01     A33. Often use mind
+           Section: A    Level: R    Type: Numeric    Width: 1    Decimals: 0
+
+           How often do you use your mind in what you do? (Check one.)
+
+        ..................................................................................
+           46                  1. RARELY
+          198                  2. SOMETIMES
+         1003                  3. OFTEN
+         2449                  4. ALMOST ALL THE TIME
+          108                  5. UNCERTAIN, CAN'T SAY
+           62              Blank. Inap/Missing
+
+==========================================================================================
+
+A34_01     A34. Often use body
+           Section: A    Level: R    Type: Numeric    Width: 1    Decimals: 0
+
+           How often do you use your body in what you do? (Check one.)
+
+        ..................................................................................
+          153                  1. RARELY
+          631                  2. SOMETIMES
+         1435                  3. OFTEN
+         1440                  4. ALMOST ALL THE TIME
+          133                  5. UNCERTAIN, CAN'T SAY
+           74              Blank. Inap/Missing
+
+==========================================================================================
+
+A35_01     A35. Often active w. others
+           Section: A    Level: R    Type: Numeric    Width: 1    Decimals: 0
+
+           How often are your activities done with other people? (Check one.)
+
+        ..................................................................................
+          513                  1. RARELY
+         1284                  2. SOMETIMES
+         1305                  3. OFTEN
+          626                  4. ALMOST ALL THE TIME
+           72                  5. UNCERTAIN, CAN'T SAY
+           66              Blank. Inap/Missing
+
+==========================================================================================
+
+A36_01     A36. Often benefit others
+           Section: A    Level: R    Type: Numeric    Width: 1    Decimals: 0
+
+           How often do your activities benefit other people? (Check one.)
+
+        ..................................................................................
+          408                  1. RARELY
+         1280                  2. SOMETIMES
+         1259                  3. OFTEN
+          696                  4. ALMOST ALL THE TIME
+          161                  5. UNCERTAIN, CAN'T SAY
+           62              Blank. Inap/Missing
+
+==========================================================================================
+
+A37_01     A37. Who answer questionnaire
+           Section: A    Level: R    Type: Numeric    Width: 1    Decimals: 0
+
+           Were the questions in Section A answered by the person to whom this questionnaire            was addressed, or did someone else answer for that person? (IF A37 EQ            4 THEN GO TO A37a ELSE GO TO A38)
+
+        ..................................................................................
+         3581                  1. RESPONDENT
+           98                  2. RESPONDENT'S SPOUSE OR PARTNER
+           81                  3. RESPONDENT'S SON/-IN-LAW OR DAUGHTER/-IN-LAW
+           19                  4. OTHER RELATIVE (SIBS, GRANDKIDS, ETC.)
+           16                  5. NON-RELATIVE (FRIENDS, CAREGIVERS, NURSES, ETC.)
+           71              Blank. Inap/Missing
+
+==========================================================================================
+
+A38_01     A38. Section A: Time
+           Section: A    Level: R    Type: Numeric    Width: 8    Decimals: 0
+
+           Approximately, how long (minutes) did it take you to complete Section A?
+
+        ..................................................................................
+         3727             1-2880. Range of values
+          139              Blank. Inap/Missing
+
+==========================================================================================
+

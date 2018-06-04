@@ -1,0 +1,2981 @@
+==========================================================================================
+
+HRS 2011 CAMS Final Release
+
+Note to Users: This codebook is designed to match the distribution dataset. 
+Codebook metadata are derived from the data collection instrument.
+If you have questions concerning codebook layout or content please bring
+them to the attention of the HRS staff at hrsquestions@umich.edu.
+
+Printing recommendation: Set margins (left/right/top/bottom) to .5 inch; print
+in portrait orientation using a mono-space 10-point font.
+
+==========================================================================================
+
+Section A: ACTIVITIES, CONSUMPTION, AND DEMOGRAPHICS  (Respondent)
+
+==========================================================================================
+
+HHID           HOUSEHOLD IDENTIFIER
+         Section: A     Level: Respondent      Type: Character  Width: 6   Decimals: 0
+
+         .................................................................................
+          6530           010001-959734.  Range of values
+
+
+==========================================================================================
+
+PN             PERSON NUMBER
+         Section: A     Level: Respondent      Type: Character  Width: 3   Decimals: 0
+
+         .................................................................................
+          3613         010.  Person Number
+           197         011.  Person Number
+             8         012.  Person Number
+          2114         020.  Person Number
+            61         021.  Person Number
+             5         022.  Person Number
+           221         030.  Person Number
+            15         031.  Person Number
+             3         032.  Person Number
+           282         040.  Person Number
+             8         041.  Person Number
+             2         042.  Person Number
+             1         043.  Person Number
+
+
+==========================================================================================
+
+MSUBHH         2010 SUB HOUSEHOLD IDENTIFICATION NUMBER
+         Section: A     Level: Respondent      Type: Character  Width: 1   Decimals: 0
+
+         .................................................................................
+          6093           0.  Original sample household - no split from divorce or
+                             separation of spouses or partners
+           210           1.  Split household - one half of couple from SUBHH 0 and new
+                             spouse or partner, if any
+           155           2.  Split household - one half of couple from SUBHH 0 and new
+                             spouse or partner, if any
+                         3.  Deceased respondent household
+            18           5.  Split household - one half of couple from SUBHH 1 or 2
+             2           6.  Split household - one half of couple from SUBHH 1 or 2
+            39           7.  Reunited household - respondents from split household
+                             reunite
+             1           8.  Split household - one half of couple from SUBHH 1 or 2
+            12       Blank.  Inapplicable
+
+
+==========================================================================================
+
+MPN_SP         2010 SPOUSE/PARTNER PERSON NUMBER
+         Section: A     Level: Respondent      Type: Character  Width: 3   Decimals: 0
+
+         .................................................................................
+          1899         010.  Spouse person number
+           156         011.  Spouse person number
+             8         012.  Spouse person number
+          1788         020.  Spouse person number
+            48         021.  Spouse person number
+             4         022.  Spouse person number
+           161         030.  Spouse person number
+            13         031.  Spouse person number
+             3         032.  Spouse person number
+           210         040.  Spouse person number
+             8         041.  Spouse person number
+             1         042.  Spouse person number
+             1         043.  Spouse person number
+          2230       Blank.  No spouse/partner
+
+
+==========================================================================================
+
+QNR11          2011 CAMS QUESTIONNAIRE IDENTIFIER
+         Section: A     Level: Respondent      Type: Character  Width: 6   Decimals: 0
+
+         .................................................................................
+          6530           600031-666831.  Range of values
+
+
+==========================================================================================
+
+QTYPE11        2011 CAMS QUESTIONNAIRE TYPE - R OR SP
+         Section: A     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         User Note: Spouse/partner questionnaires only include Section A, while the
+         Respondent questionnaires include sections A, B and C.
+
+         .................................................................................
+          4370           1.  Respondent
+          2160           2.  Spouse/Partner
+
+
+==========================================================================================
+
+A1_11          A1. WATCH TV
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you actually spend LAST WEEK... Watching programs or
+         movies/videos on TV?
+
+         .................................................................................
+          6424                   0-168.  Range of values
+           106                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A2_11          A2. READ PAPERS/MAGS
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you actually spend LAST WEEK... Reading newspapers or
+         magazines?
+
+         .................................................................................
+          6458                    0-80.  Range of values
+            72                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A3_11          A3. READ BOOKS
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you actually spend LAST WEEK... Reading books?
+
+         .................................................................................
+          6451                    0-90.  Range of values
+            79                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A4_11          A4. LISTEN MUSIC
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you actually spend LAST WEEK... Listening to music?
+
+         .................................................................................
+          6399                   0-168.  Range of values
+           131                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A5_11          A5. SLEEP/NAP
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you actually spend LAST WEEK... Sleeping and napping
+         (including at night)?
+
+         .................................................................................
+          6396                   0-168.  Range of values
+           134                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A6_11          A6. WALK
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you actually spend LAST WEEK... Walking?
+
+         .................................................................................
+          6368                   0-168.  Range of values
+           162                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A7_11          A7. SPORTS/EXERCISE
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you actually spend LAST WEEK... Participating in sports or
+         other exercise activities?
+
+         .................................................................................
+          6431                   0-160.  Range of values
+            99                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A8_11          A8. VISIT IN PERSON
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you actually spend LAST WEEK... Visiting in-person with
+         friends, neighbors, or relatives?
+
+         .................................................................................
+          6444                   0-168.  Range of values
+            86                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A9_11          A9. PHONE/LETTERS/EMAIL
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you actually spend LAST WEEK... Communicating by telephone,
+         letters, or e-mail with friends, neighbors, or relatives?
+
+         .................................................................................
+          6450                   0-168.  Range of values
+            80                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A10_11         A10. WORK FOR PAY
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you actually spend LAST WEEK... Working for pay?
+
+         .................................................................................
+          6441                   0-168.  Range of values
+            89                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A11_11         A11. USE COMPUTER
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you actually spend LAST WEEK... Using the computer?
+
+         .................................................................................
+          6477                   0-168.  Range of values
+            53                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A12_11         A12. PRAY/MEDITATE
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you actually spend LAST WEEK... Praying or meditating?
+
+         .................................................................................
+          6410                   0-168.  Range of values
+           120                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A13_11         A13. HOUSE CLEANING
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you actually spend LAST WEEK... House cleaning?
+
+         .................................................................................
+          6420                   0-150.  Range of values
+           110                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A14_11         A14. WASH/IRON/MEND
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you actually spend LAST WEEK... Washing, ironing, or mending
+         clothes?
+
+         .................................................................................
+          6467                   0-100.  Range of values
+            63                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A15_11         A15. YARD WORK/GARDEN
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you actually spend LAST WEEK... Yard work or gardening?
+
+         .................................................................................
+          6471                   0-100.  Range of values
+            59                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A16_11         A16. SHOP/RUN ERRANDS
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you actually spend LAST WEEK... Shopping or running errands?
+
+         .................................................................................
+          6450                    0-70.  Range of values
+            80                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A17_11         A17. MEALS PREP/CLEAN-UP
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you actually spend LAST WEEK... Preparing meals and
+         cleaning-up afterwards?
+
+         .................................................................................
+          6436                   0-100.  Range of values
+            94                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A18_11         A18. PERSONAL GROOMING
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you actually spend LAST WEEK... Personal grooming and
+         hygiene, such as bathing and dressing?
+
+         .................................................................................
+          6445                   0-168.  Range of values
+            85                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A19_11         A19. PET CARE
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you actually spend LAST WEEK... Caring for pets?
+
+         .................................................................................
+          6453                   0-168.  Range of values
+            77                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A20_11         A20. SHOW AFFECTION
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you actually spend LAST WEEK... Physically showing affection
+         for others through hugging, kissing, etc.?
+
+         .................................................................................
+          6375                   0-168.  Range of values
+           155                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A21_11         A21. HELP OTHERS
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you spend last month... Helping friends, neighbors, or
+         relatives who did not live with you and did not pay you for the help?
+
+         .................................................................................
+          6422                   0-744.  Range of values
+           108                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A22_11         A22. VOLUNTEER WORK
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you spend last month... Doing volunteer work for religious,
+         educational, health-related, or other charitable organizations?
+
+         .................................................................................
+          6437                   0-420.  Range of values
+            93                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A23_11         A23. RELIGIOUS ATTENDANCE
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you spend last month... Attending religious services?
+
+         .................................................................................
+          6427                   0-420.  Range of values
+           103                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A24_11         A24. ATTEND MEETINGS
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you spend last month... Attending meetings of clubs or
+         religious groups?
+
+         .................................................................................
+          6418                   0-120.  Range of values
+           112                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A25_11         A25. MONEY MANAGEMENT
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you spend last month... Taking care of finances or
+         investments, such as banking, paying bills, balancing the checkbook, doing
+         taxes, etc.?
+
+         .................................................................................
+          6440                   0-140.  Range of values
+            90                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A26_11         A26. MANAGING MEDICAL CONDITION
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you spend last month... Treating or managing an existing
+         medical condition of your own?
+
+         .................................................................................
+          6393                   0-744.  Range of values
+           137                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A27_11         A27. PLAY CARDS/GAMES/PUZZLES
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you spend last month... Playing cards or games, or solving
+         puzzles?
+
+         .................................................................................
+          6458                   0-240.  Range of values
+            72                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A28_11         A28. CONCERTS/MOVIES/LECTURES
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you spend last month... Attending concerts, movies, or
+         lectures, or visiting museums?
+
+         .................................................................................
+          6461                   0-150.  Range of values
+            69                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A29_11         A29. SING/PLAY INSTRUMENT
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you spend last month... Singing or playing a musical
+         instrument?
+
+         .................................................................................
+          6452                   0-200.  Range of values
+            78                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A30_11         A30. ARTS AND CRAFTS
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you spend last month... Doing arts and crafts projects,
+         including knitting, embroidery, or painting?
+
+         .................................................................................
+          6450                   0-250.  Range of values
+            80                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A31_11         A31. HOME IMPROVEMENTS
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you spend last month... Doing home improvements, including
+         painting, redecorating, or making home repairs?
+
+         .................................................................................
+          6464                   0-264.  Range of values
+            66                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A32_11         A32. VEHICLE MAINTENANCE/CLEANING
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you spend last month... Working on, maintaining, or cleaning
+         your car(s) or vehicle(s)?
+
+         .................................................................................
+          6456                   0-120.  Range of values
+            74                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A33_11         A33. LEISURE DINING/EATING OUT
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you spend last month... Dining or eating outside the home
+         (not related to business or work)?
+
+         .................................................................................
+          6442                   0-400.  Range of values
+            88                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A34_11         A34. TIME SPENT ON EATING MEALS LAST WK
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         Thinking of your meals last week, how much time did you spend eating meals last
+         week?
+         
+         _______  Hours last week
+
+         .................................................................................
+          6235                   0-168.  Range of values
+           295                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A35A_11        A35A. HRS SEEING DOC - WEEK
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         Please think of how much time you spend seeing doctors, nurses, therapists or
+         other health care providers about your own health, or going to the pharmacy for
+         your own medications: During the past year, about how much time did you spend on
+         average on these activities, including travel time?
+         
+         ________hours per week
+
+         .................................................................................
+           808                   0-168.  Range of values
+          5722                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A35B_11        A35B. HRS SEEING DOC - MONTH
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         ________hours per month
+
+         .................................................................................
+          1460                   0-450.  Range of values
+          5070                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A35C_11        A35C. HRS SEEING DOC - LAST YEAR
+         Section: A     Level: Respondent      Type: Numeric    Width: 7   Decimals: 2
+
+         ________hours last year
+
+         .................................................................................
+          3992                  0-8760.  Range of values
+          2538                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A36_11         A36. ANY TIME MANAGING MED COND ANOTHER
+         Section: A     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Did you spend any time last week treating or managing the medical condition of
+         another person?
+
+         .................................................................................
+          1328           1.  Yes
+          5052           5.  No
+           150       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A36M1_11       A36M1. WHO WAS THAT PERSON - 1
+         Section: A     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Who was that person (check all that apply)
+
+         .................................................................................
+           674           1.  Spouse
+           227           2.  Child, step child or grandchild
+           242           3.  Parent, parent-in-law or grand parent
+            82           4.  Other relative (sibs, grandkids, oth rel)
+           126           5.  Non-relative (friend, caregiver, nurse)
+          5179       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A36M2_11       A36M2. WHO WAS THAT PERSON - 2
+         Section: A     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Who was that person (check all that apply)
+
+         .................................................................................
+                         1.  Spouse
+            68           2.  Child, step child or grandchild
+            37           3.  Parent, parent-in-law or grand parent
+            25           4.  Other relative (sibs, grandkids, oth rel)
+            16           5.  Non-relative (friend, caregiver, nurse)
+          6384       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A36M3_11       A36M3. WHO WAS THAT PERSON - 3
+         Section: A     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Who was that person (check all that apply)
+
+         .................................................................................
+                         1.  Spouse
+                         2.  Child, step child or grandchild
+            12           3.  Parent, parent-in-law or grand parent
+             4           4.  Other relative (sibs, grandkids, oth rel)
+             4           5.  Non-relative (friend, caregiver, nurse)
+          6510       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A36M4_11       A36M4. WHO WAS THAT PERSON - 4
+         Section: A     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Who was that person (check all that apply)
+
+         .................................................................................
+                         1.  Spouse
+                         2.  Child, step child or grandchild
+                         3.  Parent, parent-in-law or grand parent
+             1           4.  Other relative (sibs, grandkids, oth rel)
+             1           5.  Non-relative (friend, caregiver, nurse)
+          6528       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A36A_11        A36A.HRS SPENT TREATING MED COND ANOTHER
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         How many hours did you spend in total last week?
+
+         .................................................................................
+          1408                   0-168.  Range of values
+          5122                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A37A_11        A37A. HRS MANAGING MEDICAL BILLS - WEEK
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         During the past year, about how much time did you spend on average paying or
+         managing medical bills, including dealing with insurance claims? If you helped
+         another person manage his or her bills or claims, please include that time.
+         
+         ________hours per week
+
+         .................................................................................
+          1226                   0-168.  Range of values
+          5304                   Blank.  Inapplicable
+
+
+==========================================================================================
+
+A37B_11        A37B. HRS MANAGING MEDICAL BILLS - MONTH
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         ________hours per month
+
+         .................................................................................
+          1078                   0-424.  Range of values
+          5452                   Blank.  Inapplicable
+
+
+==========================================================================================
+
+A37C_11        A37C. HRS MANAGING MED BILLS - LAST YEAR
+         Section: A     Level: Respondent      Type: Numeric    Width: 7   Decimals: 2
+
+         ________hours last year
+
+         .................................................................................
+          3598                  0-8760.  Range of values
+          2932                   Blank.  Inapplicable
+
+
+==========================================================================================
+
+A38_11         A38. DAYS AWAY OVERNIGHT- BUSINESS
+         Section: A     Level: Respondent      Type: Numeric    Width: 3   Decimals: 0
+
+         How many days in the last twelve months were you away from home on overnight
+         trips related to business or work?
+
+         .................................................................................
+          6209                   0-365.  Range of values
+           321                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A39_11         A39. DAYS AWAY OVERNIGHT - NONBUSINESS
+         Section: A     Level: Respondent      Type: Numeric    Width: 3   Decimals: 0
+
+         How many days in the last twelve months were you away from home on overnight
+         trips or vacations not related to business or work?
+
+         .................................................................................
+          6355                   0-365.  Range of values
+           175                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A40_11         A40. OFTEN USE MIND
+         Section: A     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Now think about everything you do during waking hours: How often do you use your
+         mind in what you do? (Check one.)
+
+         .................................................................................
+           108           1.  Rarely
+           378           2.  Sometimes
+          1549           3.  Often
+          4207           4.  Almost all the time
+           223           5.  Uncertain, can't say
+            65       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A41_11         A41. OFTEN USE BODY
+         Section: A     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         How often do you use your body in what you do? (Check one.)
+
+         .................................................................................
+           346           1.  Rarely
+          1208           2.  Sometimes
+          2264           3.  Often
+          2441           4.  Almost all the time
+           199           5.  Uncertain, can't say
+            72       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A42_11         A42. OFTEN ACTIVE WITH OTHERS
+         Section: A     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Still thinking about everything you do during waking hours: How often are your
+         activities done with other people? (Check one.)
+
+         .................................................................................
+          1079           1.  Rarely
+          2244           2.  Sometimes
+          2001           3.  Often
+           986           4.  Almost all the time
+           149           5.  Uncertain, can't say
+            71       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A43_11         A43. OFTEN BENEFIT OTHERS
+         Section: A     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         How often do your activities benefit other people? (Check one.)
+
+         .................................................................................
+           915           1.  Rarely
+          2106           2.  Sometimes
+          1900           3.  Often
+          1187           4.  Almost all the time
+           350           5.  Uncertain, can't say
+            72       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A44_11         A44. WHO ANSWER QUESTIONNAIRE
+         Section: A     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Were the questions in Section A answered by the person to whom this
+         questionnaire was addressed, or did someone else answer for that person? (Check
+         one.)
+
+         .................................................................................
+          6031           1.  Respondent
+           235           2.  Respondent's spouse or partner
+           146           3.  Respondent's son/son-in-law or daughter/daughter-in-law
+            28           4.  Other relative (sibs, grandkids, etc.)
+            18           5.  Non-relative
+            72       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A45_11         A45. SECTION A TIME
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         Approximately, how long (minutes) did it take you to complete Section A?
+
+         .................................................................................
+          6377                   0-240.  Range of values
+           153                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+Section B: CONSUMPTION  (Respondent)
+
+==========================================================================================
+
+B1_11          B1. PURCHASE/LEASE AUTO
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         In the past twelve months, has your household leased or purchased an automobile
+         or truck? (If it was a lease, we are asking about new long-term leases).
+
+         .................................................................................
+           578           1.  Yes
+          3591           5.  No (Go to Question B2)
+            31           9.  Answer not given
+          2330       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B1A1_11        B1A1. AUTO MAKE - 1
+         Section: B     Level: Respondent      Type: Numeric    Width: 2   Decimals: 0
+
+         If so, what were the make, model, year and price of the vehicle(s) you purchased
+         or leased? (Car 1) : Make
+
+         .................................................................................
+                         1.  Acura
+             2           2.  Audi
+                         3.  BMW
+            24           4.  Buick
+            12           5.  Cadillac
+            87           6.  Chevrolet
+            24           7.  Chrysler
+                         8.  Daewoo
+            45           9.  Dodge
+            87          10.  Ford
+                        11.  GMC
+            34          12.  Honda
+            19          13.  Hyundai
+             1          14.  Isuzu
+             2          15.  Jaguar
+            11          16.  Jeep
+            16          17.  Kia
+             7          18.  Lexus
+             3          19.  Lincoln
+            14          20.  Mazda
+             7          21.  Mercedes
+            11          22.  Mercury
+             2          23.  Mitsubishi
+            45          24.  Nissan
+             5          25.  Oldsmobile
+                        26.  Plymouth
+            12          27.  Pontiac
+                        28.  Saab
+             3          29.  Saturn
+            12          30.  Subaru
+             3          31.  Suzuki
+            72          32.  Toyota
+            10          33.  Volkswagen
+             3          34.  Volvo
+                        35.  Holiday Rambler
+                        36.  Geo
+             2          37.  Infiniti
+                        38.  Spider
+                        39.  Komfort
+                        40.  Land Rover
+                        41.  Monaco
+                        42.  Porsche
+                        43.  Winnebago
+                        44.  Scion
+                        45.  Willys
+                        46.  Hummer
+                        47.  Electric
+                        48.  Country Coach
+                        49.  Damon
+                        50.  Peterbilt
+                        51.  Fiat
+                        52.  Smart
+            34          99.  Answer not given
+          5921       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B1A2_11        B1A2. AUTO MODEL - 1
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         If so, what were the make, model, year and price of the vehicle(s) you purchased
+         or leased? (Car 1) : Model
+
+         .................................................................................
+           319           1.  Cars
+            95           2.  Trucks
+            39           3.  Vans
+           123           4.  Utility
+                         5.  Motor home
+            33           9.  Answer not given
+          5921       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B1A3_11        B1A3. AUTO YEAR - 1
+         Section: B     Level: Respondent      Type: Numeric    Width: 4   Decimals: 0
+
+         If so, what were the make, model, year and price of the vehicle(s) you purchased
+         or leased? (Car 1) : Year
+
+         .................................................................................
+           609               1952-2012.  Range of values
+                                  9999.  Answer not given
+          5921                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B1A4_11        B1A4. AUTO PRICE - 1
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         If so, what were the make, model, year and price of the vehicle(s) you purchased
+         or leased? (Car 1) : Price
+
+         .................................................................................
+           609                 0-75000.  Range of values
+                                999999.  Answer not given
+          5921                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B1A5_11        B1A5. AUTO/TRUCK NEW OR USED - 1
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         If so, what were the make, model, year and price of the vehicle(s) you purchased
+         or leased? (Car 1) : New or used?
+
+         .................................................................................
+           252           1.  New
+           333           2.  Used
+            24           9.  Answer not given
+          5921       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B1B1_11        B1B1. AUTO MAKE - 2
+         Section: B     Level: Respondent      Type: Numeric    Width: 2   Decimals: 0
+
+         If so, what were the make, model, year and price of the vehicle(s) you purchased
+         or leased? (Car 2) : Make
+
+         .................................................................................
+                         1.  Acura
+             1           2.  Audi
+                         3.  BMW
+             1           4.  Buick
+             3           5.  Cadillac
+            12           6.  Chevrolet
+             2           7.  Chrysler
+                         8.  Daewoo
+             3           9.  Dodge
+             5          10.  Ford
+                        11.  GMC
+             3          12.  Honda
+             2          13.  Hyundai
+                        14.  Isuzu
+                        15.  Jaguar
+             2          16.  Jeep
+                        17.  Kia
+                        18.  Lexus
+             1          19.  Lincoln
+             2          20.  Mazda
+             3          21.  Mercedes
+             1          22.  Mercury
+             1          23.  Mitsubishi
+             4          24.  Nissan
+             1          25.  Oldsmobile
+                        26.  Plymouth
+                        27.  Pontiac
+                        28.  Saab
+             1          29.  Saturn
+             2          30.  Subaru
+                        31.  Suzuki
+             5          32.  Toyota
+             2          33.  Volkswagen
+                        34.  Volvo
+                        35.  Holiday Rambler
+                        36.  Geo
+             1          37.  Infiniti
+                        38.  Spider
+                        39.  Komfort
+                        40.  Land Rover
+                        41.  Monaco
+                        42.  Porsche
+                        43.  Winnebago
+                        44.  Scion
+                        45.  Willys
+                        46.  Hummer
+                        47.  Electric
+                        48.  Country Coach
+                        49.  Damon
+                        50.  Peterbilt
+                        51.  Fiat
+                        52.  Smart
+             7          99.  Answer not given
+          6465       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B1B2_11        B1B2. AUTO MODEL - 2
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         If so, what were the make, model, year and price of the vehicle(s) you purchased
+         or leased? (Car 2) : Model
+
+         .................................................................................
+            30           1.  Cars
+            10           2.  Trucks
+             5           3.  Vans
+            13           4.  Utility
+                         5.  Motor Home
+             7           9.  Answer not given
+          6465       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B1B3_11        B1B3. AUTO YEAR - 2
+         Section: B     Level: Respondent      Type: Numeric    Width: 4   Decimals: 0
+
+         If so, what were the make, model, year and price of the vehicle(s) you purchased
+         or leased? (Car 2) : Year
+
+         .................................................................................
+            65               1988-2012.  Range of values
+                                  9999.  Answer not given
+          6465                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B1B4_11        B1B4. AUTO PRICE - 2
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         If so, what were the make, model, year and price of the vehicle(s) you purchased
+         or leased? (Car 2) : Price
+
+         .................................................................................
+            65              1400-47000.  Range of values
+                                999999.  Answer not given
+          6465                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B1B5_11        B1B5. AUTO/TRUCK NEW OR USED - 2
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         If so, what were the make, model, year and price of the vehicle(s) you purchased
+         or leased? (Car 2) : New or used?
+
+         .................................................................................
+            26           1.  New
+            35           2.  Used
+             4           9.  Answer not given
+          6465       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B1C1_11        B1C1. AUTO MAKE - 3
+         Section: B     Level: Respondent      Type: Numeric    Width: 2   Decimals: 0
+
+         If so, what were the make, model, year and price of the vehicle(s) you purchased
+         or leased? (Car 3) : Make
+
+         .................................................................................
+                         1.  Acura
+                         2.  Audi
+                         3.  BMW
+             1           4.  Buick
+                         5.  Cadillac
+                         6.  Chevrolet
+                         7.  Chrysler
+                         8.  Daewoo
+             1           9.  Dodge
+             4          10.  Ford
+                        11.  GMC
+             1          12.  Honda
+             1          13.  Hyundai
+                        14.  Isuzu
+                        15.  Jaguar
+                        16.  Jeep
+                        17.  Kia
+                        18.  Lexus
+                        19.  Lincoln
+                        20.  Mazda
+             1          21.  Mercedes
+                        22.  Mercury
+                        23.  Mitsubishi
+                        24.  Nissan
+                        25.  Oldsmobile
+                        26.  Plymouth
+                        27.  Pontiac
+                        28.  Saab
+                        29.  Saturn
+                        30.  Subaru
+                        31.  Suzuki
+             1          32.  Toyota
+                        33.  Volkswagen
+                        34.  Volvo
+                        35.  Holiday Rambler
+                        36.  Geo
+                        37.  Infiniti
+                        38.  Spider
+                        39.  Komfort
+                        40.  Land Rover
+                        41.  Monaco
+                        42.  Porsche
+                        43.  Winnebago
+                        44.  Scion
+                        45.  Willys
+                        46.  Hummer
+                        47.  Electric
+                        48.  Country Coach
+                        49.  Damon
+                        50.  Peterbilt
+                        51.  Fiat
+                        52.  Smart
+             2          99.  Answer not given
+          6518       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B1C2_11        B1C2. AUTO MODEL - 3
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         If so, what were the make, model, year and price of the vehicle(s) you purchased
+         or leased? (Car 3) : Model
+
+         .................................................................................
+             6           1.  Cars
+             1           2.  Trucks
+             1           3.  Vans
+             1           4.  Utility
+                         5.  Motor Home
+             3           9.  Answer not given
+          6518       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B1C3_11        B1C3. AUTO YEAR - 3
+         Section: B     Level: Respondent      Type: Numeric    Width: 4   Decimals: 0
+
+         If so, what were the make, model, year and price of the vehicle(s) you purchased
+         or leased? (Car 3) : Year
+
+         .................................................................................
+            12               1979-2012.  Range of values
+                                  9999.  Answer not given
+          6518                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B1C4_11        B1C4. AUTO PRICE - 3
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         If so, what were the make, model, year and price of the vehicle(s) you purchased
+         or leased? (Car 3) : Price
+
+         .................................................................................
+            12                 0-35800.  Range of values
+                                999999.  Answer not given
+          6518                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B1C5_11        B1C5. AUTO/TRUCK NEW OR USED - 3
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         If so, what were the make, model, year and price of the vehicle(s) you purchased
+         or leased? (Car 3) : New or used?
+
+         .................................................................................
+             2           1.  New
+             9           2.  Used
+             1           9.  Answer not given
+          6518       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B2_11          B2. BUY REFRIGERATOR
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         In the past twelve months, has your household purchased a refrigerator?
+
+         .................................................................................
+           305           1.  Yes
+          3983           5.  No
+             7           9.  Answer not given
+          2235       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B2A_11         B2A. REFRIGERATOR PRICE
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         If yes: About how much was the purchase price?
+
+         .................................................................................
+           303                 0-14000.  Range of values
+             9                   99999.  Answer not given
+          6218                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B3_11          B3. BUY WASHER/DRYER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         In the past twelve months, has your household purchased a washing machine and/or
+         dryer?
+
+         .................................................................................
+           351           1.  Yes
+          3946           5.  No
+             6           9.  Answer not given
+          2227       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B3A_11         B3A. WASHER/DRYER PRICE
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         If yes: About how much was the purchase price?
+
+         .................................................................................
+           334                 40-4000.  Range of values
+            23                    9999.  Answer not given
+          6173                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B4_11          B4. BUY DISWASHER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         In the past twelve months, has your household purchased a dishwasher?
+
+         .................................................................................
+           148           1.  Yes
+          4155           5.  No
+                         9.  Answer not given
+          2227       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B4A_11         B4A. DISHWASHER PRICE
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         If yes: About how much was the purchase price?
+
+         .................................................................................
+           133                 40-1100.  Range of values
+            15                    9999.  Answer not given
+          6382                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B5_11          B5. BUY TELEVISION
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         In the past twelve months, has your household purchased a television?
+
+         .................................................................................
+           736           1.  Yes
+          3562           5.  No
+             5           9.  Answer not given
+          2227       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B5A_11         B5A. TELEVISION PRICE
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         If yes: About how much was the purchase price?
+
+         .................................................................................
+           694                  0-4000.  Range of values
+            47                    9999.  Answer not given
+          5789                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B6_11          B6. BUY COMPUTER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         In the past twelve months, has your household purchased a computer?
+
+         .................................................................................
+           653           1.  Yes
+          3645           5.  No
+             3           9.  Answer not given
+          2229       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B6A_11         B6A. COMPUTER PRICE
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         If yes: About how much was the purchase price?
+
+         .................................................................................
+           621                  5-3400.  Range of values
+            35                    9999.  Answer not given
+          5874                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B7_11          B7. HOME/RENTERS INSURANCE
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         For the items from B7 to B17, please enter your annual cost in the provided
+         spaces in the column "Amount spent yearly."  If you did not spend money on a
+         specific item or service in the last 12 months, then check the "No money spent
+         on this in last 12 months" box.
+
+         We'd also like you to provide your best estimate of your household spending for
+         the following categories:  Homeowner's or renter's insurance
+
+         .................................................................................
+          4034                0-281028.  Range of values
+          2496                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B7D_11         B7D. COMBINED WITH HOME INSURANCE
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Amount reported for home/renter's insurance (B7) includes:
+
+         .................................................................................
+                         1.  Property taxes (B8)
+             1           2.  Mortgage (B18)
+             1           3.  Vehicle insurance (B9)
+          6528       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B8_11          B8. PROPERTY TAXES
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Property taxes
+
+         .................................................................................
+          4027                 0-67633.  Range of values
+          2503                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B8D_11         B8D. COMBINED WITH PROPERTY TAXES
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Amount reported for property taxes (B8) includes:
+
+         .................................................................................
+                         1.  Homeowner's or renter's insurance (B7)
+             1           2.  Mortgage (B18)
+                         3.  Vehicle insurance (B9)
+          6529       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B9_11          B9. VEHICLE INSURANCE
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Vehicle insurance
+
+         .................................................................................
+          4038                 0-16600.  Range of values
+          2492                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B9D_11         B9D. COMBINED WITH VEHICLE INSURANCE
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Amount reported for  vehicle insurance (B9) includes:
+
+         .................................................................................
+             1           1.  Homeowner's or renter's insurance (B7)
+                         2.  Property taxes (B8)
+                         3.  Mortgage (B18)
+          6529       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B10_11         B10. VEHICLE MAINTENANCE
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Vehicle maintenance: parts, repairs, and servicing
+
+         .................................................................................
+          4102                 0-12000.  Range of values
+          2428                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B11_11         B11. HEALTH INSURANCE
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Health insurance: out-of-pocket, including Medicare supplemental insurance
+
+         .................................................................................
+          4023                 0-93384.  Range of values
+          2507                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B12_11         B12. TRIPS AND VACATIONS
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Trips and vacations: including transportation, accommodations, and recreational
+         expenses on trips
+
+         .................................................................................
+          4184                 0-49000.  Range of values
+          2346                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B13_11         B13. HOME REPAIRS/MAINTENANCE DIY
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Home repairs and maintenance - materials your household bought directly
+
+         .................................................................................
+          4154                0-120000.  Range of values
+          2376                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B14_11         B14. HOME REPAIRS/MAINTENANCE SERVICES
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Home repairs and maintenance services - hiring costs including materials they
+         provided
+
+         .................................................................................
+          4155                0-100000.  Range of values
+          2375                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B15_11         B15. HOUSEHOLD FURNISHINGS AND EQUIPMENT
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Household furnishings and equipment: such as furniture, floor coverings, small
+         appliances, miscellaneous household equipment
+
+         .................................................................................
+          4182                 0-35000.  Range of values
+          2348                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B16_11         B16. CONTRIBUTIONS
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Contributions to religious, educational, charitable, or political organizations
+
+         .................................................................................
+          4178                0-170000.  Range of values
+          2352                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B17_11         B17. GIFTS
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Cash or gifts to family and friends outside your household - including alimony
+         and child support payments
+
+         .................................................................................
+          4191                0-265000.  Range of values
+          2339                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B18_11         B18. MORTGAGE
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         For the items from B18 to B24a, we have included two time periods so that you
+         can estimate your spending in the way that is easiest for you for each category:
+         the amount you spend on a monthly basis, or the amount you spent in the last 12
+         months. If you did not spend money on a specific item or service in the last 12
+         months, then check the "No money spent on this in last 12 months" box.
+
+         Household amount spent for mortgage
+
+         .................................................................................
+          4114                 0-75000.  Range of values
+          2416                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B18A_11        B18A. MORTAGAGE - PER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Mortgage - per
+
+         .................................................................................
+          1234           1.  Monthly
+           262           2.  Yearly
+          2619           3.  No money spent on this in last 12 months
+          2415       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B18D_11        B18D. COMBINED WITH MORTGAGE
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Amount reported for mortgage (B18) includes:
+
+         .................................................................................
+             1           1.  Property taxes (B8)
+             1           2.  Car payment (B24)
+             3           3.  Home/Renters Insurance and Property taxes (B7 and B8)
+          6525       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B19_11         B19. RENT
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Household amount spent for rent
+
+         .................................................................................
+          4056                 0-42500.  Range of values
+          2474                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B19A_11        B19A. RENT - PER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Rent - per
+
+         .................................................................................
+           818           1.  Monthly
+           277           2.  Yearly
+          2961           3.  No money spent on this in last 12 months
+          2474       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B19D_11        B19D. COMBINED WITH RENT
+         Section: B     Level: Respondent      Type: Numeric    Width: 2   Decimals: 0
+
+         Amount reported for rent (B19) includes:
+
+         .................................................................................
+             1           1.  Electricity (B20)
+             7           2.  Electricity, water  and heat (B20, B21, and B22)
+                         3.  Electricity and heat (B20 and B22)
+                         4.  Electricity, water, heat and telephone (B20, B21, B22, and
+                             B23)
+             5           5.  Water (B21)
+             1           6.  Water and heat (B21 and B22)
+                         7.  Water and telephone (B21 and B23)
+             1           8.  Electricity and water (B20 and B21)
+                         9.  Electricity and Telephone (B20, B23)
+             1          10.  Electricity, water, heat, telephone, and car payment (B20,
+                             B21, B22, B23, and B24)
+          6514       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B20_11         B20. ELECTRICITY
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Household amount spent for electricity
+
+         .................................................................................
+          4159                 0-80000.  Range of values
+          2371                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B20A_11        B20A. ELECTRICITY - PER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Electricity - per
+
+         .................................................................................
+          2715           1.  Monthly
+          1062           2.  Yearly
+           379           3.  No money spent on this in last 12 months
+          2374       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B20D_11        B20D. COMBINED WITH ELECTRICITY
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Amount reported for mortgage (B20) includes:
+
+         .................................................................................
+            12           1.  Water (B21)
+            15           2.  Water and heat (B21 and B22)
+            67           3.  Heat (B22)
+                         4.  Water, Heat and Telephone (B21, B22, B23)
+                         5.  Telephone (B23)
+          6436       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B21_11         B21. WATER
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Household amount spent for water
+
+         .................................................................................
+          4114                 0-36852.  Range of values
+          2416                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B21A_11        B21A. WATER - PER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Water - per
+
+         .................................................................................
+          1871           1.  Monthly
+           868           2.  Yearly
+          1376           3.  No money spent on this in last 12 months
+          2415       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B21D_11        B21D. COMBINED WITH WATER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Amount reported for water (B21) includes:
+
+         .................................................................................
+             2           1.  Electricity (B20)
+             3           2.  Heat (B22)
+                         3.  Electricity and heat (B20 and B22)
+                         4.  Heat and telephone (B22 and B23)
+          6525       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B22_11         B22. HEAT
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Household amount spent for heating fuel for the home
+
+         .................................................................................
+          3971                 0-30528.  Range of values
+          2559                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B22A_11        B22A. HEAT - PER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Heating fuel for the home - per
+
+         .................................................................................
+          1271           1.  Monthly
+           990           2.  Yearly
+          1710           3.  No money spent on this in last 12 months
+          2559       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B22D_11        B22D. COMBINED WITH HEAT
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Amount reported for heating fuel (B22) includes:
+
+         .................................................................................
+             3           1.  Electricity (B20)
+             1           2.  Water (B21)
+          6526       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B23_11         B23. PHONE/CABLE/INTERNET
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Household amount spent for telephone, cable, internet
+
+         .................................................................................
+          4191                0-153804.  Range of values
+          2339                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B23A_11        B23A. PHONE/CABLE - PER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Telephone, cable, internet - per
+
+         .................................................................................
+          2868           1.  Monthly
+          1069           2.  Yearly
+           254           3.  No money spent on this in last 12 months
+          2339       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B24_11         B24. CAR PAYMENTS INTEREST/PRINCIPAL
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Household amount spent for car payments: interest & principal
+
+         .................................................................................
+          4190                 0-18000.  Range of values
+          2340                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B24A_11        B24A. CAR PAYMENTS - PER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Car payments: interest & principal - per
+
+         .................................................................................
+           846           1.  Monthly
+           254           2.  Yearly
+          3090           3.  No money spent on this in last 12 months
+          2340       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B25_11         B25. HOUSEKEEPING SUPPLIES
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         The next block of questions from B25 to B36a contain items some people do not
+         purchase on a regular basis. Please use the time period that best reflects your
+         spending over the last 12 months to estimate what you actually spent. Again, if
+         you did not spend money on a specific item or service in the last 12 months,
+         then check the "No money spent on this in last 12 months" box. If you bought an
+         item only occasionally or on an as-needed basis, then please give your best
+         estimate of what you spent in the last 12 months.
+
+         Housekeeping supplies - cleaning and laundry products
+
+         .................................................................................
+          4190                 0-16000.  Range of values
+          2340                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B25A_11        B25A. HOUSEKEEPING SUPPLIES - PER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Cleaning and laundry products - per
+
+         .................................................................................
+          2627           1.  Last month
+          1310           2.  Last 12 months
+           253           3.  No money spent on this in last 12 months
+          2340       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B26_11         B26. HOUSEKEEPING SERVICES
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Housekeeping, dry cleaning and laundry services - hiring costs for housekeeping
+         or home cleaning, and amount spent at dry cleaners and laundries
+
+         .................................................................................
+          4196                 0-38000.  Range of values
+          2334                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B26A_11        B26A. HOUSEKEEPING SERVICES - PER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Housekeeping, dry cleaning and laundry services - per
+
+         .................................................................................
+           996           1.  Last month
+           747           2.  Last 12 months
+          2452           3.  No money spent on this in last 12 months
+          2335       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B27_11         B27. GARDENING/YARD SUPPLIES
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Gardening and yard supplies - yard, lawn and garden products
+
+         .................................................................................
+          4199                  0-7500.  Range of values
+          2331                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B27A_11        B27A. GARDEN/YARD SUPPLIES - PER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Gardening and yard supplies - per
+
+         .................................................................................
+           933           1.  Last month
+          1548           2.  Last 12 months
+          1718           3.  No money spent on this in last 12 months
+          2331       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B28_11         B28. GARDEN/YARD SERVICES
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Gardening and yard services - hiring costs including materials they provided
+
+         .................................................................................
+          4191                  0-8500.  Range of values
+          2339                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B28A_11        B28A. GARDEN/YARD SERVICES - PER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Gardening and yard services - per
+
+         .................................................................................
+           600           1.  Last month
+           714           2.  Last 12 months
+          2877           3.  No money spent on this in last 12 months
+          2339       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B29_11         B29. CLOTHING AND APPAREL
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Clothing and apparel including footwear, outerwear, and products such as watches
+         or jewelry
+
+         .................................................................................
+          4162                 0-25000.  Range of values
+          2368                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B29A_11        B29A. CLOTHING - PER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Clothing and apparel - per
+
+         .................................................................................
+          1029           1.  Last month
+          2415           2.  Last 12 months
+           717           3.  No money spent on this in last 12 months
+          2369       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B30_11         B30. PERSONAL CARE PRODUCTS/SERVICES
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Personal care products and services - including hair care, shaving and skin
+         products, amount spent at hair dresser, manicure, etc.
+
+         .................................................................................
+          4190                  0-5680.  Range of values
+          2340                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B30A_11        B30A. PERSONAL CARE PROD/SERVICES - PER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Personal care products and services - per
+
+         .................................................................................
+          1839           1.  Last month
+          2072           2.  Last 12 months
+           279           3.  No money spent on this in last 12 months
+          2340       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B31_11         B31. DRUGS OOP
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Prescription and nonprescription medications - out-of-pocket cost, not including
+         what's covered by insurance
+
+         .................................................................................
+          4123                 0-11000.  Range of values
+          2407                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B31A_11        B31A. DRUGS OOP - PER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Prescription and nonprescription medications - per
+
+         .................................................................................
+          1654           1.  Last month
+          1928           2.  Last 12 months
+           541           3.  No money spent on this in last 12 months
+          2407       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B32_11         B32. HEALTH SERVICES
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Health care services - out-of-pocket cost of hospital care, doctor services, lab
+         tests, eye, dental, and nursing home care
+
+         .................................................................................
+          4131                 0-40000.  Range of values
+          2399                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B32A_11        B32A. HEALTH SERVICES - PER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Health care services - per
+
+         .................................................................................
+           726           1.  Last month
+          2199           2.  Last 12 months
+          1204           3.  No money spent on this in last 12 months
+          2401       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B33_11         B33. MEDICAL SUPPLIES
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Medical supplies - out-of-pocket cost, not including what's covered by insurance
+
+         .................................................................................
+          4060                 0-12000.  Range of values
+          2470                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B33A_11        B33A. MED SUPPLIES - PER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Medical supplies - per
+
+         .................................................................................
+           654           1.  Last month
+           977           2.  Last 12 months
+          2429           3.  No money spent on this in last 12 months
+          2470       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B34_11         B34. TICKETS
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Tickets to movies, sporting events, and performing arts
+
+         .................................................................................
+          4232                  0-7000.  Range of values
+          2298                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B34A_11        B34A. TICKETS - PER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Tickets to movies, sporting events, and performing arts - per
+
+         .................................................................................
+           478           1.  Last month
+          1280           2.  Last 12 months
+          2474           3.  No money spent on this in last 12 months
+          2298       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B35_11         B35. SPORTS EQUIPMENT
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Sports: including gym, exercise equipment such as bicycles, skis, boats, etc.
+
+         .................................................................................
+          4235                 0-50000.  Range of values
+          2295                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B35A_11        B35A. SPORTS EQUIPMENT - PER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Sports - per
+
+         .................................................................................
+           286           1.  Last month
+           575           2.  Last 12 months
+          3374           3.  No money spent on this in last 12 months
+          2295       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B36_11         B36. HOBBIES/LEISURE EQUIPMENT
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Hobbies and leisure equipment - such as photography, stamps, reading materials,
+         camping, etc.
+
+         .................................................................................
+          4228                 0-50000.  Range of values
+          2302                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B36A_11        B36A. HOBBIES/LEISURE EQUIPMENT - PER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Hobbies and leisure equipment - per
+
+         .................................................................................
+           740           1.  Last month
+          1442           2.  Last 12 months
+          2045           3.  No money spent on this in last 12 months
+          2303       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B37_11         B37. FOOD/DRINK GROCERY
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         For the items from B37 to B39a, we have included three time periods so that you
+         can estimate your spending in the way that is easiest for you for each category.
+         Again, if you did not spend money on a specific item or service in the last 12
+         months, then check the "No money spent on this in last 12 months" box. If you
+         bought an item only occasionally or on an as-needed basis, then please give your
+         best estimate of what you spent in the last 12 months.
+
+         Food and beverages - food and drinks, including alcoholic, that you buy in
+         grocery or other stores
+
+         .................................................................................
+          4166                 0-21154.  Range of values
+          2364                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B37A_11        B37A. FOOD/DRINK GROC - PER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Food and beverages - per
+
+         .................................................................................
+          2134           1.  Last week
+          1224           2.  Last month
+           608           3.  Last 12 months
+           200           4.  No money spent on this in last 12 months
+          2364       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B38_11         B38. DINING OUT
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Dining/drinking out - items in restaurants, cafes, and diners, including
+         take-out food
+
+         .................................................................................
+          4190                 0-22400.  Range of values
+          2340                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B38A_11        B38A. DINING OUT - PER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Dining/drinking out - per
+
+         .................................................................................
+          1475           1.  Last week
+          1040           2.  Last month
+           835           3.  Last 12 months
+           840           4.  No money spent on this in last 12 months
+          2340       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B39_11         B39. GASOLINE
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         Gasoline
+
+         .................................................................................
+          4186                 0-25000.  Range of values
+          2344                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B39A_11        B39A. GASOLINE - PER
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Gasoline - per
+
+         .................................................................................
+          1760           1.  Last week
+          1155           2.  Last month
+           643           3.  Last 12 months
+           628           4.  No money spent on this in last 12 months
+          2344       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B40_11         B40. HH SPENT
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Now think of your household's TOTAL spending last year. Please do NOT include
+         any money that you saved or that you invested, including real estate
+         investments, like home purchases. Compare this amount spent with your total
+         household income. In your household income, include any earnings from work, any
+         interest or dividends, any pension, annuity or Social Security income, and any
+         other money that your household may have received.
+
+         Last year, my household spent: [(More/Less/About the same) as its income]
+
+         .................................................................................
+           547           1.  More than its income
+           802           2.  Less than its income (Go to Question B40b)
+          1521           3.  About the same as its income (Go to Question B41)
+          1184           4.  Uncertain, can't say (Go to Question B41)
+                         9.  Answer not given
+          2476       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B40A_11        B40A. HH AMOUNT SPENT MORE
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         About how much more?
+
+         .................................................................................
+           464                0-200000.  Range of values
+          6066                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B40B_11        B40B. HH AMOUNT SPENT LESS
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 0
+
+         About how much less?
+
+         .................................................................................
+           566                0-383597.  Range of values
+          5964                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B41_11         B41. 20% MORE INCOME
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Suppose next year you were to find your household with 20% more income than
+         normal, what would you do with the extra income? (Check one.)
+
+         .................................................................................
+           982           1.  Save or invest all of it (Go to Question B43)
+           235           2.  Spend or donate all of it
+          1232           3.  Spend and save some
+          1547           4.  Uncertain, can't say (Go to Question B43)
+                         9.  Answer not given
+          2534       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B41A_11        B41A. % SPEND
+         Section: B     Level: Respondent      Type: Numeric    Width: 3   Decimals: 0
+
+         I would spend (percent) of it
+
+         .................................................................................
+          1137                   0-100.  Range of values
+          5393                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B41B_11        B41B. % SAVE
+         Section: B     Level: Respondent      Type: Numeric    Width: 3   Decimals: 0
+
+         I would save (percent) of it
+
+         .................................................................................
+          1133                   0-100.  Range of values
+          5397                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B42M1_11       B42M1. WHAT EXTRA INCOME SPEND ON
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         If you chose to spend all or part of it, what would you spend the extra income
+         on? (Check all that apply.)
+
+         .................................................................................
+          1097           1.  Trips, travel or vacations
+           409           2.  Clothing
+           165           3.  Eating out/food and beverages
+           554           4.  New home/home repairs or household items
+            48           5.  Entertainment, sports and hobbies
+           136           6.  Automobiles expenses
+          4121       Blank.  Inap/Not checked
+
+
+==========================================================================================
+
+B42M2_11       B42M2. WHAT EXTRA INCOME SPEND ON
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         If you chose to spend all or part of it, what would you spend the extra income
+         on? (Check all that apply.)
+
+         .................................................................................
+                         1.  Trips, travel or vacations
+           289           2.  Clothing
+           276           3.  Eating out/food and beverages
+           252           4.  New home/home repairs or household items
+            74           5.  Entertainment, sports and hobbies
+           138           6.  Automobiles expenses
+          5501       Blank.  Inap/Not checked
+
+
+==========================================================================================
+
+B42M3_11       B42M3. WHAT EXTRA INCOME SPEND ON
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         If you chose to spend all or part of it, what would you spend the extra income
+         on? (Check all that apply.)
+
+         .................................................................................
+                         1.  Trips, travel or vacations
+                         2.  Clothing
+           175           3.  Eating out/food and beverages
+           121           4.  New home/home repairs or household items
+           113           5.  Entertainment, sports and hobbies
+           134           6.  Automobiles expenses
+          5987       Blank.  Inap/Not checked
+
+
+==========================================================================================
+
+B42M4_11       B42M4. WHAT EXTRA INCOME SPEND ON
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         If you chose to spend all or part of it, what would you spend the extra income
+         on? (Check all that apply.)
+
+         .................................................................................
+                         1.  Trips, travel or vacations
+                         2.  Clothing
+                         3.  Eating out/food and beverages
+            81           4.  New home/home repairs or household items
+            63           5.  Entertainment, sports and hobbies
+            59           6.  Automobiles expenses
+          6327       Blank.  Inap/Not checked
+
+
+==========================================================================================
+
+B42M5_11       B42M5. WHAT EXTRA INCOME SPEND ON
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         If you chose to spend all or part of it, what would you spend the extra income
+         on? (Check all that apply.)
+
+         .................................................................................
+                         1.  Trips, travel or vacations
+                         2.  Clothing
+                         3.  Eating out/food and beverages
+                         4.  New home/home repairs or household items
+            60           5.  Entertainment, sports and hobbies
+            31           6.  Automobiles expenses
+          6439       Blank.  Inap/Not checked
+
+
+==========================================================================================
+
+B42M6_11       B42M6. WHAT EXTRA INCOME SPEND ON
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         If you chose to spend all or part of it, what would you spend the extra income
+         on? (Check all that apply.)
+
+         .................................................................................
+                         1.  Trips, travel or vacations
+                         2.  Clothing
+                         3.  Eating out/food and beverages
+                         4.  New home/home repairs or household items
+                         5.  Entertainment, sports and hobbies
+            49           6.  Automobiles expenses
+          6481       Blank.  Inap/Not checked
+
+
+==========================================================================================
+
+B43_11         B43. 20% LESS INCOME
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Now imagine that next year you were to find yourself with 20% less household
+         income.  What would you do? (Check one.)
+
+         .................................................................................
+           240           1.  Not cut my spending at all (Go to Question B45)
+          1837           2.  Cut my spending by the whole 20%
+           467           3.  Cut my spending by some, but not the whole 20%
+          1583           4.  Uncertain, can't say (Go to Question B45)
+                         9.  Answer not given
+          2403       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B43A_11        B43A. % CUT SPENDING
+         Section: B     Level: Respondent      Type: Numeric    Width: 3   Decimals: 0
+
+         By what percent would you cut spending?
+
+         .................................................................................
+           389                   0-100.  Range of values
+          6141                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B44M1_11       B44M1. WHAT ITEMS SPEND LESS ON
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         If you chose to spend less, then on what items would you spend less? (Check all
+         that apply.)
+
+         .................................................................................
+          1766           1.  Trips, travel or vacations
+           545           2.  Clothing
+           443           3.  Eating out/food and beverages
+           133           4.  New home/home repairs or household items
+            86           5.  Entertainment, sports and hobbies
+            63           6.  Automobiles expenses
+          3494       Blank.  Inap/Not checked
+
+
+==========================================================================================
+
+B44M2_11       B44M2. WHAT ITEMS SPEND LESS ON
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         If you chose to spend less, then on what items would you spend less? (Check all
+         that apply.)
+
+         .................................................................................
+                         1.  Trips, travel or vacations
+           900           2.  Clothing
+           774           3.  Eating out/food and beverages
+           156           4.  New home/home repairs or household items
+           215           5.  Entertainment, sports and hobbies
+            66           6.  Automobiles expenses
+          4419       Blank.  Inap/Not checked
+
+
+==========================================================================================
+
+B44M3_11       B44M3. WHAT ITEMS SPEND LESS ON
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         If you chose to spend less, then on what items would you spend less? (Check all
+         that apply.)
+
+         .................................................................................
+                         1.  Trips, travel or vacations
+                         2.  Clothing
+           750           3.  Eating out/food and beverages
+           209           4.  New home/home repairs or household items
+           412           5.  Entertainment, sports and hobbies
+            85           6.  Automobiles expenses
+          5074       Blank.  Inap/Not checked
+
+
+==========================================================================================
+
+B44M4_11       B44M4. WHAT ITEMS SPEND LESS ON
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         If you chose to spend less, then on what items would you spend less? (Check all
+         that apply.)
+
+         .................................................................................
+                         1.  Trips, travel or vacations
+                         2.  Clothing
+                         3.  Eating out/food and beverages
+           345           4.  New home/home repairs or household items
+           394           5.  Entertainment, sports and hobbies
+            65           6.  Automobiles expenses
+          5726       Blank.  Inap/Not checked
+
+
+==========================================================================================
+
+B44M5_11       B44M5. WHAT ITEMS SPEND LESS ON
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         If you chose to spend less, then on what items would you spend less? (Check all
+         that apply.)
+
+         .................................................................................
+                         1.  Trips, travel or vacations
+                         2.  Clothing
+                         3.  Eating out/food and beverages
+                         4.  New home/home repairs or household items
+           312           5.  Entertainment, sports and hobbies
+            58           6.  Automobiles expenses
+          6160       Blank.  Inap/Not checked
+
+
+==========================================================================================
+
+B44M6_11       B44M6. WHAT ITEMS SPEND LESS ON
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         If you chose to spend less, then on what items would you spend less? (Check all
+         that apply.)
+
+         .................................................................................
+                         1.  Trips, travel or vacations
+                         2.  Clothing
+                         3.  Eating out/food and beverages
+                         4.  New home/home repairs or household items
+                         5.  Entertainment, sports and hobbies
+           171           6.  Automobiles expenses
+          6359       Blank.  Inap/Not checked
+
+
+==========================================================================================
+
+B45_11         B45. RETIRED
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         We would like to understand more about spending in retirement.  Are you retired?
+
+         .................................................................................
+          2361           1.  Yes (Complete BOX A)
+          1476           5.  No (Complete BOX B)
+                         9.  Answer not given
+          2693       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B45A_11        B45A. RETIRED SPENDING CHANGE HOW
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         BOX A Retired: How did your TOTAL spending change with retirement?
+
+         .................................................................................
+           946           1.  Stayed the same (Go to B46a)
+           205           2.  Increased
+          1357           3.  Decreased
+          4022       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B45B_11        B45B. RETIRED SPENDING CHANGE PERCENT
+         Section: B     Level: Respondent      Type: Numeric    Width: 3   Decimals: 0
+
+         BOX A Retired: By how much?
+
+         .................................................................................
+          1185                   0-150.  Range of values
+          5345                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B45D_11        B45D. NOT RETIRED SPEND CHANGE HOW
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         BOX B Not Retired: How do you expect your TOTAL spending to change with
+         retirement?
+
+         .................................................................................
+           372           1.  Stay the same (Go to B46a)
+            70           2.  Increase
+          1045           3.  Decrease
+          5043       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B45E_11        B45E. NOT RETIRED SPEND CHANGE PERCENT
+         Section: B     Level: Respondent      Type: Numeric    Width: 3   Decimals: 0
+
+         BOX B Not Retired: By how much?
+
+         .................................................................................
+           934                   0-200.  Range of values
+          5596                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B46A_11        B46A. SPENDING ON TRIPS
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Actual/expected spending for trips, travel, or vacations
+
+         .................................................................................
+           770           1.  Increase(d)
+          1769           2.  Decrease(d)
+          1094           3.  Stay(ed) the same
+          2897       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B46B_11        B46B. SPENDING ON CLOTHES
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Actual/expected spending for clothing
+
+         .................................................................................
+           173           1.  Increase(d)
+          2319           2.  Decrease(d)
+          1141           3.  Stay(ed) the same
+          2897       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B46C_11        B46C. SPENDING ON EATING OUT
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Actual/expected spending for eating out / food and beverages
+
+         .................................................................................
+           509           1.  Increase(d)
+          1898           2.  Decrease(d)
+          1223           3.  Stay(ed) the same
+          2900       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B46D_11        B46D. SPENDING ON HOME/HOUSEHOLD
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Actual/expected spending for new home, home repairs, or household items
+
+         .................................................................................
+           372           1.  Increase(d)
+          1689           2.  Decrease(d)
+          1375           3.  Stay(ed) the same
+          3094       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B46E_11        B46E. SPENDING ON ENTERTAINMENT
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Actual/expected spending for entertainment, sports, and hobbies
+
+         .................................................................................
+           358           1.  Increase(d)
+          1774           2.  Decrease(d)
+          1327           3.  Stay(ed) the same
+          3071       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B46F_11        B46F. SPENDING ON AUTO EXPENSES
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Actual/expected spending for automobile expenses
+
+         .................................................................................
+           440           1.  Increase(d)
+          1400           2.  Decrease(d)
+          1574           3.  Stay(ed) the same
+          3116       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B47_11         B47. WHO ANSWER QUESTIONNAIRE
+         Section: B     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Were the questions in Section B answered by the person to whom this
+         questionnaire was addressed, or did someone else answer for that person? (Check
+         one.)
+
+         .................................................................................
+          3817           1.  Respondent
+           182           2.  Respondent's spouse or partner
+           130           3.  Respondent's son/son-in-law or daughter/daughter-in-law
+            25           4.  Other relative (sibs, grandkids, etc.)
+            15           5.  Non-relative
+          2361       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+B48_11         B48. SECTION B TIME
+         Section: B     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         Approximately, how long (minutes) did it take you to complete Section B?
+
+         .................................................................................
+          4091                   0-750.  Range of values
+          2439                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+Section C: DEMOGRAPHICS  (Respondent)
+
+==========================================================================================
+
+C1M1_11        C1M1. WORKING STATUS - 1
+         Section: C     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Are you working now, temporarily laid off, unemployed and looking for work,
+         disabled and unable to work, retired, a homemaker, or what? (Check all that
+         apply.)
+
+         .................................................................................
+          1307           1.  Working now
+            27           2.  Temporarily laid off/sick leave
+           137           3.  Unemployed and looking for work
+           632           4.  Disabled
+          1701           5.  Retired
+           189           6.  Homemaker
+            27           7.  Other
+            58           8.  Part time/less than part time employment
+             3           9.  Volunteer/caregiving/babysitting
+          2449       Blank.  Inap/Not checked
+
+
+==========================================================================================
+
+C1M2_11        C1M2. WORKING STATUS - 2
+         Section: C     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Are you working now, temporarily laid off, unemployed and looking for work,
+         disabled and unable to work, retired, a homemaker, or what? (Check all that
+         apply.)
+
+         .................................................................................
+                         1.  Working now
+             1           2.  Temporarily laid off/sick leave
+             9           3.  Unemployed and looking for work
+            16           4.  Disabled
+           302           5.  Retired
+           250           6.  Homemaker
+            19           7.  Other
+            42           8.  Part time/less than part time employment
+             8           9.  Volunteer/caregiving/babysitting
+          5883       Blank.  Inap/Not checked
+
+
+==========================================================================================
+
+C1M3_11        C1M3. WORKING STATUS - 3
+         Section: C     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Are you working now, temporarily laid off, unemployed and looking for work,
+         disabled and unable to work, retired, a homemaker, or what? (Check all that
+         apply.)
+
+         .................................................................................
+                         1.  Working now
+                         2.  Temporarily laid off/sick leave
+                         3.  Unemployed and looking for work
+             1           4.  Disabled
+             1           5.  Retired
+            38           6.  Homemaker
+            14           7.  Other
+             7           8.  Part time/less than part time employment
+             6           9.  Volunteer/caregiving/babysitting
+          6463       Blank.  Inap/Not checked
+
+
+==========================================================================================
+
+C1M4_11        C1M4. WORKING STATUS - 4
+         Section: C     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Are you working now, temporarily laid off, unemployed and looking for work,
+         disabled and unable to work, retired, a homemaker, or what? (Check all that
+         apply.)
+
+         .................................................................................
+                         1.  Working now
+                         2.  Temporarily laid off/sick leave
+                         3.  Unemployed and looking for work
+                         4.  Disabled
+                         5.  Retired
+                         6.  Homemaker
+             2           7.  Other
+                         8.  Part time/less than part time employment
+             1           9.  Volunteer/caregiving/babysitting
+          6527       Blank.  Inap/Not checked
+
+
+==========================================================================================
+
+C1M5_11        C1M5. WORKING STATUS - 5
+         Section: C     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Are you working now, temporarily laid off, unemployed and looking for work,
+         disabled and unable to work, retired, a homemaker, or what? (Check all that
+         apply.)
+
+         .................................................................................
+                         1.  Working now
+                         2.  Temporarily laid off/sick leave
+                         3.  Unemployed and looking for work
+                         4.  Disabled
+                         5.  Retired
+                         6.  Homemaker
+                         7.  Other
+                         8.  Part time/less than part time employment
+                         9.  Volunteer/caregiving/babysitting
+          6530       Blank.  Inap/Not checked
+
+
+==========================================================================================
+
+C2_11          C2. MARITAL STATUS
+         Section: C     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Are you currently married, living with a partner, separated, divorced, widowed,
+         or have you never been married? (Check one.)
+         
+         Married => Continue with C2a
+         Living with a partner => Continue with C2a
+         Separated => Go to C3      
+         Divorced => Go to C3
+         Widowed => Go to C3
+         Never married => Go to C3
+         Other, specify:_______ => Go to C3
+
+         .................................................................................
+          1875           1.  Married
+           168           2.  Living with a partner
+            95           3.  Separated
+           704           4.  Divorced
+           929           5.  Widowed
+           274           6.  Never married
+            34           7.  Other, specify (includes single and combinations of valid
+                             responses)
+          2451       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+C2A_11         C2A. MONEY ON CLOTHING AND APPAREL
+         Section: C     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         (If married or living with a partner) Did your household spend any money on
+         clothing and apparel (including footwear, outerwear, and products such as
+         watches or jewelry) in the last 12 months:
+
+         .................................................................................
+          1678           1.  Yes
+           575           5.  No
+          4277       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+C2A1_11        C2A1. SPENDING FOR THINGS THAT YOU USE
+         Section: C     Level: Respondent      Type: Numeric    Width: 3   Decimals: 0
+
+         What fraction of that spending was for things that
+         you use?    ______ %
+
+         .................................................................................
+          1570                   0-100.  Range of values
+          4960                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+C2A2_11        C2A2. SPENDING FOR THINGS YOUR SP/P USES
+         Section: C     Level: Respondent      Type: Numeric    Width: 3   Decimals: 0
+
+         What fraction of that spending was for things that
+         your spouse or partner uses?    _____ %
+
+         .................................................................................
+          1427                   0-100.  Range of values
+          5103                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+C2A3_11        C2A3. SPENDING FOR THINGS HHMS USE
+         Section: C     Level: Respondent      Type: Numeric    Width: 3   Decimals: 0
+
+         What fraction of that spending was for things that
+         other household members use?    _____ %
+
+         .................................................................................
+           575                   0-100.  Range of values
+          5955                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+C4_11          C4. WHO ANSWER QUESTIONNAIRE
+         Section: C     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         Were the questions in Section C answered by the person to whom this
+         questionnaire was addressed, or did someone else answer for that person? (Check
+         one.)
+
+         .................................................................................
+          3757           1.  Respondent
+           120           2.  Respondent's spouse or partner
+           113           3.  Respondent's son/son-in-law or daughter/daughter-in-law
+            20           4.  Other relative (sibs, grandkids, etc.)
+            15           5.  Non-relative
+          2505       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+C5_11          C5. SECTION C TIME
+         Section: C     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         Approximately, how long (minutes) did it take you to complete Section C?
+
+         .................................................................................
+          3955                   0-200.  Range of values
+          2575                   Blank.  Inap/Missing
+
+
+==========================================================================================

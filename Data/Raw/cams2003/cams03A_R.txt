@@ -1,0 +1,548 @@
+==========================================================================================
+
+CAMS 2003 V2.0
+
+Note to Users: This codebook is designed to match the distribution dataset. 
+Codebook metadata are derived from the data collection instrument.
+If you have questions concerning codebook layout or content please bring
+them to the attention of the HRS staff at hrsquest@isr.umich.edu.
+
+Printing recommendation: Set margins (left/right/top/bottom) to .5 inch; print
+in portrait orientation using a mono-space 10-point font.
+
+==========================================================================================
+
+Section A: ACTIVITIES  (Respondent)
+
+==========================================================================================
+
+HHID           HOUSEHOLD IDENTIFIER
+         Section: A     Level: Respondent      Type: Character  Width: 6   Decimals: 0
+
+         .................................................................................
+          3254           010001-213479.  Range of values
+
+
+==========================================================================================
+
+PN             PERSON NUMBER
+         Section: A     Level: Respondent      Type: Character  Width: 3   Decimals: 0
+
+         .................................................................................
+          1933         010.  Person Number
+            54         011.  Person Number
+             2         012.  Person Number
+           889         020.  Person Number
+             8         021.  Person Number
+           164         030.  Person Number
+             4         031.  Person Number
+           198         040.  Person Number
+             2         041.  Person Number
+
+
+==========================================================================================
+
+HSUBHH         2002 SUB HOUSEHOLD IDENTIFICATION NUMBER
+         Section: A     Level: Respondent      Type: Character  Width: 1   Decimals: 0
+
+         .................................................................................
+          3067           0.  Original sample household - no split from divorce or
+                             separation of spouses or partners
+           110           1.  Split household - one half of couple from SUBHH 0 and new
+                             spouse or partner, if any
+            66           2.  Split household - one half of couple from SUBHH 0 and new
+                             spouse or partner, if any
+             5           5.  Split household - one half of couple from SUBHH 1 or 2
+                         6.  Split household - one half of couple from SUBHH 1 or 2
+             6           7.  Reunited household - respondents from split household
+                             reunite
+
+
+==========================================================================================
+
+GSUBHH         2000 SUB HOUSEHOLD IDENTIFICATION NUMBER
+         Section: A     Level: Respondent      Type: Character  Width: 1   Decimals: 0
+
+         .................................................................................
+          3087           0.  Original sample household - no split from divorce or
+                             separation of spouses or partners
+            97           1.  Split household - one half of couple from SUBHH 0 and new
+                             spouse or partner, if any
+            60           2.  Split household - one half of couple from SUBHH 0 and new
+                             spouse or partner, if any
+             5           5.  Split household - one half of couple from SUBHH 1 or 2
+                         6.  Split household - one half of couple from SUBHH 1 or 2
+             5           7.  Reunited household - respondents from split household
+                             reunite
+
+
+==========================================================================================
+
+HPN_SP         2002 SPOUSE/PARTNER PERSON NUMBER
+         Section: A     Level: Respondent      Type: Character  Width: 3   Decimals: 0
+
+         .................................................................................
+           746         010.  Spouse person number
+            82         011.  Spouse person number
+             1         012.  Spouse person number
+           736         020.  Spouse person number
+            22         021.  Spouse person number
+             1         022.  Spouse person number
+           104         030.  Spouse person number
+             6         031.  Spouse person number
+             1         032.  Spouse person number
+           138         040.  Spouse person number
+             6         041.  Spouse person number
+             2         042.  Spouse person number
+             2         821.  Spouse of Non-Original Respondent
+          1407       Blank.  No spouse/partner
+
+
+==========================================================================================
+
+QNR03          2003 CAMS QUESTIONNAIRE IDENTIFIER
+         Section: A     Level: Respondent      Type: Character  Width: 5   Decimals: 0
+
+         .................................................................................
+          3254             20001-24156.  Range of values
+
+
+==========================================================================================
+
+A1_03          A1. WATCH TV
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3163                   0-168.  Range of values
+            91                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A2_03          A2. READ PAPERS/MAGS
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3173                    0-70.  Range of values
+            81                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A3_03          A3. READ BOOKS
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3153                    0-70.  Range of values
+           101                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A4_03          A4. LISTEN MUSIC
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3132                   0-105.  Range of values
+           122                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A5_03          A5. SLEEP/NAP
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3165                   0-163.  Range of values
+            89                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A6_03          A6. WALK
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3145                   0-168.  Range of values
+           109                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A7_03          A7. SPORTS/EXERCISE
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3168                    0-75.  Range of values
+            86                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A8_03          A8. VISIT IN PERSON
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3187                   0-168.  Range of values
+            67                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A9_03          A9. PHONE/LETTERS/EMAIL
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3203                   0-168.  Range of values
+            51                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A10_03         A10. WORK FOR PAY
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3194                   0-168.  Range of values
+            60                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A11_03         A11. USE COMPUTER
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3160                   0-168.  Range of values
+            94                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A12_03         A12. PRAY/MEDITATE
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3129                   0-105.  Range of values
+           125                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A13_03         A13. HOUSE CLEANING
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3154                    0-98.  Range of values
+           100                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A14_03         A14. WASH/IRON/MEND
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3195                    0-75.  Range of values
+            59                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A15_03         A15. YARD WORK/GARDEN
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3183                   0-128.  Range of values
+            71                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A16_03         A16. SHOP/RUN ERRANDS
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3195                    0-60.  Range of values
+            59                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A17_03         A17. MEALS PREP/CLEAN-UP
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3193                    0-81.  Range of values
+            61                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A18_03         A18. PERSONAL GROOMING
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3191                   0-168.  Range of values
+            63                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A19_03         A19. PET CARE
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3191                   0-168.  Range of values
+            63                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A20_03         A20. SHOW AFFECTION
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3101                   0-168.  Range of values
+           153                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A21_03         A21. HELP OTHERS
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3195                   0-504.  Range of values
+            59                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A22_03         A22. VOLUNTEER WORK
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3195                   0-200.  Range of values
+            59                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A23_03         A23. RELIGIOUS ATTENDANCE
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3186                   0-240.  Range of values
+            68                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A24_03         A24. ATTEND MEETINGS
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3184                   0-150.  Range of values
+            70                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A25_03         A25. MONEY MANAGEMENT
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3201                   0-720.  Range of values
+            53                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A26_03         A26. SELF CARE
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3117                   0-720.  Range of values
+           137                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A27_03         A27. PLAY CARDS/GAMES/PUZZLES
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3199                   0-480.  Range of values
+            55                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A28_03         A28. CONCERTS/MOVIES/LECTURES
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3209                    0-80.  Range of values
+            45                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A29_03         A29. SING/PLAY MUSIC
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3201                   0-120.  Range of values
+            53                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A30_03         A30. ARTS AND CRAFTS
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3195                   0-200.  Range of values
+            59                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A31_03         A31. HOME IMPROVEMENTS
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3189                   0-200.  Range of values
+            65                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A32_03         A32. VEHICLE MAINTENANCE/CLEANING
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3201                    0-50.  Range of values
+            53                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A33_03         A33. LEISURE DINING/EATING OUT
+         Section: A     Level: Respondent      Type: Numeric    Width: 6   Decimals: 2
+
+         .................................................................................
+          3200                   0-168.  Range of values
+            54                   Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A34_03         A34. DAYS AWAY OVERNIGHT
+         Section: A     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         .................................................................................
+           885           0.  Zero (Go to Question A36_03)
+           732           1.  1-7
+           467           2.  8-14
+           276           3.  15-21
+           720           4.  22 or more
+           174       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A35_03         A35. DAYS AWAY OVERNIGHT - BUSINESS
+         Section: A     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         .................................................................................
+          1888           0.  None
+           134           1.  Less than half
+            68           2.  About half
+            58           3.  More than half
+            56           4.  All
+          1050       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A36_03         A36. OFTEN USE MIND
+         Section: A     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         .................................................................................
+            42           1.  Rarely
+           200           2.  Sometimes
+           914           3.  Often
+          1922           4.  Almost all the time
+           130           5.  Uncertain, can't say
+            46       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A37_03         A37. OFTEN USE BODY
+         Section: A     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         .................................................................................
+           187           1.  Rarely
+           566           2.  Sometimes
+          1189           3.  Often
+          1108           4.  Almost all the time
+           145           5.  Uncertain, can't say
+            59       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A38_03         A38. OFTEN ACTIVE W. OTHERS
+         Section: A     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         .................................................................................
+           437           1.  Rarely
+          1088           2.  Sometimes
+          1121           3.  Often
+           493           4.  Almost all the time
+            67           5.  Uncertain, can't say
+            48       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A39_03         A39. OFTEN BENEFIT OTHERS
+         Section: A     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         .................................................................................
+           381           1.  Rarely
+          1130           2.  Sometimes
+          1062           3.  Often
+           493           4.  Almost all the time
+           128           5.  Uncertain, can't say
+            60       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A40_03         A40. WHO ANSWER QUESTIONNAIRE
+         Section: A     Level: Respondent      Type: Numeric    Width: 1   Decimals: 0
+
+         .................................................................................
+          3030           1.  Respondent
+            77           2.  Respondent's spouse or partner
+            61           3.  Respondent's son/-in-law or daughter/-in-law
+            20           4.  Other relative (sibs, grandkids, etc.)
+            18           5.  Non-relative (friends, caregivers, nurses, etc.)
+            48       Blank.  Inap/Missing
+
+
+==========================================================================================
+
+A41_03         A41. SECTION A TIME
+         Section: A     Level: Respondent      Type: Numeric    Width: 3   Decimals: 0
+
+         .................................................................................
+          3158                   0-180.  Range of values
+            96                   Blank.  Inap/Missing
+
+
+==========================================================================================

@@ -1,0 +1,121 @@
+==========================================================================================
+
+2001 CONSUMPTION AND ACTIVITIES MAIL SURVEY (Final Release, Version 3.0, 03/31/2011)
+
+Note to Users: This program is designed to create a codebook that matches the 
+distribution dataset. Codebook content is derived from Blaise .bmi metadata.
+If you have any questions or suggestions concerning codebook layout or content 
+please bring them to the attention of the HRS staff at hrsquest@isr.umich.edu. 
+
+Printing recommendation: Set margins (left/right/top/bottom) to .5 inch; print in
+portrait orientation using a mono-space 10-point font.
+
+==========================================================================================
+
+Section C: DEMOGRAPHICS  (Respondent)
+
+==========================================================================================
+
+C1_01      C1. Marital Status
+           Section: C    Level: R    Type: Numeric    Width: 1    Decimals: 0
+
+           Are you currently married, living with a partner, separated, divorced,            widowed, or have you never been married? (Check one.) (IF C1 EQ 7 THEN            GO TO C1_7 ELSE GO TO C2)
+
+        ..................................................................................
+         1956                  1. MARRIED
+           93                  2. LIVING WITH A PARTNER
+           74                  3. SEPARATED
+          472                  4. DIVORCED
+         1044                  5. WIDOWED
+          145                  6. NEVER MARRIED
+            5                  7. OTHER
+           77              Blank. Inap/Missing
+
+==========================================================================================
+
+C2M1_01    C2M1. Working Status
+           Section: C    Level: R    Type: Numeric    Width: 1    Decimals: 0
+        ..................................................................................
+         1143                  1. Working now
+           24                  2. Temporarily laid off/sick leave
+           48                  3. Unemployed and looking for work
+          489                  4. Disabled
+         1803                  5. Retired
+          241                  6. Homemaker
+            3                  7. Others
+           28                  8. Part time/less than part time employment
+            7                  9. Volunteer/caregiving/babysitting
+           80              Blank. Inap/Not checked
+
+==========================================================================================
+
+C2M2_01    C2M2. Working Status
+           Section: C    Level: R    Type: Numeric    Width: 1    Decimals: 0
+        ..................................................................................
+            1                  1. Working now
+            4                  2. Temporarily laid off/sick leave
+            5                  3. Unemployed and looking for work
+           11                  4. Disabled
+          331                  5. Retired
+          354                  6. Homemaker
+                               7. Others
+           13                  8. Part time/less than part time employment
+            3                  9. Volunteer/caregiving/babysitting
+         3144              Blank. Inap/Not checked
+
+==========================================================================================
+
+C2M3_01    C2M3.Working Status
+           Section: C    Level: R    Type: Numeric    Width: 1    Decimals: 0
+        ..................................................................................
+                               1. Working now
+                               2. Temporarily laid off/sick leave
+                               3. Unemployed and looking for work
+            1                  4. Disabled
+            6                  5. Retired
+           63                  6. Homemaker
+                               7. Others
+            2                  8. Part time/less than part time employment
+                               9. Volunteer/caregiving/babysitting
+         3794              Blank. Inap/Not checked
+
+==========================================================================================
+
+C3_01      C3. Any presciption medications
+           Section: C    Level: R    Type: Numeric    Width: 1    Decimals: 0
+
+           Please list by name prescription medications (i.e., prescribed by a doctor)            that you are currently taking regularly or use as needed. Please include            medications placed in the eye or on the skin. (IF C3 EQ 1 THEN GO TO C3a            ELSE GO TO C4)
+
+        ..................................................................................
+         3001                  1. YES
+          651                  5. NO
+          214              Blank. INAP, NO MEDICATIONS LISTED
+
+==========================================================================================
+
+C4_01      C4. Who answer questionnaire
+           Section: C    Level: R    Type: Numeric    Width: 1    Decimals: 0
+
+           Were the questions in Section C answered by the person to whom this questionnaire            was addressed, or did someone else answer for that person? (IF C4 EQ 4            THEN GO TO C4a ELSE GO TO C5)
+
+        ..................................................................................
+         3564                  1. RESPONDENT
+           94                  2. RESPONDENT'S SPOUSE OR PARTNER
+           72                  3. RESPONDENT'S SON/-IN-LAW OR DAUGHTER/-IN-LAW
+           15                  4. OTHER RELATIVE (SIBS, GRANDKIDS, ETC.)
+           22                  5. NON-RELATIVE (FRIENDS, CAREGIVERS, NURSES, ETC.)
+           99              Blank. Inap/Missing
+
+==========================================================================================
+
+C5_01      C5. Section C: Time
+           Section: C    Level: R    Type: Numeric    Width: 4    Decimals: 0
+
+           Approximately, how long (minutes) did it take you to complete Section C?
+
+        ..................................................................................
+         3697             0-3014. Range of values
+          169              Blank. Inap/Missing
+
+==========================================================================================
+
