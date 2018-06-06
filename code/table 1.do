@@ -13,6 +13,8 @@ First version: 5/30/18
 */
 clear
 
+ssc install zipsave
+
 //Set up directories:
 ***** Lan ***** 
 global folder "C:\Users\ericluo04\Documents\GitHub\RetirementConsumptionCAMS\Data"
@@ -22,10 +24,9 @@ global folder "C:\Users\ericluo04\Documents\GitHub\RetirementConsumptionCAMS\Dat
 use $folder\Raw\randhrs1992_2014v2_STATA\randhrs1992_2014v2.dta, clear
 //reduce size of rand HRS data to fit CAMS range of years
 drop s1* r1* h1* s2* r2* h2* s3* r3* h3* s4* r4* h4*
-save $folder\Raw\randhrs1992_2014v2_STATA\randhrs2000_2014v2.dta, replace
+save $folder\Raw\randhrs2000_2014v2.dta, replace
 
-
-use $folder\Raw\randhrs1992_2014v2_STATA\randhrs1992_2014v2.dta, clear
+use $folder\Raw\randhrs2000_2014v2.dta, clear
 merge 1:1 hhidpn using $folder\Raw\randcams_2001_2015v2\randcams_2001_2015v2.dta, keep(2 3)
 drop _merge
 
@@ -62,7 +63,6 @@ save $folder\Intermediate\CAMSHRSpanelraw.dta, replace
 
 use $folder\Intermediate\CAMSHRSpanelraw.dta, clear
 forvalues year = 1(2)15{
-// local year = 1
 	local wave = `year' / 2 + 4.5
 	if `year' < 10{
 		local year_string "0`year'"
@@ -79,24 +79,76 @@ forvalues year = 1(2)15{
 		destring PN, replace
 		gen double id = HHID*1000 + PN
 		gen wave = `wave'
+		
 		//drop if respondent didn't respond to any of part B of the CAMS survey
 		egen number_nonmiss = rownonmiss(B*)
 		drop if number_nonmiss == 0
 		drop number_nonmiss
-		
-		* gen auto_expenditure
-		* keep id wave auto_expenditure
-		rename B1_`year_string' B1
-		keep id wave B1 
-		//are you retired added
-		
+
+		//rename to maintain cross-wave consistency
+		if `year' == 1{
+			//purchase/lease auto
+			rename B1A_4_`year_string' B1a4
+			rename B1B_4_`year_string' B1b4
+			rename B1C_4_`year_string' B1c4
+			//measure of retired
+			rename B38_`year_string' retired
+			rename B38A_`year_string' recollect
+			rename B38B_`year_string' recollectPerc
+			rename B38D_`year_string' expect
+			rename B38E_`year_string' expectPerc
+			
+			keep id wave B1a4 B1b4 B1c4 retired recollect recollectPerc expect expectPerc
+		} 
+		if `year' == 3{
+			//purchase/lease auto
+			rename B1A4_`year_string' B1a4
+			rename B1B4_`year_string' B1b4
+			rename B1C4_`year_string' B1c4
+			//measure of retired
+			rename B44_`year_string' retired
+			rename B44A_`year_string' recollect
+			rename B44B_`year_string' recollectPerc
+			rename B44D_`year_string' expect
+			rename B44E_`year_string' expectPerc
+			//housekeeping services
+			rename B21_`year_string' housekeeping
+			//gardening/yard services
+			rename B23_`year_string' gardenyard
+			//personal care
+			rename B27_`year_string' perscare
+			
+			keep id wave B1a4 B1b4 B1c4 retired recollect recollectPerc expect expectPerc housekeeping gardenyard perscare
+		}
+		if `year' == 5 | `year' == 7 | `year' == 9 | `year' == 11 | `year' == 13 | `year' == 15{
+			//purchase/lease auto
+			rename B1a4_`year_string' B1a4
+			rename B1b4_`year_string' B1b4
+			rename B1c4_`year_string' B1c4	
+			//measure of retired
+			rename B45_`year_string' retired
+			rename B45a_`year_string' recollect
+			rename B45b_`year_string' recollectPerc
+			rename B45d_`year_string' expect
+			rename B45e_`year_string' expectPerc
+			//housekeeping services
+			rename B26_`year_string' housekeeping
+			//gardening/yard services
+			rename B28_`year_string' gardenyard
+			//personal care
+			rename B30_`year_string' perscare
+			//household furnishings
+			rename B15_`year_string' furnish
+			
+			keep id wave B1a4 B1b4 B1c4 retired recollect recollectPerc expect expectPerc housekeeping gardenyard perscare furnish
+		}
 		tempfile ready_to_merge
 		save `ready_to_merge', replace
 	restore
 	
 	//4 participants were ommitted from various waves (reference page 6-7 of the
-	//RAND_CAMS_2015V2 Documentation file in Merging to the HRS
-	merge 1:1 id wave using `ready_to_merge', gen(merge`wave_string')
+	//RAND_CAMS_2015V2 Documentation file in: Merging to the HRS
+	merge 1:1 id wave using `ready_to_merge', update gen(merge`wave_string')
 	drop if merge`wave_string' == 2
 	save $folder\Intermediate\CAMSHRSpanelrawmerge.dta, replace
 }
@@ -105,18 +157,14 @@ forvalues year = 1(2)15{
 clear
 import excel "$folder/Raw/CPI_2015.xls", sheet("Sheet1")  firstrow
 rename Year wave
-replace wave = 1 if wave == 1992
-replace wave = 2 if wave == 1994
-replace wave = 3 if wave == 1996
-replace wave = 4 if wave == 1998
-replace wave = 5 if wave == 2000
-replace wave = 6 if wave == 2002
-replace wave = 7 if wave == 2004
-replace wave = 8 if wave == 2006
-replace wave = 9 if wave == 2008
-replace wave = 10 if wave == 2010
-replace wave = 11 if wave == 2012
-replace wave = 12 if wave == 2014
+replace wave = 5 if wave == 2001
+replace wave = 6 if wave == 2003
+replace wave = 7 if wave == 2005
+replace wave = 8 if wave == 2007
+replace wave = 9 if wave == 2009
+replace wave = 10 if wave == 2011
+replace wave = 11 if wave == 2013
+replace wave = 12 if wave == 2015
 drop if wave > 12
 keep wave CPI_base_2003
 save "$folder/Intermediate/CPI.dta", replace
@@ -127,8 +175,7 @@ tab wave if _merge == 3
 drop _merge
 
 //create real variables for spending values
-//TODO - make real B1 and new measures
-foreach var of varlist *ctots *cdurs *cndur *ctranss *chouss *cautoall *ccarpay *cmort *cmortint *ctotc *cdurc *ctransc *chousc *chmeqf {
+foreach var of varlist B1* housekeeping gardenyard perscare furnish *ctots *cdurs *cndur *ctranss *chouss *cautoall *ccarpay *cmort *cmortint *ctotc *cdurc *ctransc *chousc *chmeqf {
 	local realvar = "`var'" + "_real"
 	gen `realvar' = 100 * `var' / CPI_base_2003
 }
@@ -139,26 +186,48 @@ save $folder\Intermediate\CAMSHRSpanelrawmerge.dta, replace
 use $folder\Intermediate\CAMSHRSpanelrawmerge.dta, clear
 drop if wave < 5 // because expenditure data begins in wave 5
 drop if wave > 8
+//drop if recollect == . & retired == 1
+//drop if recollect == . & retired == 1
 sort id wave
 
+//generate nondurable definition across waves based on first six categories of CAMS
+replace B1a4 = . if B1a4 == 99999 | B1a4 == 999999
+replace B1b4 = . if B1b4 == 99999 | B1b4 == 999999
+replace B1c4 = . if B1c4 == 99999 | B1c4 == 999999
+egen B1 = rowtotal(B1a4 B1b4 B1c4)
+egen newmeasures1 = rowtotal(housekeeping gardenyard perscare)
+egen newmeasures2 = rowtotal(housekeeping gardenyard perscare furnish)
+gen nondur = h_ctots - h_cdurs - B1
+replace nondur = h_ctots - h_cdurs - B1 - newmeasures1 if wave == 6
+replace nondur = h_ctots - h_cdurs - B1 - newmeasures2 if wave == 7 | wave == 8 | wave == 9 | wave == 10 | wave == 11 | wave == 12
+//consistent total expenditure definition across waves
+replace h_ctots = h_ctots - newmeasures1 if wave == 6
+replace h_ctots = h_ctots - newmeasures2 if wave == 7 | wave == 8 | wave == 9 | wave == 10 | wave == 11 | wave == 12
+
 * todo later: perhaps do this for F2 F3 etc
-gen ret_transition = (r_sayret == 1 | r_sayret == 2) & L.r_sayret == 0 & ((F.r_sayret == 1 | F.r_sayret == 2) | F.r_sayret == . ) 
-//replace ret_transition = 0 if s_age < 50 | s_age > 70
+gen ret_transition = retired == 1 & L.retired == 5 & (F.retired == 1 | F.retired == . | F.retired == 9 ) 
 replace ret_transition = 0 if r_age < 50 | r_age > 70
-tab ret_transition if h_cndur != .
+tab ret_transition if nondur != .
 
 gen time = "immediately_before_ret" if F.ret_transition == 1
 replace time = "immediately_after_ret" if ret_transition == 1
-
-tab time if h_cndur != .
+// drop if time == ""
 
 //drop if missing either the before or after observation
-by id, sort: egen n = count(h_cndur) if time != ""
+by id, sort: egen n = count(nondur) if time != ""
 drop if n < 2
+tab time
 save $folder\Final\CAMSHRStable1.dta, replace
 
 //nondurables mean
 use $folder\Final\CAMSHRStable1.dta, clear
-gen dif = (h_cndur - L.h_cndur) / L.h_cndur
-collapse (mean) nondur = h_cndur expend = h_ctots (median) nondur_med = h_cndur expend_med = h_ctots hhchange = dif (count) n = h_cndur [pw = weight], by(time)
+gen dif = (nondur - L.nondur) / L.nondur
+
+preserve
+	collapse (mean) nondur h_ctots h_cdurs B1 B1a4 B1b4 B1c4, by(wave)
+	list 
+restore
+
+collapse (mean) nondur total = h_ctots h_cdurs B1 (count) n = nondur [pw = weight], by(time)
+//collapse (mean) nondur total = h_ctots (median) nondur_med = nondur total_med = h_ctots hhchange = dif (count) n = nondur, by(time)
 list
