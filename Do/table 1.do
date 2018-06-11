@@ -741,20 +741,21 @@ drop if wave > 8
 sort id wave
 
 //generate spending categories
-egen autopurchlease = rowtotal(auto1 auto2 auto3)
-egen newmeasures1 = rowtotal(houseservices yardservices personalcare)
-egen newmeasures2 = rowtotal(houseservices yardservices personalcare hhfurnishings)
+egen autopurchlease = rowtotal(auto1_real auto2_real auto3_real)
+egen newmeasures1 = rowtotal(houseservices_real yardservices_real personalcare_real)
+egen newmeasures2 = rowtotal(houseservices_real yardservices_real personalcare_real hhfurnishings_real)
 //consistent nondurable definition across waves based on first six categories of CAMS
-gen nondur = h_ctots - h_cdurs - autopurchlease
-replace nondur = h_ctots - h_cdurs - autopurchlease - newmeasures1 if wave == 6
-replace nondur = h_ctots - h_cdurs - autopurchlease - newmeasures2 if wave == 7 | wave == 8 | wave == 9 | wave == 10 | wave == 11 | wave == 12
+gen nondur = h_ctots_real - h_cdurs_real - autopurchlease
+replace nondur = h_ctots_real - h_cdurs_real - autopurchlease - newmeasures1 if wave == 6
+replace nondur = h_ctots_real - h_cdurs_real - autopurchlease - newmeasures2 if wave == 7 | wave == 8 | wave == 9 | wave == 10 | wave == 11 | wave == 12
 //consistent total expenditure definition across waves
-replace h_ctots = h_ctots - newmeasures1 if wave == 6
-replace h_ctots = h_ctots - newmeasures2 if wave == 7 | wave == 8 | wave == 9 | wave == 10 | wave == 11 | wave == 12
+gen total = h_ctots_real
+replace total = h_ctots_real - newmeasures1 if wave == 6
+replace total = h_ctots_real - newmeasures2 if wave == 7 | wave == 8 | wave == 9 | wave == 10 | wave == 11 | wave == 12
 
 //nondurable/total definition by adding up individual spending categories
-egen nondurfull = rowtotal(electricity water heat phonecableinternet healthinsur houseyardsupplies housesupplies yardsupplies fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbiessports hobbies sports contributions gifts carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsuppliesservices hrepsupplies hrepservices)
-egen totalfull = rowtotal(autopurchlease refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur houseyardsupplies housesupplies yardsupplies fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbiessports hobbies sports contributions gifts carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsuppliesservices hrepsupplies hrepservices)
+egen nondurfull = rowtotal(electricity_real water_real heat_real phonecableinternet_real healthinsur_real houseyardsupplies_real housesupplies_real yardsupplies_real fooddrink_real diningout_real clothing_real drugs_real healthservices_real medicalsupplies_real vacations_real tickets_real hobbiessports_real hobbies_real sports_real contributions_real gifts_real carpayments_real autoinsur_real gas_real vehicleservices_real mortgage_real homerentinsur_real propertytax_real rent_real hrepsuppliesservices_real hrepsupplies_real hrepservices_real)
+egen totalfull = rowtotal(auto1_real auto2_real auto3_real refrig_real washdry_real dishwash_real tv_real computer_real electricity_real water_real heat_real phonecableinternet_real healthinsur_real houseyardsupplies_real housesupplies_real yardsupplies_real fooddrink_real diningout_real clothing_real drugs_real healthservices_real medicalsupplies_real vacations_real tickets_real hobbiessports_real hobbies_real sports_real contributions_real gifts_real carpayments_real autoinsur_real gas_real vehicleservices_real mortgage_real homerentinsur_real propertytax_real rent_real hrepsuppliesservices_real hrepsupplies_real hrepservices_real)
 
 * todo later: perhaps do this for F2 F3 etc
 gen ret_transition = retired == 1 & L.retired == 5 & (F.retired == 1 | F.retired == . | F.retired == 9 ) 
@@ -763,7 +764,7 @@ tab ret_transition if nondur != .
 
 gen time = "immediately_before_ret" if F.ret_transition == 1
 replace time = "immediately_after_ret" if ret_transition == 1
-// drop if time == ""
+ drop if time == ""
 
 //drop if missing either the before or after observation
 by id, sort: egen n = count(nondur) if time != ""
@@ -780,6 +781,8 @@ gen dif = (nondur - L.nondur) / L.nondur
 // 	list 
 // restore
 
-collapse (mean) totalfull nondurfull total = h_ctots nondur dur = h_cdurs (count) n = nondur [pw = weight], by(time)
-//collapse (mean) nondur total = h_ctots (median) nondur_med = nondur total_med = h_ctots hhchange = dif (count) n = nondur, by(time)
-list
+preserve
+	collapse (mean) totalfull nondurfull total nondur dur = h_cdurs_real (count) n = nondur [pw = weight], by(time)
+	//collapse (mean) nondur total = h_ctots (median) nondur_med = nondur total_med = h_ctots hhchange = dif (count) n = nondur, by(time)
+	list
+restore
