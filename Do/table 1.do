@@ -13,7 +13,9 @@ First version: 5/30/18
 */
 clear
 
-ssc install zipsave
+ssc install zipsave, replace
+ssc install winsor, replace
+ssc install estout, replace
 
 //Set up directories:
 ***** Lan ***** 
@@ -30,10 +32,10 @@ use $folder\Raw\randhrs2000_2014v2.dta, clear
 merge 1:1 hhidpn using $folder\Raw\randcams_2001_2015v2\randcams_2001_2015v2.dta, keep(2 3)
 drop _merge
 
-keep hhidpn *agey_b *cwgthh *lbrf *sayret *retemp *lbrfh *lbrfy *inlbrf *cmstat *ctots *cdurs *cndur *ctranss *chouss *cautoall *ccarpay *cmort *cmortint *ctotc *cdurc *ctransc *chousc *chmeqf
+keep hhidpn *c10rep *agey_b *cwgthh *lbrf *sayret *retemp *lbrfh *lbrfy *inlbrf *cmstat *ctots *cdurs *cndur *ctranss *chouss *cautoall *ccarpay *cmort *cmortint *ctotc *cdurc *ctransc *chousc *chmeqf
 
 //renaming variables to prepare for reshaping (example: h5cndurf -> h_cndurf5)
-foreach var of varlist *agey_b *cwgthh *lbrf *sayret *retemp *lbrfh *lbrfy *cmstat *ctots *cdurs *cndur *ctranss *chouss *cautoall *ccarpay *cmort *cmortint *ctotc *cdurc *ctransc *chousc *chmeqf {
+foreach var of varlist *c10rep *agey_b *cwgthh *lbrf *sayret *retemp *lbrfh *lbrfy *cmstat *ctots *cdurs *cndur *ctranss *chouss *cautoall *ccarpay *cmort *cmortint *ctotc *cdurc *ctransc *chousc *chmeqf {
 	//if wave value is less than 10
 	if !(substr("`var'", 3, 1) == "0" | substr("`var'", 3, 1) == "1" | substr("`var'", 3, 1) == "2" | substr("`var'", 3, 1) == "3") {
 		local newvarname = substr("`var'", 1, 1) + "_" + substr("`var'", 3, .) + substr("`var'", 2, 1) 
@@ -47,7 +49,7 @@ foreach var of varlist *agey_b *cwgthh *lbrf *sayret *retemp *lbrfh *lbrfy *cmst
 }
 
 //reshape from wide to long panel data
-reshape long s_agey_b r_agey_b h_cwgthh s_lbrf r_lbrf s_inlbrf r_inlbrf  s_sayret r_sayret s_retemp r_retemp s_lbrfh r_lbrfh s_lbrfy r_lbrfy h_cmstat h_ctots h_cdurs h_cndur h_ctranss h_chouss h_cautoall h_ccarpay h_cmort h_cmortint h_ctotc h_cdurc h_ctransc h_chousc h_chmeqf, i(hhidpn) j(wave)
+reshape long h_c10rep s_agey_b r_agey_b h_cwgthh s_lbrf r_lbrf s_inlbrf r_inlbrf  s_sayret r_sayret s_retemp r_retemp s_lbrfh r_lbrfh s_lbrfy r_lbrfy h_cmstat h_ctots h_cdurs h_cndur h_ctranss h_chouss h_cautoall h_ccarpay h_cmort h_cmortint h_ctotc h_cdurc h_ctransc h_chousc h_chmeqf, i(hhidpn) j(wave)
 
 //sort and declare data set as panel data
 //NOTE: wave refers to HRS waves not CAMS waves
@@ -496,28 +498,151 @@ forvalues year = 1(2)15{
 			keep id wave auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur housesupplies yardsupplies houseservices yardservices fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbies sports contributions gifts personalcare carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsupplies hrepservices retired recollect recollectPerc expect expectPerc
 		}
 		if `year' == 5 | `year' == 7 | `year' == 9 | `year' == 11 | `year' == 13 | `year' == 15{
-			//auto price
-			rename B1a4_`year_string' auto1
-			replace auto1 = . if auto1 == 999999
-			rename B1b4_`year_string' auto2
-			replace auto2 = . if auto2 == 999999
-			rename B1c4_`year_string' auto3	
-			replace auto3 = . if auto3 == 99999
-			//refrigerator price
-			rename B2a_`year_string' refrig
-			replace refrig = . if refrig == 99999
-			//washer/dryer price
-			rename B3a_`year_string' washdry
-			replace washdry = . if washdry == 9999
-			//dishwasher price
-			rename B4a_`year_string' dishwash
-			replace dishwash = . if dishwash == 9999
-			//television price
-			rename B5a_`year_string' tv
-			replace tv = . if tv == 9999
-			//computer price
-			rename B6a_`year_string' computer
-			replace computer = . if computer == 9999
+			if `year' == 5 {
+				//auto price
+				rename B1a4_`year_string' auto1
+				replace auto1 = . if auto1 == 999999
+				rename B1b4_`year_string' auto2
+				replace auto2 = . if auto2 == 999999
+				rename B1c4_`year_string' auto3	
+				replace auto3 = . if auto3 == 99999
+				//refrigerator price
+				rename B2a_`year_string' refrig
+				replace refrig = . if refrig == 99999
+				//washer/dryer price
+				rename B3a_`year_string' washdry
+				replace washdry = . if washdry == 9999
+				//dishwasher price
+				rename B4a_`year_string' dishwash
+				replace dishwash = . if dishwash == 9999
+				//television price
+				rename B5a_`year_string' tv
+				replace tv = . if tv == 9999
+				//computer price
+				rename B6a_`year_string' computer
+				replace computer = . if computer == 9999
+			}
+			if `year' == 7 {
+				//auto price
+				rename B1a4_`year_string' auto1
+				replace auto1 = . if auto1 == 99999
+				rename B1b4_`year_string' auto2
+				replace auto2 = . if auto2 == 999999
+				rename B1c4_`year_string' auto3	
+				replace auto3 = . if auto3 == 99999
+				//refrigerator price
+				rename B2a_`year_string' refrig
+				replace refrig = . if refrig == 9999
+				//washer/dryer price
+				rename B3a_`year_string' washdry
+				replace washdry = . if washdry == 9999
+				//dishwasher price
+				rename B4a_`year_string' dishwash
+				replace dishwash = . if dishwash == 9999
+				//television price
+				rename B5a_`year_string' tv
+				replace tv = . if tv == 99999
+				//computer price
+				rename B6a_`year_string' computer
+				replace computer = . if computer == 9999
+			}
+			if `year' == 9 {
+				//auto price
+				rename B1a4_`year_string' auto1
+				replace auto1 = . if auto1 == 999999
+				rename B1b4_`year_string' auto2
+				replace auto2 = . if auto2 == 999999
+				rename B1c4_`year_string' auto3	
+				replace auto3 = . if auto3 == 999999
+				//refrigerator price
+				rename B2a_`year_string' refrig
+				replace refrig = . if refrig == 99999
+				//washer/dryer price
+				rename B3a_`year_string' washdry
+				replace washdry = . if washdry == 99999
+				//dishwasher price
+				rename B4a_`year_string' dishwash
+				replace dishwash = . if dishwash == 99999
+				//television price
+				rename B5a_`year_string' tv
+				replace tv = . if tv == 99999
+				//computer price
+				rename B6a_`year_string' computer
+				replace computer = . if computer == 99999
+			}
+			if `year' == 11 {
+				//auto price
+				rename B1a4_`year_string' auto1
+				replace auto1 = . if auto1 == 999999
+				rename B1b4_`year_string' auto2
+				replace auto2 = . if auto2 == 999999
+				rename B1c4_`year_string' auto3	
+				replace auto3 = . if auto3 == 999999
+				//refrigerator price
+				rename B2a_`year_string' refrig
+				replace refrig = . if refrig == 99999
+				//washer/dryer price
+				rename B3a_`year_string' washdry
+				replace washdry = . if washdry == 9999
+				//dishwasher price
+				rename B4a_`year_string' dishwash
+				replace dishwash = . if dishwash == 9999
+				//television price
+				rename B5a_`year_string' tv
+				replace tv = . if tv == 9999
+				//computer price
+				rename B6a_`year_string' computer
+				replace computer = . if computer == 9999
+			}
+			if `year' == 13 {
+				//auto price
+				rename B1a4_`year_string' auto1
+				replace auto1 = . if auto1 == 999999
+				rename B1b4_`year_string' auto2
+				replace auto2 = . if auto2 == 999999
+				rename B1c4_`year_string' auto3	
+				replace auto3 = . if auto3 == 999999
+				//refrigerator price
+				rename B2a_`year_string' refrig
+				replace refrig = . if refrig == 99999
+				//washer/dryer price
+				rename B3a_`year_string' washdry
+				replace washdry = . if washdry == 9999
+				//dishwasher price
+				rename B4a_`year_string' dishwash
+				replace dishwash = . if dishwash == 9999
+				//television price
+				rename B5a_`year_string' tv
+				replace tv = . if tv == 99999
+				//computer price
+				rename B6a_`year_string' computer
+				replace computer = . if computer == 9999
+			}
+			if `year' == 15 {
+				//auto price
+				rename B1a4_`year_string' auto1
+				replace auto1 = . if auto1 == 999999
+				rename B1b4_`year_string' auto2
+				replace auto2 = . if auto2 == 999999
+				rename B1c4_`year_string' auto3	
+				replace auto3 = . if auto3 == 999999
+				//refrigerator price
+				rename B2a_`year_string' refrig
+				replace refrig = . if refrig == 9999
+				//washer/dryer price
+				rename B3a_`year_string' washdry
+				replace washdry = . if washdry == 99999
+				//dishwasher price
+				rename B4a_`year_string' dishwash
+				replace dishwash = . if dishwash == 9999
+				//television price
+				rename B5a_`year_string' tv
+				replace tv = . if tv == 9999
+				//computer price
+				rename B6a_`year_string' computer
+				replace computer = . if computer == 9999
+			}
+			
 			//electricity
 			rename B20_`year_string' electricity
 			rename B20a_`year_string' electricityPer
@@ -696,6 +821,45 @@ forvalues year = 1(2)15{
 	save $folder\Intermediate\CAMSHRSpanelrawmerge.dta, replace
 }
 
+use $folder\Intermediate\CAMSHRSpanelrawmerge.dta, clear 
+//RAND CAMS totals are now only derived for those observations who have given non-missing values for at least ten spending categories
+drop if h_c10rep == 0 | h_c10rep == .
+
+local varlist auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur houseyardsupplies housesupplies yardsupplies fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbiessports hobbies sports contributions gifts carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsuppliesservices hrepsupplies hrepservices
+foreach var in `varlist' {
+	winsor `var', h(5) gen(`var'2)
+	drop `var'
+	rename 	`var'2 `var'
+}
+
+//generate aggregate categories
+egen nondurfull1 = rowtotal(electricity water heat phonecableinternet healthinsur houseyardsupplies housesupplies yardsupplies fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbiessports hobbies sports contributions gifts carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsuppliesservices hrepsupplies hrepservices)
+egen durfull1 = rowtotal(auto1 auto2 auto3 refrig washdry dishwash tv computer)
+egen totalfull1 = rowtotal(auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur houseyardsupplies housesupplies yardsupplies fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbiessports hobbies sports contributions gifts carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsuppliesservices hrepsupplies hrepservices)
+
+egen nondurfull2 = rowtotal(electricity water heat phonecableinternet healthinsur houseyardsupplies housesupplies yardsupplies fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbiessports hobbies sports contributions gifts)
+egen durfull2 = rowtotal(refrig washdry dishwash tv computer)
+egen transport = rowtotal(auto1 auto2 auto3 carpayments autoinsur gas vehicleservices)
+egen housing = rowtotal(mortgage homerentinsur propertytax rent hrepsuppliesservices hrepsupplies hrepservices)
+egen totalfull2 = rowtotal(auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur housesupplies yardsupplies houseservices yardservices fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbies sports contributions gifts personalcare hhfurnishings carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsupplies hrepservices retired recollect recollectPerc expect expectPerc)
+
+egen randtotal = rowtotal(h_cndur h_cdurs h_ctranss h_chouss)
+
+estpost tabstat totalfull2 h_ctots nondurfull2 h_cndur durfull2 h_cdurs transport h_ctranss housing h_chouss, listwise statistics(mean sd) columns(statistics)
+esttab using $folder\Final\meanraw.tex, cells(mean sd(par)) rename(totalfull2 total_gen h_ctots total_rand nondurfull2 nondurables_gen h_cndur nondurables_rand durfull2 durables_gen h_cdurs durables_rand transport transportation_gen h_ctranss transportation_rand housing housing_gen h_chouss housing_rand) nonumber title("Mean Comparison between CAMS generated (_gen) and RAND CAMS (_rand) spending categories ") note("\shortstack[l]{\\ Most differences can be explained by the lack of imputation \\ from the CAMS generated values. \\ The CAMS generated values are winsorized. \\ Nondurables are much smaller because the CAMS generated \\ values exclude new measures introduced in 2003/2005 to make \\ the measure wave consistent.}") wrap replace
+
+//compare rand definition of sum within rand panel
+ preserve
+ 	collapse (mean) totalfull2 randtotal
+ 	list
+ restore
+
+//by wave for just total and nondurables
+preserve
+	collapse (mean) totalfull2 h_ctots nondurfull2 h_cndur (count) totaln1 = totalfull2 totaln2 = h_ctots, by(wave)
+	list 
+restore
+
 //check spending categories by wave
 preserve
 	collapse (mean) auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur houseyardsupplies housesupplies yardsupplies houseservices yardservices fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbiessports hobbies sports contributions gifts personalcare hhfurnishings carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsuppliesservices hrepsupplies hrepservices, by(wave)
@@ -764,7 +928,7 @@ tab ret_transition if nondur != .
 
 gen time = "immediately_before_ret" if F.ret_transition == 1
 replace time = "immediately_after_ret" if ret_transition == 1
- drop if time == ""
+drop if time == ""
 
 //drop if missing either the before or after observation
 by id, sort: egen n = count(nondur) if time != ""
@@ -782,7 +946,7 @@ gen dif = (nondur - L.nondur) / L.nondur
 // restore
 
 preserve
-	collapse (mean) totalfull nondurfull total nondur dur = h_cdurs_real (count) n = nondur [pw = weight], by(time)
+	collapse (mean) totalfull nondurfull total nondur dur = h_cdurs_real (count) n = nondur, by(time)
 	//collapse (mean) nondur total = h_ctots (median) nondur_med = nondur total_med = h_ctots hhchange = dif (count) n = nondur, by(time)
 	list
 restore
