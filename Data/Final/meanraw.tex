@@ -1,34 +1,26 @@
 \begin{table}[htbp]\centering
-\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
-\caption{Mean Comparison between CAMS generated (\_gen) and RAND CAMS (\_rand) spending categories }
-\begin{tabular}{l*{1}{c}}
+\caption{Mean Comparison between CAMS generated, RAND CAMS, and Wave Consistent CAMS generated spending categories }
+\begin{tabular}{l*{3}{c}}
 \hline\hline
-            &\multicolumn{1}{c}{}\\
-            &     mean/sd\\
+                    &\multicolumn{3}{c}{(1)}               \\
+                    &\multicolumn{3}{c}{}                  \\
+                    &CAMS Generated&   RAND CAMS&Wave Consistent\\
 \hline
-total\_gen   &    40580.95\\
-            &  (38060.12)\\
-total\_rand  &    40286.74\\
-            &  (32454.46)\\
-nondurables\_gen&    21144.78\\
-            &  (21486.26)\\
-nondurables\_rand&    23063.96\\
-            &  (19936.29)\\
-durables\_gen&    338.3697\\
-            &  (762.8257)\\
-durables\_rand&    334.1937\\
-            &  (712.6508)\\
-transportation\_gen&    7876.816\\
-            &  (13134.34)\\
-transportation\_rand&    8221.075\\
-            &  (12476.09)\\
-housing\_gen &    10145.35\\
-            &  (15709.03)\\
-housing\_rand&    8667.517\\
-            &   (11095.3)\\
-\hline
-\(N\)       &       30124\\
+total               &     40906.5&     40286.7&     39505.3\\
+                    &   (38410.9)&   (32454.5)&   (37038.4)\\
+[1em]
+nondurables         &     22630.2&     23064.0&     21144.8\\
+                    &   (22928.4)&   (19936.3)&   (21486.3)\\
+[1em]
+durables            &       338.4&       334.2&       338.4\\
+                    &     (762.8)&     (712.7)&     (762.8)\\
+[1em]
+transportation      &      7876.8&      8221.1&      7876.8\\
+                    &   (13134.3)&   (12476.1)&   (13134.3)\\
+[1em]
+housing             &     10145.3&      8667.5&     10145.3\\
+                    &   (15709.0)&   (11095.3)&   (15709.0)\\
 \hline\hline
-\multicolumn{2}{l}{\footnotesize \shortstack[l]{\\ Most differences can be explained by the lack of imputation \\ from the CAMS generated values. \\ The CAMS generated values are winsorized. \\ Nondurables are much smaller because the CAMS generated \\ values exclude new measures introduced in 2003/2005 to make \\ the measure wave consistent.}}\\
+\multicolumn{4}{l}{\footnotesize \shortstack[l]{\\ The wave consistent measures are CAMS generated and exclude house services, \\ yard services, personal care, and household furnishings (which effect total and \\ nondurables). \\ --- \\ Most differences can be explained by the lack of imputation from the CAMS \\ generated values, which have been winsorized. \\ --- \\ The number of observations is 30124.}}\\
 \end{tabular}
 \end{table}
