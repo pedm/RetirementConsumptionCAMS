@@ -51,10 +51,10 @@ use $folder\Raw\randhrs2000_2014v2.dta, clear
 merge 1:1 hhidpn using $folder\Raw\randcams_2001_2015v2\randcams_2001_2015v2.dta, keep(2 3)
 drop _merge
 
-keep hhidpn *c10rep *agey_b *cwgthh *lbrf *sayret *retemp *lbrfh *lbrfy *inlbrf *cmstat *ctots *cdurs *cndur *ctranss *chouss *cautoall *ccarpay *cmort *cmortint *ctotc *cdurc *ctransc *chousc *chmeqf
+keep hhidpn *isret *atota *atotb *atotw *atotn *c10rep *agey_b *cwgthh *lbrf *sayret *retemp *lbrfh *lbrfy *inlbrf *cmstat *ctots *cdurs *cndur *ctranss *chouss *cautoall *ccarpay *cmort *cmortint *ctotc *cdurc *ctransc *chousc *chmeqf
 
 //renaming variables to prepare for reshaping (example: h5cndurf -> h_cndurf5)
-foreach var of varlist *c10rep *agey_b *cwgthh *lbrf *sayret *retemp *lbrfh *lbrfy *cmstat *ctots *cdurs *cndur *ctranss *chouss *cautoall *ccarpay *cmort *cmortint *ctotc *cdurc *ctransc *chousc *chmeqf {
+foreach var of varlist *isret *atota *atotb *atotw *atotn *c10rep *agey_b *cwgthh *lbrf *sayret *retemp *lbrfh *lbrfy *cmstat *ctots *cdurs *cndur *ctranss *chouss *cautoall *ccarpay *cmort *cmortint *ctotc *cdurc *ctransc *chousc *chmeqf {
 	//if wave value is less than 10
 	if !(substr("`var'", 3, 1) == "0" | substr("`var'", 3, 1) == "1" | substr("`var'", 3, 1) == "2" | substr("`var'", 3, 1) == "3") {
 		local newvarname = substr("`var'", 1, 1) + "_" + substr("`var'", 3, .) + substr("`var'", 2, 1) 
@@ -68,7 +68,7 @@ foreach var of varlist *c10rep *agey_b *cwgthh *lbrf *sayret *retemp *lbrfh *lbr
 }
 
 //reshape from wide to long panel data
-reshape long h_c10rep s_agey_b r_agey_b h_cwgthh s_lbrf r_lbrf s_inlbrf r_inlbrf  s_sayret r_sayret s_retemp r_retemp s_lbrfh r_lbrfh s_lbrfy r_lbrfy h_cmstat h_ctots h_cdurs h_cndur h_ctranss h_chouss h_cautoall h_ccarpay h_cmort h_cmortint h_ctotc h_cdurc h_ctransc h_chousc h_chmeqf, i(hhidpn) j(wave)
+reshape long r_isret s_isret h_atota h_atotb h_atotw h_atotn h_c10rep s_agey_b r_agey_b h_cwgthh s_lbrf r_lbrf s_inlbrf r_inlbrf  s_sayret r_sayret s_retemp r_retemp s_lbrfh r_lbrfh s_lbrfy r_lbrfy h_cmstat h_ctots h_cdurs h_cndur h_ctranss h_chouss h_cautoall h_ccarpay h_cmort h_cmortint h_ctotc h_cdurc h_ctransc h_chousc h_chmeqf, i(hhidpn) j(wave)
 
 //sort and declare data set as panel data
 //NOTE: wave refers to HRS waves not CAMS waves
@@ -83,7 +83,7 @@ rename h_cwgthh weight
 save $folder\Intermediate\CAMSHRSpanelraw.dta, replace
 
 //merge with individual wave CAMS, consistent naming, replace missing values (e.g. 999999 to .), annualize spending measures
-//find names/how missing values are coded in individual wave codebooks
+//to find the names/how missing values are coded, look in the individual wave codebooks
 //very useful Table of Variable Names Across Waves on page 9 of the RAND_CAMS_2015V2 Documentation file in: Merging to the HRS
 use $folder\Intermediate\CAMSHRSpanelraw.dta, clear
 forvalues year = 1(2)15{
@@ -518,152 +518,985 @@ forvalues year = 1(2)15{
 			
 			keep id wave auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur housesupplies yardsupplies houseservices yardservices fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbies sports contributions gifts personalcare carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsupplies hrepservices retired recollect recollectPerc expect expectPerc
 		}
-		if `year' == 5 | `year' == 7 | `year' == 9 | `year' == 11 | `year' == 13 | `year' == 15{
-			if `year' == 5 {
-				//auto price
-				rename B1a4_`year_string' auto1
-				replace auto1 = . if auto1 == 999999
-				rename B1b4_`year_string' auto2
-				replace auto2 = . if auto2 == 999999
-				rename B1c4_`year_string' auto3	
-				replace auto3 = . if auto3 == 99999
-				//refrigerator price
-				rename B2a_`year_string' refrig
-				replace refrig = . if refrig == 99999
-				//washer/dryer price
-				rename B3a_`year_string' washdry
-				replace washdry = . if washdry == 9999
-				//dishwasher price
-				rename B4a_`year_string' dishwash
-				replace dishwash = . if dishwash == 9999
-				//television price
-				rename B5a_`year_string' tv
-				replace tv = . if tv == 9999
-				//computer price
-				rename B6a_`year_string' computer
-				replace computer = . if computer == 9999
-			}
-			if `year' == 7 {
-				//auto price
-				rename B1a4_`year_string' auto1
-				replace auto1 = . if auto1 == 99999
-				rename B1b4_`year_string' auto2
-				replace auto2 = . if auto2 == 999999
-				rename B1c4_`year_string' auto3	
-				replace auto3 = . if auto3 == 99999
-				//refrigerator price
-				rename B2a_`year_string' refrig
-				replace refrig = . if refrig == 9999
-				//washer/dryer price
-				rename B3a_`year_string' washdry
-				replace washdry = . if washdry == 9999
-				//dishwasher price
-				rename B4a_`year_string' dishwash
-				replace dishwash = . if dishwash == 9999
-				//television price
-				rename B5a_`year_string' tv
-				replace tv = . if tv == 99999
-				//computer price
-				rename B6a_`year_string' computer
-				replace computer = . if computer == 9999
-			}
-			if `year' == 9 {
-				//auto price
-				rename B1a4_`year_string' auto1
-				replace auto1 = . if auto1 == 999999
-				rename B1b4_`year_string' auto2
-				replace auto2 = . if auto2 == 999999
-				rename B1c4_`year_string' auto3	
-				replace auto3 = . if auto3 == 999999
-				//refrigerator price
-				rename B2a_`year_string' refrig
-				replace refrig = . if refrig == 99999
-				//washer/dryer price
-				rename B3a_`year_string' washdry
-				replace washdry = . if washdry == 99999
-				//dishwasher price
-				rename B4a_`year_string' dishwash
-				replace dishwash = . if dishwash == 99999
-				//television price
-				rename B5a_`year_string' tv
-				replace tv = . if tv == 99999
-				//computer price
-				rename B6a_`year_string' computer
-				replace computer = . if computer == 99999
-			}
-			if `year' == 11 {
-				//auto price
-				rename B1a4_`year_string' auto1
-				replace auto1 = . if auto1 == 999999
-				rename B1b4_`year_string' auto2
-				replace auto2 = . if auto2 == 999999
-				rename B1c4_`year_string' auto3	
-				replace auto3 = . if auto3 == 999999
-				//refrigerator price
-				rename B2a_`year_string' refrig
-				replace refrig = . if refrig == 99999
-				//washer/dryer price
-				rename B3a_`year_string' washdry
-				replace washdry = . if washdry == 9999
-				//dishwasher price
-				rename B4a_`year_string' dishwash
-				replace dishwash = . if dishwash == 9999
-				//television price
-				rename B5a_`year_string' tv
-				replace tv = . if tv == 9999
-				//computer price
-				rename B6a_`year_string' computer
-				replace computer = . if computer == 9999
-			}
-			if `year' == 13 {
-				//auto price
-				rename B1a4_`year_string' auto1
-				replace auto1 = . if auto1 == 999999
-				rename B1b4_`year_string' auto2
-				replace auto2 = . if auto2 == 999999
-				rename B1c4_`year_string' auto3	
-				replace auto3 = . if auto3 == 999999
-				//refrigerator price
-				rename B2a_`year_string' refrig
-				replace refrig = . if refrig == 99999
-				//washer/dryer price
-				rename B3a_`year_string' washdry
-				replace washdry = . if washdry == 9999
-				//dishwasher price
-				rename B4a_`year_string' dishwash
-				replace dishwash = . if dishwash == 9999
-				//television price
-				rename B5a_`year_string' tv
-				replace tv = . if tv == 99999
-				//computer price
-				rename B6a_`year_string' computer
-				replace computer = . if computer == 9999
-			}
-			if `year' == 15 {
-				//auto price
-				rename B1a4_`year_string' auto1
-				replace auto1 = . if auto1 == 999999
-				rename B1b4_`year_string' auto2
-				replace auto2 = . if auto2 == 999999
-				rename B1c4_`year_string' auto3	
-				replace auto3 = . if auto3 == 999999
-				//refrigerator price
-				rename B2a_`year_string' refrig
-				replace refrig = . if refrig == 9999
-				//washer/dryer price
-				rename B3a_`year_string' washdry
-				replace washdry = . if washdry == 99999
-				//dishwasher price
-				rename B4a_`year_string' dishwash
-				replace dishwash = . if dishwash == 9999
-				//television price
-				rename B5a_`year_string' tv
-				replace tv = . if tv == 9999
-				//computer price
-				rename B6a_`year_string' computer
-				replace computer = . if computer == 9999
-			}
+		if `year' == 5{
+			//auto price
+			rename B1a4_`year_string' auto1
+			replace auto1 = . if auto1 == 999999
+			rename B1b4_`year_string' auto2
+			replace auto2 = . if auto2 == 999999
+			rename B1c4_`year_string' auto3	
+			replace auto3 = . if auto3 == 99999
+			//refrigerator price
+			rename B2a_`year_string' refrig
+			replace refrig = . if refrig == 99999
+			//washer/dryer price
+			rename B3a_`year_string' washdry
+			replace washdry = . if washdry == 9999
+			//dishwasher price
+			rename B4a_`year_string' dishwash
+			replace dishwash = . if dishwash == 9999
+			//television price
+			rename B5a_`year_string' tv
+			replace tv = . if tv == 9999
+			//computer price
+			rename B6a_`year_string' computer
+			replace computer = . if computer == 9999
 			
+			//electricity
+			rename B20_`year_string' electricity
+			rename B20a_`year_string' electricityPer
+			replace electricity = electricity * 12 if electricityPer == 1
+			replace electricity = electricity if electricityPer == 2
+			replace electricity = 0 if electricityPer == 3
+			//water
+			rename B21_`year_string' water
+			rename B21a_`year_string' waterPer
+			replace water = water * 12 if waterPer == 1
+			replace water = water if waterPer == 2
+			replace water = 0 if waterPer == 3
+			//heat
+			rename B22_`year_string' heat
+			rename B22a_`year_string' heatPer
+			replace heat = heat * 12 if heatPer == 1
+			replace heat = heat if heatPer == 2
+			replace heat = 0 if heatPer == 3
+			//phone/cable/internet
+			rename B23_`year_string' phonecableinternet
+			rename B23a_`year_string' phonecableinternetPer
+			replace phonecableinternet = phonecableinternet * 12 if phonecableinternetPer == 1
+			replace phonecableinternet = phonecableinternet if phonecableinternetPer == 2
+			replace phonecableinternet = 0 if phonecableinternetPer == 3
+			//health insurance
+			rename B11_`year_string' healthinsur
+			//housekeeping supplies
+			rename B25_`year_string' housesupplies
+			rename B25a_`year_string' housesuppliesPer
+			replace housesupplies = housesupplies * 12 if housesuppliesPer == 1
+			replace housesupplies = housesupplies if housesuppliesPer == 2
+			replace housesupplies = 0 if housesuppliesPer == 3
+			//garden/yard supplies
+			rename B27_`year_string' yardsupplies
+			rename B27a_`year_string' yardsuppliesPer
+			replace yardsupplies = yardsupplies * 12 if yardsuppliesPer == 1
+			replace yardsupplies = yardsupplies if yardsuppliesPer == 2
+			replace yardsupplies = 0 if yardsuppliesPer == 3
+			//housekeeping services
+			rename B26_`year_string' houseservices
+			rename B26a_`year_string' houseservicesPer
+			replace houseservices = houseservices * 12 if houseservicesPer == 1
+			replace houseservices = houseservices if houseservicesPer == 2
+			replace houseservices = 0 if houseservicesPer == 3
+			//gardening/yard services
+			rename B28_`year_string' yardservices
+			rename B28a_`year_string' yardservicesPer
+			replace yardservices = yardservices * 12 if yardservicesPer == 1
+			replace yardservices = yardservices if yardservicesPer == 2
+			replace yardservices = 0 if yardservicesPer == 3
+			//food/drink grocery
+			rename B37_`year_string' fooddrink
+			rename B37a_`year_string' fooddrinkPer
+			replace fooddrink = fooddrink * 365/7 if fooddrinkPer == 1
+			replace fooddrink = fooddrink * 12 if fooddrinkPer == 2
+			replace fooddrink = fooddrink if fooddrinkPer == 3
+			replace fooddrink = 0 if fooddrinkPer == 4
+			//dining out
+			rename B38_`year_string' diningout
+			rename B38a_`year_string' diningoutPer
+			replace diningout = diningout * 365/7 if diningoutPer == 1
+			replace diningout = diningout * 12 if diningoutPer == 2
+			replace diningout = diningout if diningoutPer == 3
+			replace diningout = 0 if diningoutPer == 4
+			//clothing
+			rename B29_`year_string' clothing
+			rename B29a_`year_string' clothingPer
+			replace clothing = clothing * 12 if clothingPer == 1
+			replace clothing = clothing if clothingPer == 2
+			replace clothing = 0 if clothingPer == 3
+			//drugs
+			rename B31_`year_string' drugs
+			rename B31a_`year_string' drugsPer
+			replace drugs = drugs * 12 if drugsPer == 1
+			replace drugs = drugs if drugsPer == 2
+			replace drugs = 0 if drugsPer == 3
+			//health services
+			rename B32_`year_string' healthservices
+			rename B32a_`year_string' healthservicesPer
+			replace healthservices = healthservices * 12 if healthservicesPer == 1
+			replace healthservices = healthservices if healthservicesPer == 2
+			replace healthservices = 0 if healthservicesPer == 3
+			//medical supplies
+			rename B33_`year_string' medicalsupplies
+			rename B33a_`year_string' medicalsuppliesPer
+			replace medicalsupplies = medicalsupplies * 12 if medicalsuppliesPer == 1
+			replace medicalsupplies = medicalsupplies if medicalsuppliesPer == 2
+			replace medicalsupplies = 0 if medicalsuppliesPer == 3
+			//vacations
+			rename B12_`year_string' vacations
+			//tickets
+			rename B34_`year_string' tickets
+			rename B34a_`year_string' ticketsPer
+			replace tickets = tickets * 12 if ticketsPer == 1
+			replace tickets = tickets if ticketsPer == 2
+			replace tickets = 0 if ticketsPer == 3
+			//hobbies
+			rename B36_`year_string' hobbies
+			rename B36a_`year_string' hobbiesPer
+			replace hobbies = hobbies * 12 if hobbiesPer == 1
+			replace hobbies = hobbies if hobbiesPer == 2
+			replace hobbies = 0 if hobbiesPer == 3
+			//sports
+			rename B35_`year_string' sports
+			rename B35a_`year_string' sportsPer
+			replace sports = sports * 12 if sportsPer == 1
+			replace sports = sports if sportsPer == 2
+			replace sports = 0 if sportsPer == 3
+			//contributions
+			rename B16_`year_string' contributions
+			//gifts
+			rename B17_`year_string' gifts
+			//personal care
+			rename B30_`year_string' personalcare
+			rename B30a_`year_string' personalcarePer
+			replace personalcare = personalcare * 12 if personalcarePer == 1
+			replace personalcare = personalcare if personalcarePer == 2
+			replace personalcare = 0 if personalcarePer == 3
+			//household furnishings
+			rename B15_`year_string' hhfurnishings
+			//car payments
+			rename B24_`year_string' carpayments
+			rename B24a_`year_string' carpaymentsPer
+			replace carpayments = carpayments * 12 if carpaymentsPer == 1
+			replace carpayments = carpayments if carpaymentsPer == 2
+			replace carpayments = 0 if carpaymentsPer == 3
+			//auto insurance
+			rename B9_`year_string' autoinsur
+			//gasoline
+			rename B39_`year_string' gas
+			rename B39a_`year_string' gasPer
+			replace gas = gas * 365/7 if gasPer == 1
+			replace gas = gas * 12 if gasPer == 2
+			replace gas = gas if gasPer == 3
+			replace gas = 0 if gasPer == 4
+			//vehicle services
+			rename B10_`year_string' vehicleservices
+			//mortgage
+			rename B18_`year_string' mortgage
+			rename B18a_`year_string' mortgagePer
+			replace mortgage = mortgage * 12 if mortgagePer == 1
+			replace mortgage = mortgage if mortgagePer == 2
+			replace mortgage = 0 if mortgagePer == 3
+			//home/rent insurance
+			rename B7_`year_string' homerentinsur
+			//property tax
+			rename B8_`year_string' propertytax
+			//rent
+			rename B19_`year_string' rent
+			rename B19a_`year_string' rentPer
+			replace rent = rent * 12 if rentPer == 1
+			replace rent = rent if rentPer == 2
+			replace rent = 0 if rentPer == 3
+			//home repairs supplies
+			rename B13_`year_string' hrepsupplies
+			//home repairs services
+			rename B14_`year_string' hrepservices
+			
+			//measure of retired
+			rename B45_`year_string' retired
+			rename B45a_`year_string' recollect
+			rename B45b_`year_string' recollectPerc
+			rename B45d_`year_string' expect
+			rename B45e_`year_string' expectPerc
+			
+			keep id wave auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur housesupplies yardsupplies houseservices yardservices fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbies sports contributions gifts personalcare hhfurnishings carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsupplies hrepservices retired recollect recollectPerc expect expectPerc
+		}
+		if `year' == 7{
+			//auto price
+			rename B1a4_`year_string' auto1
+			replace auto1 = . if auto1 == 99999
+			rename B1b4_`year_string' auto2
+			replace auto2 = . if auto2 == 999999
+			rename B1c4_`year_string' auto3	
+			replace auto3 = . if auto3 == 99999
+			//refrigerator price
+			rename B2a_`year_string' refrig
+			replace refrig = . if refrig == 9999
+			//washer/dryer price
+			rename B3a_`year_string' washdry
+			replace washdry = . if washdry == 9999
+			//dishwasher price
+			rename B4a_`year_string' dishwash
+			replace dishwash = . if dishwash == 9999
+			//television price
+			rename B5a_`year_string' tv
+			replace tv = . if tv == 99999
+			//computer price
+			rename B6a_`year_string' computer
+			replace computer = . if computer == 9999
+		
+			//electricity
+			rename B20_`year_string' electricity
+			rename B20a_`year_string' electricityPer
+			replace electricity = electricity * 12 if electricityPer == 1
+			replace electricity = electricity if electricityPer == 2
+			replace electricity = 0 if electricityPer == 3
+			//water
+			rename B21_`year_string' water
+			rename B21a_`year_string' waterPer
+			replace water = water * 12 if waterPer == 1
+			replace water = water if waterPer == 2
+			replace water = 0 if waterPer == 3
+			//heat
+			rename B22_`year_string' heat
+			rename B22a_`year_string' heatPer
+			replace heat = heat * 12 if heatPer == 1
+			replace heat = heat if heatPer == 2
+			replace heat = 0 if heatPer == 3
+			//phone/cable/internet
+			rename B23_`year_string' phonecableinternet
+			rename B23a_`year_string' phonecableinternetPer
+			replace phonecableinternet = phonecableinternet * 12 if phonecableinternetPer == 1
+			replace phonecableinternet = phonecableinternet if phonecableinternetPer == 2
+			replace phonecableinternet = 0 if phonecableinternetPer == 3
+			//health insurance
+			rename B11_`year_string' healthinsur
+			//housekeeping supplies
+			rename B25_`year_string' housesupplies
+			rename B25a_`year_string' housesuppliesPer
+			replace housesupplies = housesupplies * 12 if housesuppliesPer == 1
+			replace housesupplies = housesupplies if housesuppliesPer == 2
+			replace housesupplies = 0 if housesuppliesPer == 3
+			//garden/yard supplies
+			rename B27_`year_string' yardsupplies
+			rename B27a_`year_string' yardsuppliesPer
+			replace yardsupplies = yardsupplies * 12 if yardsuppliesPer == 1
+			replace yardsupplies = yardsupplies if yardsuppliesPer == 2
+			replace yardsupplies = 0 if yardsuppliesPer == 3
+			//housekeeping services
+			rename B26_`year_string' houseservices
+			rename B26a_`year_string' houseservicesPer
+			replace houseservices = houseservices * 12 if houseservicesPer == 1
+			replace houseservices = houseservices if houseservicesPer == 2
+			replace houseservices = 0 if houseservicesPer == 3
+			//gardening/yard services
+			rename B28_`year_string' yardservices
+			rename B28a_`year_string' yardservicesPer
+			replace yardservices = yardservices * 12 if yardservicesPer == 1
+			replace yardservices = yardservices if yardservicesPer == 2
+			replace yardservices = 0 if yardservicesPer == 3
+			//food/drink grocery
+			rename B37_`year_string' fooddrink
+			rename B37a_`year_string' fooddrinkPer
+			replace fooddrink = fooddrink * 365/7 if fooddrinkPer == 1
+			replace fooddrink = fooddrink * 12 if fooddrinkPer == 2
+			replace fooddrink = fooddrink if fooddrinkPer == 3
+			replace fooddrink = 0 if fooddrinkPer == 4
+			//dining out
+			rename B38_`year_string' diningout
+			rename B38a_`year_string' diningoutPer
+			replace diningout = diningout * 365/7 if diningoutPer == 1
+			replace diningout = diningout * 12 if diningoutPer == 2
+			replace diningout = diningout if diningoutPer == 3
+			replace diningout = 0 if diningoutPer == 4
+			//clothing
+			rename B29_`year_string' clothing
+			rename B29a_`year_string' clothingPer
+			replace clothing = clothing * 12 if clothingPer == 1
+			replace clothing = clothing if clothingPer == 2
+			replace clothing = 0 if clothingPer == 3
+			//drugs
+			rename B31_`year_string' drugs
+			rename B31a_`year_string' drugsPer
+			replace drugs = drugs * 12 if drugsPer == 1
+			replace drugs = drugs if drugsPer == 2
+			replace drugs = 0 if drugsPer == 3
+			//health services
+			rename B32_`year_string' healthservices
+			rename B32a_`year_string' healthservicesPer
+			replace healthservices = healthservices * 12 if healthservicesPer == 1
+			replace healthservices = healthservices if healthservicesPer == 2
+			replace healthservices = 0 if healthservicesPer == 3
+			//medical supplies
+			rename B33_`year_string' medicalsupplies
+			rename B33a_`year_string' medicalsuppliesPer
+			replace medicalsupplies = medicalsupplies * 12 if medicalsuppliesPer == 1
+			replace medicalsupplies = medicalsupplies if medicalsuppliesPer == 2
+			replace medicalsupplies = 0 if medicalsuppliesPer == 3
+			//vacations
+			rename B12_`year_string' vacations
+			//tickets
+			rename B34_`year_string' tickets
+			rename B34a_`year_string' ticketsPer
+			replace tickets = tickets * 12 if ticketsPer == 1
+			replace tickets = tickets if ticketsPer == 2
+			replace tickets = 0 if ticketsPer == 3
+			//hobbies
+			rename B36_`year_string' hobbies
+			rename B36a_`year_string' hobbiesPer
+			replace hobbies = hobbies * 12 if hobbiesPer == 1
+			replace hobbies = hobbies if hobbiesPer == 2
+			replace hobbies = 0 if hobbiesPer == 3
+			//sports
+			rename B35_`year_string' sports
+			rename B35a_`year_string' sportsPer
+			replace sports = sports * 12 if sportsPer == 1
+			replace sports = sports if sportsPer == 2
+			replace sports = 0 if sportsPer == 3
+			//contributions
+			rename B16_`year_string' contributions
+			//gifts
+			rename B17_`year_string' gifts
+			//personal care
+			rename B30_`year_string' personalcare
+			rename B30a_`year_string' personalcarePer
+			replace personalcare = personalcare * 12 if personalcarePer == 1
+			replace personalcare = personalcare if personalcarePer == 2
+			replace personalcare = 0 if personalcarePer == 3
+			//household furnishings
+			rename B15_`year_string' hhfurnishings
+			//car payments
+			rename B24_`year_string' carpayments
+			rename B24a_`year_string' carpaymentsPer
+			replace carpayments = carpayments * 12 if carpaymentsPer == 1
+			replace carpayments = carpayments if carpaymentsPer == 2
+			replace carpayments = 0 if carpaymentsPer == 3
+			//auto insurance
+			rename B9_`year_string' autoinsur
+			//gasoline
+			rename B39_`year_string' gas
+			rename B39a_`year_string' gasPer
+			replace gas = gas * 365/7 if gasPer == 1
+			replace gas = gas * 12 if gasPer == 2
+			replace gas = gas if gasPer == 3
+			replace gas = 0 if gasPer == 4
+			//vehicle services
+			rename B10_`year_string' vehicleservices
+			//mortgage
+			rename B18_`year_string' mortgage
+			rename B18a_`year_string' mortgagePer
+			replace mortgage = mortgage * 12 if mortgagePer == 1
+			replace mortgage = mortgage if mortgagePer == 2
+			replace mortgage = 0 if mortgagePer == 3
+			//home/rent insurance
+			rename B7_`year_string' homerentinsur
+			//property tax
+			rename B8_`year_string' propertytax
+			//rent
+			rename B19_`year_string' rent
+			rename B19a_`year_string' rentPer
+			replace rent = rent * 12 if rentPer == 1
+			replace rent = rent if rentPer == 2
+			replace rent = 0 if rentPer == 3
+			//home repairs supplies
+			rename B13_`year_string' hrepsupplies
+			//home repairs services
+			rename B14_`year_string' hrepservices
+			
+			//measure of retired
+			rename B45_`year_string' retired
+			rename B45a_`year_string' recollect
+			rename B45b_`year_string' recollectPerc
+			rename B45d_`year_string' expect
+			rename B45e_`year_string' expectPerc
+			
+			keep id wave auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur housesupplies yardsupplies houseservices yardservices fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbies sports contributions gifts personalcare hhfurnishings carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsupplies hrepservices retired recollect recollectPerc expect expectPerc
+		}
+		if `year' == 9{
+			//auto price
+			rename B1a4_`year_string' auto1
+			replace auto1 = . if auto1 == 999999
+			rename B1b4_`year_string' auto2
+			replace auto2 = . if auto2 == 999999
+			rename B1c4_`year_string' auto3	
+			replace auto3 = . if auto3 == 999999
+			//refrigerator price
+			rename B2a_`year_string' refrig
+			replace refrig = . if refrig == 99999
+			//washer/dryer price
+			rename B3a_`year_string' washdry
+			replace washdry = . if washdry == 99999
+			//dishwasher price
+			rename B4a_`year_string' dishwash
+			replace dishwash = . if dishwash == 99999
+			//television price
+			rename B5a_`year_string' tv
+			replace tv = . if tv == 99999
+			//computer price
+			rename B6a_`year_string' computer
+			replace computer = . if computer == 99999
+			
+			//electricity
+			rename B20_`year_string' electricity
+			rename B20a_`year_string' electricityPer
+			replace electricity = electricity * 12 if electricityPer == 1
+			replace electricity = electricity if electricityPer == 2
+			replace electricity = 0 if electricityPer == 3
+			//water
+			rename B21_`year_string' water
+			rename B21a_`year_string' waterPer
+			replace water = water * 12 if waterPer == 1
+			replace water = water if waterPer == 2
+			replace water = 0 if waterPer == 3
+			//heat
+			rename B22_`year_string' heat
+			rename B22a_`year_string' heatPer
+			replace heat = heat * 12 if heatPer == 1
+			replace heat = heat if heatPer == 2
+			replace heat = 0 if heatPer == 3
+			//phone/cable/internet
+			rename B23_`year_string' phonecableinternet
+			rename B23a_`year_string' phonecableinternetPer
+			replace phonecableinternet = phonecableinternet * 12 if phonecableinternetPer == 1
+			replace phonecableinternet = phonecableinternet if phonecableinternetPer == 2
+			replace phonecableinternet = 0 if phonecableinternetPer == 3
+			//health insurance
+			rename B11_`year_string' healthinsur
+			//housekeeping supplies
+			rename B25_`year_string' housesupplies
+			rename B25a_`year_string' housesuppliesPer
+			replace housesupplies = housesupplies * 12 if housesuppliesPer == 1
+			replace housesupplies = housesupplies if housesuppliesPer == 2
+			replace housesupplies = 0 if housesuppliesPer == 3
+			//garden/yard supplies
+			rename B27_`year_string' yardsupplies
+			rename B27a_`year_string' yardsuppliesPer
+			replace yardsupplies = yardsupplies * 12 if yardsuppliesPer == 1
+			replace yardsupplies = yardsupplies if yardsuppliesPer == 2
+			replace yardsupplies = 0 if yardsuppliesPer == 3
+			//housekeeping services
+			rename B26_`year_string' houseservices
+			rename B26a_`year_string' houseservicesPer
+			replace houseservices = houseservices * 12 if houseservicesPer == 1
+			replace houseservices = houseservices if houseservicesPer == 2
+			replace houseservices = 0 if houseservicesPer == 3
+			//gardening/yard services
+			rename B28_`year_string' yardservices
+			rename B28a_`year_string' yardservicesPer
+			replace yardservices = yardservices * 12 if yardservicesPer == 1
+			replace yardservices = yardservices if yardservicesPer == 2
+			replace yardservices = 0 if yardservicesPer == 3
+			//food/drink grocery
+			rename B37_`year_string' fooddrink
+			rename B37a_`year_string' fooddrinkPer
+			replace fooddrink = fooddrink * 365/7 if fooddrinkPer == 1
+			replace fooddrink = fooddrink * 12 if fooddrinkPer == 2
+			replace fooddrink = fooddrink if fooddrinkPer == 3
+			replace fooddrink = 0 if fooddrinkPer == 4
+			//dining out
+			rename B38_`year_string' diningout
+			rename B38a_`year_string' diningoutPer
+			replace diningout = diningout * 365/7 if diningoutPer == 1
+			replace diningout = diningout * 12 if diningoutPer == 2
+			replace diningout = diningout if diningoutPer == 3
+			replace diningout = 0 if diningoutPer == 4
+			//clothing
+			rename B29_`year_string' clothing
+			rename B29a_`year_string' clothingPer
+			replace clothing = clothing * 12 if clothingPer == 1
+			replace clothing = clothing if clothingPer == 2
+			replace clothing = 0 if clothingPer == 3
+			//drugs
+			rename B31_`year_string' drugs
+			rename B31a_`year_string' drugsPer
+			replace drugs = drugs * 12 if drugsPer == 1
+			replace drugs = drugs if drugsPer == 2
+			replace drugs = 0 if drugsPer == 3
+			//health services
+			rename B32_`year_string' healthservices
+			rename B32a_`year_string' healthservicesPer
+			replace healthservices = healthservices * 12 if healthservicesPer == 1
+			replace healthservices = healthservices if healthservicesPer == 2
+			replace healthservices = 0 if healthservicesPer == 3
+			//medical supplies
+			rename B33_`year_string' medicalsupplies
+			rename B33a_`year_string' medicalsuppliesPer
+			replace medicalsupplies = medicalsupplies * 12 if medicalsuppliesPer == 1
+			replace medicalsupplies = medicalsupplies if medicalsuppliesPer == 2
+			replace medicalsupplies = 0 if medicalsuppliesPer == 3
+			//vacations
+			rename B12_`year_string' vacations
+			//tickets
+			rename B34_`year_string' tickets
+			rename B34a_`year_string' ticketsPer
+			replace tickets = tickets * 12 if ticketsPer == 1
+			replace tickets = tickets if ticketsPer == 2
+			replace tickets = 0 if ticketsPer == 3
+			//hobbies
+			rename B36_`year_string' hobbies
+			rename B36a_`year_string' hobbiesPer
+			replace hobbies = hobbies * 12 if hobbiesPer == 1
+			replace hobbies = hobbies if hobbiesPer == 2
+			replace hobbies = 0 if hobbiesPer == 3
+			//sports
+			rename B35_`year_string' sports
+			rename B35a_`year_string' sportsPer
+			replace sports = sports * 12 if sportsPer == 1
+			replace sports = sports if sportsPer == 2
+			replace sports = 0 if sportsPer == 3
+			//contributions
+			rename B16_`year_string' contributions
+			//gifts
+			rename B17_`year_string' gifts
+			//personal care
+			rename B30_`year_string' personalcare
+			rename B30a_`year_string' personalcarePer
+			replace personalcare = personalcare * 12 if personalcarePer == 1
+			replace personalcare = personalcare if personalcarePer == 2
+			replace personalcare = 0 if personalcarePer == 3
+			//household furnishings
+			rename B15_`year_string' hhfurnishings
+			//car payments
+			rename B24_`year_string' carpayments
+			rename B24a_`year_string' carpaymentsPer
+			replace carpayments = carpayments * 12 if carpaymentsPer == 1
+			replace carpayments = carpayments if carpaymentsPer == 2
+			replace carpayments = 0 if carpaymentsPer == 3
+			//auto insurance
+			rename B9_`year_string' autoinsur
+			//gasoline
+			rename B39_`year_string' gas
+			rename B39a_`year_string' gasPer
+			replace gas = gas * 365/7 if gasPer == 1
+			replace gas = gas * 12 if gasPer == 2
+			replace gas = gas if gasPer == 3
+			replace gas = 0 if gasPer == 4
+			//vehicle services
+			rename B10_`year_string' vehicleservices
+			//mortgage
+			rename B18_`year_string' mortgage
+			rename B18a_`year_string' mortgagePer
+			replace mortgage = mortgage * 12 if mortgagePer == 1
+			replace mortgage = mortgage if mortgagePer == 2
+			replace mortgage = 0 if mortgagePer == 3
+			//home/rent insurance
+			rename B7_`year_string' homerentinsur
+			//property tax
+			rename B8_`year_string' propertytax
+			//rent
+			rename B19_`year_string' rent
+			rename B19a_`year_string' rentPer
+			replace rent = rent * 12 if rentPer == 1
+			replace rent = rent if rentPer == 2
+			replace rent = 0 if rentPer == 3
+			//home repairs supplies
+			rename B13_`year_string' hrepsupplies
+			//home repairs services
+			rename B14_`year_string' hrepservices
+			
+			//measure of retired
+			rename B45_`year_string' retired
+			rename B45a_`year_string' recollect
+			rename B45b_`year_string' recollectPerc
+			rename B45d_`year_string' expect
+			rename B45e_`year_string' expectPerc
+			
+			keep id wave auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur housesupplies yardsupplies houseservices yardservices fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbies sports contributions gifts personalcare hhfurnishings carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsupplies hrepservices retired recollect recollectPerc expect expectPerc
+		}
+		if `year' == 11{
+			//auto price
+			rename B1a4_`year_string' auto1
+			replace auto1 = . if auto1 == 999999
+			rename B1b4_`year_string' auto2
+			replace auto2 = . if auto2 == 999999
+			rename B1c4_`year_string' auto3	
+			replace auto3 = . if auto3 == 999999
+			//refrigerator price
+			rename B2a_`year_string' refrig
+			replace refrig = . if refrig == 99999
+			//washer/dryer price
+			rename B3a_`year_string' washdry
+			replace washdry = . if washdry == 9999
+			//dishwasher price
+			rename B4a_`year_string' dishwash
+			replace dishwash = . if dishwash == 9999
+			//television price
+			rename B5a_`year_string' tv
+			replace tv = . if tv == 9999
+			//computer price
+			rename B6a_`year_string' computer
+			replace computer = . if computer == 9999
+
+			//electricity
+			rename B20_`year_string' electricity
+			rename B20a_`year_string' electricityPer
+			replace electricity = electricity * 12 if electricityPer == 1
+			replace electricity = electricity if electricityPer == 2
+			replace electricity = 0 if electricityPer == 3
+			//water
+			rename B21_`year_string' water
+			rename B21a_`year_string' waterPer
+			replace water = water * 12 if waterPer == 1
+			replace water = water if waterPer == 2
+			replace water = 0 if waterPer == 3
+			//heat
+			rename B22_`year_string' heat
+			rename B22a_`year_string' heatPer
+			replace heat = heat * 12 if heatPer == 1
+			replace heat = heat if heatPer == 2
+			replace heat = 0 if heatPer == 3
+			//phone/cable/internet
+			rename B23_`year_string' phonecableinternet
+			rename B23a_`year_string' phonecableinternetPer
+			replace phonecableinternet = phonecableinternet * 12 if phonecableinternetPer == 1
+			replace phonecableinternet = phonecableinternet if phonecableinternetPer == 2
+			replace phonecableinternet = 0 if phonecableinternetPer == 3
+			//health insurance
+			rename B11_`year_string' healthinsur
+			//housekeeping supplies
+			rename B25_`year_string' housesupplies
+			rename B25a_`year_string' housesuppliesPer
+			replace housesupplies = housesupplies * 12 if housesuppliesPer == 1
+			replace housesupplies = housesupplies if housesuppliesPer == 2
+			replace housesupplies = 0 if housesuppliesPer == 3
+			//garden/yard supplies
+			rename B27_`year_string' yardsupplies
+			rename B27a_`year_string' yardsuppliesPer
+			replace yardsupplies = yardsupplies * 12 if yardsuppliesPer == 1
+			replace yardsupplies = yardsupplies if yardsuppliesPer == 2
+			replace yardsupplies = 0 if yardsuppliesPer == 3
+			//housekeeping services
+			rename B26_`year_string' houseservices
+			rename B26a_`year_string' houseservicesPer
+			replace houseservices = houseservices * 12 if houseservicesPer == 1
+			replace houseservices = houseservices if houseservicesPer == 2
+			replace houseservices = 0 if houseservicesPer == 3
+			//gardening/yard services
+			rename B28_`year_string' yardservices
+			rename B28a_`year_string' yardservicesPer
+			replace yardservices = yardservices * 12 if yardservicesPer == 1
+			replace yardservices = yardservices if yardservicesPer == 2
+			replace yardservices = 0 if yardservicesPer == 3
+			//food/drink grocery
+			rename B37_`year_string' fooddrink
+			rename B37a_`year_string' fooddrinkPer
+			replace fooddrink = fooddrink * 365/7 if fooddrinkPer == 1
+			replace fooddrink = fooddrink * 12 if fooddrinkPer == 2
+			replace fooddrink = fooddrink if fooddrinkPer == 3
+			replace fooddrink = 0 if fooddrinkPer == 4
+			//dining out
+			rename B38_`year_string' diningout
+			rename B38a_`year_string' diningoutPer
+			replace diningout = diningout * 365/7 if diningoutPer == 1
+			replace diningout = diningout * 12 if diningoutPer == 2
+			replace diningout = diningout if diningoutPer == 3
+			replace diningout = 0 if diningoutPer == 4
+			//clothing
+			rename B29_`year_string' clothing
+			rename B29a_`year_string' clothingPer
+			replace clothing = clothing * 12 if clothingPer == 1
+			replace clothing = clothing if clothingPer == 2
+			replace clothing = 0 if clothingPer == 3
+			//drugs
+			rename B31_`year_string' drugs
+			rename B31a_`year_string' drugsPer
+			replace drugs = drugs * 12 if drugsPer == 1
+			replace drugs = drugs if drugsPer == 2
+			replace drugs = 0 if drugsPer == 3
+			//health services
+			rename B32_`year_string' healthservices
+			rename B32a_`year_string' healthservicesPer
+			replace healthservices = healthservices * 12 if healthservicesPer == 1
+			replace healthservices = healthservices if healthservicesPer == 2
+			replace healthservices = 0 if healthservicesPer == 3
+			//medical supplies
+			rename B33_`year_string' medicalsupplies
+			rename B33a_`year_string' medicalsuppliesPer
+			replace medicalsupplies = medicalsupplies * 12 if medicalsuppliesPer == 1
+			replace medicalsupplies = medicalsupplies if medicalsuppliesPer == 2
+			replace medicalsupplies = 0 if medicalsuppliesPer == 3
+			//vacations
+			rename B12_`year_string' vacations
+			//tickets
+			rename B34_`year_string' tickets
+			rename B34a_`year_string' ticketsPer
+			replace tickets = tickets * 12 if ticketsPer == 1
+			replace tickets = tickets if ticketsPer == 2
+			replace tickets = 0 if ticketsPer == 3
+			//hobbies
+			rename B36_`year_string' hobbies
+			rename B36a_`year_string' hobbiesPer
+			replace hobbies = hobbies * 12 if hobbiesPer == 1
+			replace hobbies = hobbies if hobbiesPer == 2
+			replace hobbies = 0 if hobbiesPer == 3
+			//sports
+			rename B35_`year_string' sports
+			rename B35a_`year_string' sportsPer
+			replace sports = sports * 12 if sportsPer == 1
+			replace sports = sports if sportsPer == 2
+			replace sports = 0 if sportsPer == 3
+			//contributions
+			rename B16_`year_string' contributions
+			//gifts
+			rename B17_`year_string' gifts
+			//personal care
+			rename B30_`year_string' personalcare
+			rename B30a_`year_string' personalcarePer
+			replace personalcare = personalcare * 12 if personalcarePer == 1
+			replace personalcare = personalcare if personalcarePer == 2
+			replace personalcare = 0 if personalcarePer == 3
+			//household furnishings
+			rename B15_`year_string' hhfurnishings
+			//car payments
+			rename B24_`year_string' carpayments
+			rename B24a_`year_string' carpaymentsPer
+			replace carpayments = carpayments * 12 if carpaymentsPer == 1
+			replace carpayments = carpayments if carpaymentsPer == 2
+			replace carpayments = 0 if carpaymentsPer == 3
+			//auto insurance
+			rename B9_`year_string' autoinsur
+			//gasoline
+			rename B39_`year_string' gas
+			rename B39a_`year_string' gasPer
+			replace gas = gas * 365/7 if gasPer == 1
+			replace gas = gas * 12 if gasPer == 2
+			replace gas = gas if gasPer == 3
+			replace gas = 0 if gasPer == 4
+			//vehicle services
+			rename B10_`year_string' vehicleservices
+			//mortgage
+			rename B18_`year_string' mortgage
+			rename B18a_`year_string' mortgagePer
+			replace mortgage = mortgage * 12 if mortgagePer == 1
+			replace mortgage = mortgage if mortgagePer == 2
+			replace mortgage = 0 if mortgagePer == 3
+			//home/rent insurance
+			rename B7_`year_string' homerentinsur
+			//property tax
+			rename B8_`year_string' propertytax
+			//rent
+			rename B19_`year_string' rent
+			rename B19a_`year_string' rentPer
+			replace rent = rent * 12 if rentPer == 1
+			replace rent = rent if rentPer == 2
+			replace rent = 0 if rentPer == 3
+			//home repairs supplies
+			rename B13_`year_string' hrepsupplies
+			//home repairs services
+			rename B14_`year_string' hrepservices
+			
+			//measure of retired
+			rename B45_`year_string' retired
+			rename B45a_`year_string' recollect
+			rename B45b_`year_string' recollectPerc
+			rename B45d_`year_string' expect
+			rename B45e_`year_string' expectPerc
+			
+			keep id wave auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur housesupplies yardsupplies houseservices yardservices fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbies sports contributions gifts personalcare hhfurnishings carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsupplies hrepservices retired recollect recollectPerc expect expectPerc
+		}
+		if `year' == 13{
+			//auto price
+			rename B1a4_`year_string' auto1
+			replace auto1 = . if auto1 == 999999
+			rename B1b4_`year_string' auto2
+			replace auto2 = . if auto2 == 999999
+			rename B1c4_`year_string' auto3	
+			replace auto3 = . if auto3 == 999999
+			//refrigerator price
+			rename B2a_`year_string' refrig
+			replace refrig = . if refrig == 99999
+			//washer/dryer price
+			rename B3a_`year_string' washdry
+			replace washdry = . if washdry == 9999
+			//dishwasher price
+			rename B4a_`year_string' dishwash
+			replace dishwash = . if dishwash == 9999
+			//television price
+			rename B5a_`year_string' tv
+			replace tv = . if tv == 99999
+			//computer price
+			rename B6a_`year_string' computer
+			replace computer = . if computer == 9999
+
+			//electricity
+			rename B20_`year_string' electricity
+			rename B20a_`year_string' electricityPer
+			replace electricity = electricity * 12 if electricityPer == 1
+			replace electricity = electricity if electricityPer == 2
+			replace electricity = 0 if electricityPer == 3
+			//water
+			rename B21_`year_string' water
+			rename B21a_`year_string' waterPer
+			replace water = water * 12 if waterPer == 1
+			replace water = water if waterPer == 2
+			replace water = 0 if waterPer == 3
+			//heat
+			rename B22_`year_string' heat
+			rename B22a_`year_string' heatPer
+			replace heat = heat * 12 if heatPer == 1
+			replace heat = heat if heatPer == 2
+			replace heat = 0 if heatPer == 3
+			//phone/cable/internet
+			rename B23_`year_string' phonecableinternet
+			rename B23a_`year_string' phonecableinternetPer
+			replace phonecableinternet = phonecableinternet * 12 if phonecableinternetPer == 1
+			replace phonecableinternet = phonecableinternet if phonecableinternetPer == 2
+			replace phonecableinternet = 0 if phonecableinternetPer == 3
+			//health insurance
+			rename B11_`year_string' healthinsur
+			//housekeeping supplies
+			rename B25_`year_string' housesupplies
+			rename B25a_`year_string' housesuppliesPer
+			replace housesupplies = housesupplies * 12 if housesuppliesPer == 1
+			replace housesupplies = housesupplies if housesuppliesPer == 2
+			replace housesupplies = 0 if housesuppliesPer == 3
+			//garden/yard supplies
+			rename B27_`year_string' yardsupplies
+			rename B27a_`year_string' yardsuppliesPer
+			replace yardsupplies = yardsupplies * 12 if yardsuppliesPer == 1
+			replace yardsupplies = yardsupplies if yardsuppliesPer == 2
+			replace yardsupplies = 0 if yardsuppliesPer == 3
+			//housekeeping services
+			rename B26_`year_string' houseservices
+			rename B26a_`year_string' houseservicesPer
+			replace houseservices = houseservices * 12 if houseservicesPer == 1
+			replace houseservices = houseservices if houseservicesPer == 2
+			replace houseservices = 0 if houseservicesPer == 3
+			//gardening/yard services
+			rename B28_`year_string' yardservices
+			rename B28a_`year_string' yardservicesPer
+			replace yardservices = yardservices * 12 if yardservicesPer == 1
+			replace yardservices = yardservices if yardservicesPer == 2
+			replace yardservices = 0 if yardservicesPer == 3
+			//food/drink grocery
+			rename B37_`year_string' fooddrink
+			rename B37a_`year_string' fooddrinkPer
+			replace fooddrink = fooddrink * 365/7 if fooddrinkPer == 1
+			replace fooddrink = fooddrink * 12 if fooddrinkPer == 2
+			replace fooddrink = fooddrink if fooddrinkPer == 3
+			replace fooddrink = 0 if fooddrinkPer == 4
+			//dining out
+			rename B38_`year_string' diningout
+			rename B38a_`year_string' diningoutPer
+			replace diningout = diningout * 365/7 if diningoutPer == 1
+			replace diningout = diningout * 12 if diningoutPer == 2
+			replace diningout = diningout if diningoutPer == 3
+			replace diningout = 0 if diningoutPer == 4
+			//clothing
+			rename B29_`year_string' clothing
+			rename B29a_`year_string' clothingPer
+			replace clothing = clothing * 12 if clothingPer == 1
+			replace clothing = clothing if clothingPer == 2
+			replace clothing = 0 if clothingPer == 3
+			//drugs
+			rename B31_`year_string' drugs
+			rename B31a_`year_string' drugsPer
+			replace drugs = drugs * 12 if drugsPer == 1
+			replace drugs = drugs if drugsPer == 2
+			replace drugs = 0 if drugsPer == 3
+			//health services
+			rename B32_`year_string' healthservices
+			rename B32a_`year_string' healthservicesPer
+			replace healthservices = healthservices * 12 if healthservicesPer == 1
+			replace healthservices = healthservices if healthservicesPer == 2
+			replace healthservices = 0 if healthservicesPer == 3
+			//medical supplies
+			rename B33_`year_string' medicalsupplies
+			rename B33a_`year_string' medicalsuppliesPer
+			replace medicalsupplies = medicalsupplies * 12 if medicalsuppliesPer == 1
+			replace medicalsupplies = medicalsupplies if medicalsuppliesPer == 2
+			replace medicalsupplies = 0 if medicalsuppliesPer == 3
+			//vacations
+			rename B12_`year_string' vacations
+			//tickets
+			rename B34_`year_string' tickets
+			rename B34a_`year_string' ticketsPer
+			replace tickets = tickets * 12 if ticketsPer == 1
+			replace tickets = tickets if ticketsPer == 2
+			replace tickets = 0 if ticketsPer == 3
+			//hobbies
+			rename B36_`year_string' hobbies
+			rename B36a_`year_string' hobbiesPer
+			replace hobbies = hobbies * 12 if hobbiesPer == 1
+			replace hobbies = hobbies if hobbiesPer == 2
+			replace hobbies = 0 if hobbiesPer == 3
+			//sports
+			rename B35_`year_string' sports
+			rename B35a_`year_string' sportsPer
+			replace sports = sports * 12 if sportsPer == 1
+			replace sports = sports if sportsPer == 2
+			replace sports = 0 if sportsPer == 3
+			//contributions
+			rename B16_`year_string' contributions
+			//gifts
+			rename B17_`year_string' gifts
+			//personal care
+			rename B30_`year_string' personalcare
+			rename B30a_`year_string' personalcarePer
+			replace personalcare = personalcare * 12 if personalcarePer == 1
+			replace personalcare = personalcare if personalcarePer == 2
+			replace personalcare = 0 if personalcarePer == 3
+			//household furnishings
+			rename B15_`year_string' hhfurnishings
+			//car payments
+			rename B24_`year_string' carpayments
+			rename B24a_`year_string' carpaymentsPer
+			replace carpayments = carpayments * 12 if carpaymentsPer == 1
+			replace carpayments = carpayments if carpaymentsPer == 2
+			replace carpayments = 0 if carpaymentsPer == 3
+			//auto insurance
+			rename B9_`year_string' autoinsur
+			//gasoline
+			rename B39_`year_string' gas
+			rename B39a_`year_string' gasPer
+			replace gas = gas * 365/7 if gasPer == 1
+			replace gas = gas * 12 if gasPer == 2
+			replace gas = gas if gasPer == 3
+			replace gas = 0 if gasPer == 4
+			//vehicle services
+			rename B10_`year_string' vehicleservices
+			//mortgage
+			rename B18_`year_string' mortgage
+			rename B18a_`year_string' mortgagePer
+			replace mortgage = mortgage * 12 if mortgagePer == 1
+			replace mortgage = mortgage if mortgagePer == 2
+			replace mortgage = 0 if mortgagePer == 3
+			//home/rent insurance
+			rename B7_`year_string' homerentinsur
+			//property tax
+			rename B8_`year_string' propertytax
+			//rent
+			rename B19_`year_string' rent
+			rename B19a_`year_string' rentPer
+			replace rent = rent * 12 if rentPer == 1
+			replace rent = rent if rentPer == 2
+			replace rent = 0 if rentPer == 3
+			//home repairs supplies
+			rename B13_`year_string' hrepsupplies
+			//home repairs services
+			rename B14_`year_string' hrepservices
+			
+			//measure of retired
+			rename B45_`year_string' retired
+			rename B45a_`year_string' recollect
+			rename B45b_`year_string' recollectPerc
+			rename B45d_`year_string' expect
+			rename B45e_`year_string' expectPerc
+			
+			keep id wave auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur housesupplies yardsupplies houseservices yardservices fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbies sports contributions gifts personalcare hhfurnishings carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsupplies hrepservices retired recollect recollectPerc expect expectPerc
+		}
+		if `year' == 15{
+			//auto price
+			rename B1a4_`year_string' auto1
+			replace auto1 = . if auto1 == 999999
+			rename B1b4_`year_string' auto2
+			replace auto2 = . if auto2 == 999999
+			rename B1c4_`year_string' auto3	
+			replace auto3 = . if auto3 == 999999
+			//refrigerator price
+			rename B2a_`year_string' refrig
+			replace refrig = . if refrig == 9999
+			//washer/dryer price
+			rename B3a_`year_string' washdry
+			replace washdry = . if washdry == 99999
+			//dishwasher price
+			rename B4a_`year_string' dishwash
+			replace dishwash = . if dishwash == 9999
+			//television price
+			rename B5a_`year_string' tv
+			replace tv = . if tv == 9999
+			//computer price
+			rename B6a_`year_string' computer
+			replace computer = . if computer == 9999
+	
 			//electricity
 			rename B20_`year_string' electricity
 			rename B20a_`year_string' electricityPer
@@ -843,6 +1676,206 @@ forvalues year = 1(2)15{
 //NOTE: imputation is not carried out, but RAND's imputation process is described on page 11 of the RAND_CAMS_2015V2 Documentation file in: Components of Household Spending and Consumption
 
 use $folder\Intermediate\CAMSHRSpanelrawmerge.dta, clear 
+
+/*
+//principal is eliminating from mortgage to leave only mortgage interest and charges, reference page 12 of the RAND_CAMS_2015V2 Documentation file in: Components of Household Spending and Consumption 
+	//for years 2001-2003: e.g. https://www.bls.gov/cex/standard/2001/age.txt
+	//for years 2005-2011: e.g. https://www.bls.gov/cex/2005/Standard/age.pdf
+	//for years 2013-2015: use 2011 data, NO info on mortgage interest and charges/mortgage principal e.g. https://www.bls.gov/cex/research_papers/pdf/consumer-expenditures-in-2013.pdf
+//2001
+if wave == 5 {
+	if r_age < 25{
+		replace mortgage = mortgage * (434)/(434+141)
+	}
+	if r_age >= 25 & r_age <= 34{
+		replace mortgage = mortgage * (3129)/(3129+1135)
+	}
+	if r_age >= 35 & r_age <= 44{
+		replace mortgage = mortgage * (4533)/(4533+1789)
+	}
+	if r_age >= 45 & r_age <= 54{
+		replace mortgage = mortgage * (3935)/(3935+2161)
+	}
+	if r_age >= 55 & r_age <= 64{
+		replace mortgage = mortgage * (2539)/(2539+1753)
+	}
+	if r_age >= 65 & r_age <= 74{
+		replace mortgage = mortgage * (1252)/(1252+1048)
+	}
+	if r_age >= 75{
+		replace mortgage = mortgage * (418)/(418+248)
+	}
+}
+//2003
+if wave == 6 {
+	if r_age < 25{
+		replace mortgage = mortgage * (449)/(449+157)
+	}
+	if r_age >= 25 & r_age <= 34{
+		replace mortgage = mortgage * (3373)/(3373+1078)
+	}
+	if r_age >= 35 & r_age <= 44{
+		replace mortgage = mortgage * (4541)/(4541+2070)
+	}
+	if r_age >= 45 & r_age <= 54{
+		replace mortgage = mortgage * (4088)/(4088+2391)
+	}
+	if r_age >= 55 & r_age <= 64{
+		replace mortgage = mortgage * (2739)/(2739+2103)
+	}
+	if r_age >= 65 & r_age <= 74{
+		replace mortgage = mortgage * (1349)/(1349+1172)
+	}
+	if r_age >= 75{
+		replace mortgage = mortgage * (350)/(350+322)
+	}
+}
+//2005
+if wave == 7 {
+	if r_age < 25{
+		replace mortgage = mortgage * (835)/(835+307)
+	}
+	if r_age >= 25 & r_age <= 34{
+		replace mortgage = mortgage * (3535)/(3535+1572)
+	}
+	if r_age >= 35 & r_age <= 44{
+		replace mortgage = mortgage * (5169)/(5169+2748)
+	}
+	if r_age >= 45 & r_age <= 54{
+		replace mortgage = mortgage * (4493)/(4493+3012)
+	}
+	if r_age >= 55 & r_age <= 64{
+		replace mortgage = mortgage * (3076)/(3076+2722)
+	}
+	if r_age >= 65 & r_age <= 74{
+		replace mortgage = mortgage * (1570)/(1570+1667)
+	}
+	if r_age >= 75{
+		replace mortgage = mortgage * (542)/(542+404)
+	}
+}
+//2007
+if wave == 8 {
+	if r_age < 25{
+		replace mortgage = mortgage * (919)/(919+251)
+	}
+	if r_age >= 25 & r_age <= 34{
+		replace mortgage = mortgage * (4286)/(4286+1408)
+	}
+	if r_age >= 35 & r_age <= 44{
+		replace mortgage = mortgage * (6239)/(6239+3089)
+	}
+	if r_age >= 45 & r_age <= 54{
+		replace mortgage = mortgage * (5093)/(5093+3654)
+	}
+	if r_age >= 55 & r_age <= 64{
+		replace mortgage = mortgage * (3421)/(3421+2878)
+	}
+	if r_age >= 65 & r_age <= 74{
+		replace mortgage = mortgage * (2049)/(2049+1401)
+	}
+	if r_age >= 75{
+		replace mortgage = mortgage * (550)/(550+483)
+	}
+}
+//2009
+if wave == 9 {
+	if r_age < 25{
+		replace mortgage = mortgage * (783)/(783+264)
+	}
+	if r_age >= 25 & r_age <= 34{
+		replace mortgage = mortgage * (3843)/(3843+1454)
+	}
+	if r_age >= 35 & r_age <= 44{
+		replace mortgage = mortgage * (5863)/(5863+2969)
+	}
+	if r_age >= 45 & r_age <= 54{
+		replace mortgage = mortgage * (4677)/(4677+3220)
+	}
+	if r_age >= 55 & r_age <= 64{
+		replace mortgage = mortgage * (3352)/(3352+2873)
+	}
+	if r_age >= 65 & r_age <= 74{
+		replace mortgage = mortgage * (1976)/(1976+1698)
+	}
+	if r_age >= 75{
+		replace mortgage = mortgage * (603)/(603+579)
+	}
+}
+//2011
+if wave == 10 {
+	if r_age < 25{
+		replace mortgage = mortgage * (740)/(740+249)
+	}
+	if r_age >= 25 & r_age <= 34{
+		replace mortgage = mortgage * (3207)/(3207+1266)
+	}
+	if r_age >= 35 & r_age <= 44{
+		replace mortgage = mortgage * (4873)/(4873+2491)
+	}
+	if r_age >= 45 & r_age <= 54{
+		replace mortgage = mortgage * (4236)/(4236+2800)
+	}
+	if r_age >= 55 & r_age <= 64{
+		replace mortgage = mortgage * (3244)/(3244+2757)
+	}
+	if r_age >= 65 & r_age <= 74{
+		replace mortgage = mortgage * (2008)/(2008+1893)
+	}
+	if r_age >= 75{
+		replace mortgage = mortgage * (716)/(716+656)
+	}
+}
+//2013
+if wave == 11 {
+	if r_age < 25{
+		replace mortgage = mortgage * (740)/(740+249)
+	}
+	if r_age >= 25 & r_age <= 34{
+		replace mortgage = mortgage * (3207)/(3207+1266)
+	}
+	if r_age >= 35 & r_age <= 44{
+		replace mortgage = mortgage * (4873)/(4873+2491)
+	}
+	if r_age >= 45 & r_age <= 54{
+		replace mortgage = mortgage * (4236)/(4236+2800)
+	}
+	if r_age >= 55 & r_age <= 64{
+		replace mortgage = mortgage * (3244)/(3244+2757)
+	}
+	if r_age >= 65 & r_age <= 74{
+		replace mortgage = mortgage * (2008)/(2008+1893)
+	}
+	if r_age >= 75{
+		replace mortgage = mortgage * (716)/(716+656)
+	}
+}
+//2015
+if wave == 12 {
+	if r_age < 25{
+		replace mortgage = mortgage * (740)/(740+249)
+	}
+	if r_age >= 25 & r_age <= 34{
+		replace mortgage = mortgage * (3207)/(3207+1266)
+	}
+	if r_age >= 35 & r_age <= 44{
+		replace mortgage = mortgage * (4873)/(4873+2491)
+	}
+	if r_age >= 45 & r_age <= 54{
+		replace mortgage = mortgage * (4236)/(4236+2800)
+	}
+	if r_age >= 55 & r_age <= 64{
+		replace mortgage = mortgage * (3244)/(3244+2757)
+	}
+	if r_age >= 65 & r_age <= 74{
+		replace mortgage = mortgage * (2008)/(2008+1893)
+	}
+	if r_age >= 75{
+		replace mortgage = mortgage * (716)/(716+656)
+	}
+}
+*/
+
 //RAND CAMS totals are now only derived for those observations who have given non-missing values for at least ten spending categories
 //reference page 7 of the RAND_CAMS_2015V2 Documentation file in: Sample Selection for Derived Totals
 drop if h_c10rep == 0 | h_c10rep == .
@@ -888,13 +1921,57 @@ preserve
 	rename h_chouss housing2
 	gen housing3 = housing1
 	
+	count if housing1 != .
+	local count = r(N)
+	
 	//prepare for latex table generation
 	reshape long total nondurables durables transportation housing, i(id wave) j(dataset)
 	gen datasetname = "CAMS Generated" if dataset == 1
 	replace datasetname = "RAND CAMS" if dataset == 2
 	replace datasetname = "Wave Consistent" if dataset == 3
 	estpost tabstat total nondurables durables transportation housing, by(datasetname) nototal statistics(mean sd) columns(statistics) listwise
-	esttab using $folder\Final\meanraw.tex, main(mean) aux(sd) nostar noobs unstack label title("Mean Comparison between CAMS generated, RAND CAMS, and Wave Consistent CAMS generated spending categories ") note("\shortstack[l]{\\ The spending categories are defined in accordance with page 9 (Table 1: Variable \\ Names Across Waves) of the RAND_CAMS_2015V2 Data Documentation file.  \\ --- \\ The wave consistent measures are CAMS generated and exclude house services, yard \\ services, personal care, and household furnishings (which effect total and nondurables). \\ --- \\ The housing category is larger for the CAMS generated measures, because RAND \\ eliminates principal from mortgage spending so that only mortgage interest and \\ charges remain. \\ --- \\ The other differences can be explained by the lack of imputation from the CAMS \\ generated values. These values have also been winsorized. \\ --- \\ The number of observations is 30124.}") replace
+	esttab using $folder\Final\meanraw.tex, main(mean %9.0fc) aux(sd %9.0fc) nostar noobs unstack nolabel title("Mean (Standard Error) Comparison between CAMS generated, RAND CAMS, and Wave Consistent CAMS generated spending categories ") note("\shortstack[l]{\\ The spending categories are defined in accordance with page 9 (Table 1: Variable \\ Names Across Waves) of the RAND_CAMS_2015V2 Data Documentation file.  \\ --- \\ The wave consistent measures are CAMS generated and exclude house services, yard \\ services, personal care, and household furnishings (which effect total and nondurables). \\ --- \\ The housing category is significantly larger for CAMS Generated and Wave Consistent \\ because RAND eliminates principal from mortgage spending so that only mortgage \\ interest and charges remain. \\ --- \\ The other differences can be explained by the lack of imputation from the CAMS \\ generated values. These values have also been winsorized. \\ --- \\ The number of observations is `count'.}") replace
+restore
+
+preserve
+	//generate wave consistent CAMS generated
+	egen nondurfull1 = rowtotal(electricity water heat phonecableinternet healthinsur houseyardsupplies housesupplies yardsupplies fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbiessports hobbies sports contributions gifts)
+	egen totalfull1 = rowtotal(auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur houseyardsupplies housesupplies yardsupplies fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbiessports hobbies sports contributions gifts carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsuppliesservices hrepsupplies hrepservices)
+	//generate CAMS generated (consistent with RAND CAMS definitions)
+	egen nondurfull2 = rowtotal(electricity water heat phonecableinternet healthinsur houseyardsupplies housesupplies yardsupplies houseservices yardservices fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbiessports hobbies sports contributions gifts personalcare hhfurnishings)
+	egen durfull2 = rowtotal(refrig washdry dishwash tv computer)
+	egen transport = rowtotal(auto1 auto2 auto3 carpayments autoinsur gas vehicleservices)
+	egen housing = rowtotal(mortgage homerentinsur propertytax rent hrepsuppliesservices hrepsupplies hrepservices)
+	egen totalfull2 = rowtotal(auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur houseyardsupplies housesupplies yardsupplies houseservices yardservices fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbiessports hobbies sports contributions gifts personalcare hhfurnishings carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsuppliesservices hrepsupplies hrepservices)
+	//generate to check rand total 
+	egen randtotal = rowtotal(h_cndur h_cdurs h_ctranss h_chouss)
+
+	rename totalfull2 total1
+	rename h_ctots total2
+	rename totalfull1 total3
+	rename nondurfull2 nondurables1
+	rename h_cndur nondurables2
+	rename nondurfull1 nondurables3
+	rename durfull2 durables1
+	rename h_cdurs durables2
+	gen durables3 = durables1
+	rename transport transportation1
+	rename h_ctranss transportation2
+	gen transportation3 = transportation1
+	rename housing housing1
+	rename h_chouss housing2
+	gen housing3 = housing1
+	
+	count if housing1 != .
+	local count = r(N)
+	
+	//prepare for latex table generation
+	reshape long total nondurables durables transportation housing, i(id wave) j(dataset)
+	gen datasetname = "CAMS Generated" if dataset == 1
+	replace datasetname = "RAND CAMS" if dataset == 2
+	replace datasetname = "Wave Consistent" if dataset == 3
+	estpost tabstat total nondurables durables transportation housing, by(datasetname) nototal statistics(p10 p25 p50 p75 p90) columns(statistics) listwise
+	esttab using $folder\Final\medianraw.tex, cells(p10(label("10") fmt(%9.0fc)) p25(label("25") fmt(%9.0fc)) p50(label("50") fmt(%9.0fc) par) p75(label("75") fmt(%9.0fc)) p90(label("90") fmt(%9.0fc))) gaps noobs unstack nolabel title("10th, 25th, 50th, 75th, and 90th Percentile Comparison between CAMS generated, RAND CAMS, and Wave Consistent CAMS generated spending categories ") note("\shortstack[l]{\\ The spending categories are defined in accordance with page 9 (Table 1: Variable \\ Names Across Waves) of the RAND_CAMS_2015V2 Data Documentation file.  \\ --- \\ The wave consistent measures are CAMS generated and exclude house services, yard \\ services, personal care, and household furnishings (which effect total and nondurables). \\ --- \\ The housing category is significantly larger for CAMS Generated and Wave Consistent \\ because RAND eliminates principal from mortgage spending so that only mortgage \\ interest and charges remain. \\ --- \\ The other differences can be explained by the lack of imputation from the CAMS \\ generated values. These values have also been winsorized. \\ --- \\ The number of observations is `count'.}") replace
 restore
 
 //check housing spending by wave - this revealed that principal payments were omitted from mortgage so that only interest payments and charges remained
@@ -934,7 +2011,7 @@ tab wave if _merge == 3
 drop _merge
 
 //create real variables for spending values
-foreach var of varlist auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur houseyardsupplies housesupplies yardsupplies houseservices yardservices fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbiessports hobbies sports contributions gifts personalcare hhfurnishings carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsuppliesservices hrepsupplies hrepservices *ctots *cdurs *cndur *ctranss *chouss *cautoall *ccarpay *cmort *cmortint *ctotc *cdurc *ctransc *chousc *chmeqf {
+foreach var of varlist r_isret s_isret h_atota h_atotb h_atotw h_atotn auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur houseyardsupplies housesupplies yardsupplies houseservices yardservices fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbiessports hobbies sports contributions gifts personalcare hhfurnishings carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsuppliesservices hrepsupplies hrepservices *ctots *cdurs *cndur *ctranss *chouss *cautoall *ccarpay *cmort *cmortint *ctotc *cdurc *ctransc *chousc *chmeqf {
 	local realvar = "`var'" + "_real"
 	gen `realvar' = 100 * `var' / CPI_base_2003
 }
@@ -966,13 +2043,55 @@ preserve
 	rename h_chouss_real housing2
 	gen housing3 = housing1
 	
+	count if housing1 != .
+	local count = r(N)
+	
 	//prepare for latex table generation
 	reshape long total nondurables durables transportation housing, i(id wave) j(dataset)
 	gen datasetname = "CAMS Generated" if dataset == 1
 	replace datasetname = "RAND CAMS" if dataset == 2
 	replace datasetname = "Wave Consistent" if dataset == 3
 	estpost tabstat total nondurables durables transportation housing, by(datasetname) nototal statistics(mean sd) columns(statistics) listwise
-	esttab using $folder\Final\meanraw2.tex, main(mean) aux(sd) nostar noobs unstack label title("Mean Comparison between CAMS generated, RAND CAMS, and Wave Consistent CAMS generated spending categories (real adjusted)") note("\shortstack[l]{\\ The spending categories are defined in accordance with page 9 (Table 1: Variable \\ Names Across Waves) of the RAND_CAMS_2015V2 Data Documentation file.  \\ --- \\ The wave consistent measures are CAMS generated and exclude house services, yard \\ services, personal care, and household furnishings (which effect total and nondurables). \\ --- \\ The housing category is larger for the CAMS generated measures, because RAND \\ eliminates principal from mortgage spending so that only mortgage interest and \\ charges remain. \\ --- \\ The other differences can be explained by the lack of imputation from the CAMS \\ generated values. These values have also been winsorized. \\ --- \\ The number of observations is 30124.}") replace
+	esttab using $folder\Final\meanraw2.tex, main(mean %9.0fc) aux(sd %9.0fc) nostar noobs unstack nolabel title("Mean (Standard Error) Comparison between CAMS generated, RAND CAMS, and Wave Consistent CAMS generated spending categories (real adjusted)") note("\shortstack[l]{\\ The spending categories are defined in accordance with page 9 (Table 1: Variable \\ Names Across Waves) of the RAND_CAMS_2015V2 Data Documentation file.  \\ --- \\ The wave consistent measures are CAMS generated and exclude house services, yard \\ services, personal care, and household furnishings (which effect total and nondurables). \\ --- \\ The housing category is significantly larger for CAMS Generated and Wave Consistent \\ because RAND eliminates principal from mortgage spending so that only mortgage \\ interest and charges remain. \\ --- \\ The other differences can be explained by the lack of imputation from the CAMS \\ generated values. These values have also been winsorized. \\ --- \\ The number of observations is `count'.}") replace
+restore
+
+preserve
+	//generate wave consistent CAMS generated
+	egen nondurfull1 = rowtotal(electricity_real water_real heat_real phonecableinternet_real healthinsur_real houseyardsupplies_real housesupplies_real yardsupplies_real fooddrink_real diningout_real clothing_real drugs_real healthservices_real medicalsupplies_real vacations_real tickets_real hobbiessports_real hobbies_real sports_real contributions_real gifts_real)
+	egen totalfull1 = rowtotal(auto1_real auto2_real auto3_real refrig_real washdry_real dishwash_real tv_real computer_real electricity_real water_real heat_real phonecableinternet_real healthinsur_real houseyardsupplies_real housesupplies_real yardsupplies_real fooddrink_real diningout_real clothing_real drugs_real healthservices_real medicalsupplies_real vacations_real tickets_real hobbiessports_real hobbies_real sports_real contributions_real gifts_real carpayments_real autoinsur_real gas_real vehicleservices_real mortgage_real homerentinsur_real propertytax_real rent_real hrepsuppliesservices_real hrepsupplies_real hrepservices_real)
+	//generate CAMS generated (consistent with RAND CAMS definitions)
+	egen nondurfull2 = rowtotal(electricity_real water_real heat_real phonecableinternet_real healthinsur_real houseyardsupplies_real housesupplies_real yardsupplies_real houseservices_real yardservices_real fooddrink_real diningout_real clothing_real drugs_real healthservices_real medicalsupplies_real vacations_real tickets_real hobbiessports_real hobbies_real sports_real contributions_real gifts_real personalcare_real hhfurnishings_real)
+	egen durfull2 = rowtotal(refrig_real washdry_real dishwash_real tv_real computer_real)
+	egen transport = rowtotal(auto1_real auto2_real auto3_real carpayments_real autoinsur_real gas_real vehicleservices_real)
+	egen housing = rowtotal(mortgage_real homerentinsur_real propertytax_real rent_real hrepsuppliesservices_real hrepsupplies_real hrepservices_real)
+	egen totalfull2 = rowtotal(auto1_real auto2_real auto3_real refrig_real washdry_real dishwash_real tv_real computer_real electricity_real water_real heat_real phonecableinternet_real healthinsur_real houseyardsupplies_real housesupplies_real yardsupplies_real houseservices_real yardservices_real fooddrink_real diningout_real clothing_real drugs_real healthservices_real medicalsupplies_real vacations_real tickets_real hobbiessports_real hobbies_real sports_real contributions_real gifts_real personalcare_real hhfurnishings_real carpayments_real autoinsur_real gas_real vehicleservices_real mortgage_real homerentinsur_real propertytax_real rent_real hrepsuppliesservices_real hrepsupplies_real hrepservices_real)
+	
+	rename totalfull2 total1
+	rename h_ctots_real total2
+	rename totalfull1 total3
+	rename nondurfull2 nondurables1
+	rename h_cndur_real nondurables2
+	rename nondurfull1 nondurables3
+	rename durfull2 durables1
+	rename h_cdurs_real durables2
+	gen durables3 = durables1
+	rename transport transportation1
+	rename h_ctranss_real transportation2
+	gen transportation3 = transportation1
+	rename housing housing1
+	rename h_chouss_real housing2
+	gen housing3 = housing1
+	
+	count if housing1 != .
+	local count = r(N)
+	
+	//prepare for latex table generation
+	reshape long total nondurables durables transportation housing, i(id wave) j(dataset)
+	gen datasetname = "CAMS Generated" if dataset == 1
+	replace datasetname = "RAND CAMS" if dataset == 2
+	replace datasetname = "Wave Consistent" if dataset == 3
+	estpost tabstat total nondurables durables transportation housing, by(datasetname) nototal statistics(p10 p25 p50 p75 p90) columns(statistics) listwise
+	esttab using $folder\Final\medianraw2.tex, cells(p10(label("10") fmt(%9.0fc)) p25(label("25") fmt(%9.0fc)) p50(label("50") fmt(%9.0fc) par) p75(label("75") fmt(%9.0fc)) p90(label("90") fmt(%9.0fc))) gaps noobs unstack nolabel title("10th, 25th, 50th, 75th, and 90th Percentile Comparison between CAMS generated, RAND CAMS, and Wave Consistent CAMS generated spending categories (real adjusted)") note("\shortstack[l]{\\ The spending categories are defined in accordance with page 9 (Table 1: Variable \\ Names Across Waves) of the RAND_CAMS_2015V2 Data Documentation file.  \\ --- \\ The wave consistent measures are CAMS generated and exclude house services, yard \\ services, personal care, and household furnishings (which effect total and nondurables). \\ --- \\ The housing category is significantly larger for CAMS Generated and Wave Consistent \\ because RAND eliminates principal from mortgage spending so that only mortgage \\ interest and charges remain. \\ --- \\ The other differences can be explained by the lack of imputation from the CAMS \\ generated values. These values have also been winsorized. \\ --- \\ The number of observations is `count'.}") replace
 restore
 
 //saves raw, basic panel data
