@@ -22,6 +22,21 @@ RAND CAMS Codebook: RAND_CAMS_2015V2_Data_Documentation
 	Access in HRS CAMS Spending Data 2015 wide panel data zip folder
 	Contained in folder Data\Raw\randcams_2001_2015v2
 
+CAMS vs. HRS Waves (code uses HRS waves as a common reference value):
+	HRS wave/year		CAMS wave/year
+	1		92			
+	2		94
+	3		96
+	4		98
+	5		00			1		01
+	6		02			2		03
+	7		04			3		05
+	8		06			4		07
+	9		08			5		09
+	10		10			6		11
+	11		12			7		13
+	12		14			8		15
+
 Written by Lan Luo, Yale University
 Herb Scarf RA for Cormac O'Dea @Yale Economics Department
 lan.luo@yale.edu
@@ -43,7 +58,7 @@ global folder "C:\Users\ericluo04\Documents\GitHub\RetirementConsumptionCAMS\Dat
 //use wide panel data for HRS
 use $folder\Raw\randhrs1992_2014v2_STATA\randhrs1992_2014v2.dta, clear
 //reduce size of rand HRS data to fit CAMS range of years
-drop s1* r1* h1* s2* r2* h2* s3* r3* h3* s4* r4* h4*
+keep hhidpn ra* sa* s5* r5* h5* s6* r6* h6* s7* r7* h7* s8* r8* h8* s9* r9* h9* s10* r10* h10* s11* r11* h11* s12* r12* h12*
 save $folder\Raw\randhrs2000_2014v2.dta, replace
 
 use $folder\Raw\randhrs2000_2014v2.dta, clear
@@ -51,7 +66,18 @@ use $folder\Raw\randhrs2000_2014v2.dta, clear
 merge 1:1 hhidpn using $folder\Raw\randcams_2001_2015v2\randcams_2001_2015v2.dta, keep(2 3)
 drop _merge
 
-keep hhidpn *isret *atota *atotb *atotw *atotn *c10rep *agey_b *cwgthh *lbrf *sayret *retemp *lbrfh *lbrfy *inlbrf *cmstat *ctots *cdurs *cndur *ctranss *chouss *cautoall *ccarpay *cmort *cmortint *ctotc *cdurc *ctransc *chousc *chmeqf
+keep hhidpn raedyrs *isret *atota *atotb *atotw *atotn *c10rep *agey_b *cwgthh *lbrf *sayret *retemp *lbrfh *lbrfy *inlbrf *cmstat *ctots *cdurs *cndur *ctranss *chouss *cautoall *ccarpay *cmort *cmortint *ctotc *cdurc *ctransc *chousc *chmeqf
+
+//make variables with wave value for variables that don't change across waves to prepare for reshaping
+gen raedyrs5 = raedyrs
+gen raedyrs6 = raedyrs
+gen raedyrs7 = raedyrs
+gen raedyrs8 = raedyrs
+gen raedyrs9 = raedyrs
+gen raedyrs10 = raedyrs
+gen raedyrs11 = raedyrs
+gen raedyrs12 = raedyrs
+drop raedyrs
 
 //renaming variables to prepare for reshaping (example: h5cndurf -> h_cndurf5)
 foreach var of varlist *isret *atota *atotb *atotw *atotn *c10rep *agey_b *cwgthh *lbrf *sayret *retemp *lbrfh *lbrfy *cmstat *ctots *cdurs *cndur *ctranss *chouss *cautoall *ccarpay *cmort *cmortint *ctotc *cdurc *ctransc *chousc *chmeqf {
@@ -68,7 +94,7 @@ foreach var of varlist *isret *atota *atotb *atotw *atotn *c10rep *agey_b *cwgth
 }
 
 //reshape from wide to long panel data
-reshape long r_isret s_isret h_atota h_atotb h_atotw h_atotn h_c10rep s_agey_b r_agey_b h_cwgthh s_lbrf r_lbrf s_inlbrf r_inlbrf  s_sayret r_sayret s_retemp r_retemp s_lbrfh r_lbrfh s_lbrfy r_lbrfy h_cmstat h_ctots h_cdurs h_cndur h_ctranss h_chouss h_cautoall h_ccarpay h_cmort h_cmortint h_ctotc h_cdurc h_ctransc h_chousc h_chmeqf, i(hhidpn) j(wave)
+reshape long raedyrs r_isret s_isret h_atota h_atotb h_atotw h_atotn h_c10rep s_agey_b r_agey_b h_cwgthh s_lbrf r_lbrf s_inlbrf r_inlbrf  s_sayret r_sayret s_retemp r_retemp s_lbrfh r_lbrfh s_lbrfy r_lbrfy h_cmstat h_ctots h_cdurs h_cndur h_ctranss h_chouss h_cautoall h_ccarpay h_cmort h_cmortint h_ctotc h_cdurc h_ctransc h_chousc h_chmeqf, i(hhidpn) j(wave)
 
 //sort and declare data set as panel data
 //NOTE: wave refers to HRS waves not CAMS waves
@@ -96,6 +122,8 @@ forvalues year = 1(2)15{
 		local year_string "`year'"
 		local wave_string "`wave'"
 	}
+	
+	local winsorlim = 1000
 	
 	preserve
 		use "$folder\Raw\cams20`year_string'\CAMS`year_string'_R.dta", clear
@@ -312,6 +340,22 @@ forvalues year = 1(2)15{
 			rename B38D_`year_string' expect
 			rename B38E_`year_string' expectPerc
 			
+			di "2001"
+			
+			//winsorization in accordance to RAND
+			//reference page 13 of the RAND_CAMS_2015V2 Documentation file in: Imputation and Cleaning of Spending Variables
+			local varlist auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur houseyardsupplies fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbiessports contributions gifts carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsuppliesservices 
+			foreach var in `varlist' {
+				count if `var' != .
+				local countnonmiss = r(N)
+				
+				if `countnonmiss' >= `winsorlim' {
+					winsor `var', h(5) gen(`var'2)
+					drop `var'
+					rename 	`var'2 `var'
+				}
+			}
+			
 			keep id wave auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur houseyardsupplies fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbiessports contributions gifts carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsuppliesservices retired recollect recollectPerc expect expectPerc
 		} 
 		if `year' == 3{
@@ -516,6 +560,22 @@ forvalues year = 1(2)15{
 			rename B44D_`year_string' expect
 			rename B44E_`year_string' expectPerc
 			
+			di "2003"
+			
+			//winsorization in accordance to RAND
+			//reference page 13 of the RAND_CAMS_2015V2 Documentation file in: Imputation and Cleaning of Spending Variables
+			local varlist auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur housesupplies yardsupplies houseservices yardservices fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbies sports contributions gifts personalcare carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsupplies hrepservices
+			foreach var in `varlist' {
+				count if `var' != .
+				local countnonmiss = r(N)
+				
+				if `countnonmiss' >= `winsorlim' {
+					winsor `var', h(5) gen(`var'2)
+					drop `var'
+					rename 	`var'2 `var'
+				}
+			}
+			
 			keep id wave auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur housesupplies yardsupplies houseservices yardservices fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbies sports contributions gifts personalcare carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsupplies hrepservices retired recollect recollectPerc expect expectPerc
 		}
 		if `year' == 5{
@@ -707,6 +767,22 @@ forvalues year = 1(2)15{
 			rename B45d_`year_string' expect
 			rename B45e_`year_string' expectPerc
 			
+			di "2005"
+			
+			//winsorization in accordance to RAND
+			//reference page 13 of the RAND_CAMS_2015V2 Documentation file in: Imputation and Cleaning of Spending Variables
+			local varlist auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur housesupplies yardsupplies houseservices yardservices fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbies sports contributions gifts personalcare hhfurnishings carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsupplies hrepservices 
+			foreach var in `varlist' {
+				count if `var' != .
+				local countnonmiss = r(N)
+				
+				if `countnonmiss' >= `winsorlim' {
+					winsor `var', h(5) gen(`var'2)
+					drop `var'
+					rename 	`var'2 `var'
+				}
+			}
+			
 			keep id wave auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur housesupplies yardsupplies houseservices yardservices fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbies sports contributions gifts personalcare hhfurnishings carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsupplies hrepservices retired recollect recollectPerc expect expectPerc
 		}
 		if `year' == 7{
@@ -890,6 +966,22 @@ forvalues year = 1(2)15{
 			rename B13_`year_string' hrepsupplies
 			//home repairs services
 			rename B14_`year_string' hrepservices
+			
+			di "2007"
+			
+			//winsorization in accordance to RAND
+			//reference page 13 of the RAND_CAMS_2015V2 Documentation file in: Imputation and Cleaning of Spending Variables
+			local varlist auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur housesupplies yardsupplies houseservices yardservices fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbies sports contributions gifts personalcare hhfurnishings carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsupplies hrepservices
+			foreach var in `varlist' {
+				count if `var' != .
+				local countnonmiss = r(N)
+				
+				if `countnonmiss' >= `winsorlim' {
+					winsor `var', h(5) gen(`var'2)
+					drop `var'
+					rename 	`var'2 `var'
+				}
+			}
 			
 			//measure of retired
 			rename B45_`year_string' retired
@@ -1082,6 +1174,22 @@ forvalues year = 1(2)15{
 			//home repairs services
 			rename B14_`year_string' hrepservices
 			
+			di "2009"
+			
+			//winsorization in accordance to RAND
+			//reference page 13 of the RAND_CAMS_2015V2 Documentation file in: Imputation and Cleaning of Spending Variables
+			local varlist auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur housesupplies yardsupplies houseservices yardservices fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbies sports contributions gifts personalcare hhfurnishings carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsupplies hrepservices
+			foreach var in `varlist' {
+				count if `var' != .
+				local countnonmiss = r(N)
+				
+				if `countnonmiss' >= `winsorlim' {
+					winsor `var', h(5) gen(`var'2)
+					drop `var'
+					rename 	`var'2 `var'
+				}
+			}
+			
 			//measure of retired
 			rename B45_`year_string' retired
 			rename B45a_`year_string' recollect
@@ -1272,6 +1380,22 @@ forvalues year = 1(2)15{
 			rename B13_`year_string' hrepsupplies
 			//home repairs services
 			rename B14_`year_string' hrepservices
+			
+			di "2011"
+			
+			//winsorization in accordance to RAND
+			//reference page 13 of the RAND_CAMS_2015V2 Documentation file in: Imputation and Cleaning of Spending Variables
+			local varlist auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur housesupplies yardsupplies houseservices yardservices fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbies sports contributions gifts personalcare hhfurnishings carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsupplies hrepservices
+			foreach var in `varlist' {
+				count if `var' != .
+				local countnonmiss = r(N)
+				
+				if `countnonmiss' >= `winsorlim' {
+					winsor `var', h(5) gen(`var'2)
+					drop `var'
+					rename 	`var'2 `var'
+				}
+			}
 			
 			//measure of retired
 			rename B45_`year_string' retired
@@ -1464,6 +1588,22 @@ forvalues year = 1(2)15{
 			//home repairs services
 			rename B14_`year_string' hrepservices
 			
+			di "2013"
+			
+			//winsorization in accordance to RAND
+			//reference page 13 of the RAND_CAMS_2015V2 Documentation file in: Imputation and Cleaning of Spending Variables
+			local varlist auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur housesupplies yardsupplies houseservices yardservices fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbies sports contributions gifts personalcare hhfurnishings carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsupplies hrepservices
+			foreach var in `varlist' {
+				count if `var' != .
+				local countnonmiss = r(N)
+				
+				if `countnonmiss' >= `winsorlim' {
+					winsor `var', h(5) gen(`var'2)
+					drop `var'
+					rename 	`var'2 `var'
+				}
+			}
+			
 			//measure of retired
 			rename B45_`year_string' retired
 			rename B45a_`year_string' recollect
@@ -1654,6 +1794,22 @@ forvalues year = 1(2)15{
 			rename B13_`year_string' hrepsupplies
 			//home repairs services
 			rename B14_`year_string' hrepservices
+			
+			di "2015"
+			
+			//winsorization in accordance to RAND
+			//reference page 13 of the RAND_CAMS_2015V2 Documentation file in: Imputation and Cleaning of Spending Variables
+			local varlist auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur housesupplies yardsupplies houseservices yardservices fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbies sports contributions gifts personalcare hhfurnishings carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsupplies hrepservices
+			foreach var in `varlist' {
+				count if `var' != .
+				local countnonmiss = r(N)
+				
+				if `countnonmiss' >= `winsorlim' {
+					winsor `var', h(5) gen(`var'2)
+					drop `var'
+					rename 	`var'2 `var'
+				}
+			}
 			
 			//measure of retired
 			rename B45_`year_string' retired
@@ -1879,15 +2035,6 @@ if wave == 12 {
 //RAND CAMS totals are now only derived for those observations who have given non-missing values for at least ten spending categories
 //reference page 7 of the RAND_CAMS_2015V2 Documentation file in: Sample Selection for Derived Totals
 drop if h_c10rep == 0 | h_c10rep == .
-
-//winsorization in accordance to RAND
-//reference page 13 of the RAND_CAMS_2015V2 Documentation file in: Imputation and Cleaning of Spending Variables
-local varlist auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur houseyardsupplies housesupplies yardsupplies fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbiessports hobbies sports contributions gifts carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsuppliesservices hrepsupplies hrepservices
-foreach var in `varlist' {
-	winsor `var', h(5) gen(`var'2)
-	drop `var'
-	rename 	`var'2 `var'
-}
 
 save $folder\Intermediate\CAMSHRSpanelrawmerge.dta, replace
 use $folder\Intermediate\CAMSHRSpanelrawmerge.dta, clear 
