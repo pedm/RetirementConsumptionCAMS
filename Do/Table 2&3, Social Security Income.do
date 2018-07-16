@@ -1,13 +1,15 @@
 /*
-This code seeks to reproduce table 2 from Hurd and Rohwedder's paper on 
+This code seeks to reproduce table 2/3 from Hurd and Rohwedder's paper on 
 Heterogeneity in spending change at retirement. Table 2 shows spending levels, 
 both mean and median, by wealth quartile before and after retirement, percent 
 changes in them, and the median of the change at the household level.
+Table 3 shows household income before and after retirement as measured in the 
+HRS core data.
 
-This table describes spending done in social security income tertiles. The spending 
+This table describes spending in social security income tertiles. The spending 
 categories are: nondurables, durables, totals; food at home, food away from home, 
 transportation, health, education (no spending variable in CAMS or HRS), housing, 
-recreation, and clothing.
+recreation, and clothing - household income is then included for table 3. 
 
 Written by Lan Luo, Yale University
 Herb Scarf RA for Cormac O'Dea @Yale Economics Department
@@ -22,10 +24,10 @@ global folder "C:\Users\ericluo04\Documents\GitHub\RetirementConsumptionCAMS\Dat
 ***** Cormac ***** 
 //global folder
 
-//(already dropped if wave not between 5 and 8) / if age not between 50 and 70 / (if recollect/expect == . & retired == 1)
+//already dropped (if wave not between 5 and 8) / if age not between 50 and 70 / (if recollect/expect == . & retired == 1)
 use $folder\Intermediate\pretable1.dta, clear
 	
-foreach var of varlist total durables nondurables food foodhome foodaway transport health housing recreation clothes {
+foreach var of varlist total durables nondurables food foodhome foodaway transport health housing recreation clothes h_itot_real {
 	use $folder\Intermediate\pretable1.dta, clear
 	
 	* todo later: perhaps do this for F2 F3 etc
@@ -36,7 +38,7 @@ foreach var of varlist total durables nondurables food foodhome foodaway transpo
 	replace time = "Post-retirement" if ret_transition == 1
 	drop if time == ""
 
-	//create wealth tertiles
+	//create social security tertiles
 	//impute with years of education
 	xtile tertile = max_ssinc_head, nquantiles(3)
 	tab raedyrs
@@ -186,7 +188,7 @@ foreach var of varlist total durables nondurables food foodhome foodaway transpo
 
 	//////////////////////////////////// Total ////////////////////////////////////
 
-	//(already dropped if wave not between 5 and 8) / if age not between 50 and 70 / (if recollect/expect == . & retired == 1)
+	//already dropped (if wave not between 5 and 8) / if age not between 50 and 70 / (if recollect/expect == . & retired == 1)
 	use $folder\Intermediate\pretable1.dta, clear
 
 	* todo later: perhaps do this for F2 F3 etc
@@ -203,8 +205,6 @@ foreach var of varlist total durables nondurables food foodhome foodaway transpo
 	drop if n < 2
 	tab time
 
-	//create wealth tertiles
-	xtile tertile = h_atotb, nquantiles(4)
 	//Median Percent Change
 	gen dif`var' = (`var' - L.`var') / L.`var'
 
@@ -320,7 +320,8 @@ foreach var of varlist total durables nondurables food foodhome foodaway transpo
 	rename `var'2 Second
 	rename `var'3 Third
 	rename `var' All
-
+	
+	//appropriate rounding (to the 0 for spending, to the .1 for percents)
 	replace First = round(First) if SS_Tertiles == "Pre-retirement" | SS_Tertiles == "Post-retirement"
 	replace Second = round(Second) if SS_Tertiles == "Pre-retirement" | SS_Tertiles == "Post-retirement"
 	replace Third = round(Third) if SS_Tertiles == "Pre-retirement" | SS_Tertiles == "Post-retirement"
@@ -331,7 +332,7 @@ foreach var of varlist total durables nondurables food foodhome foodaway transpo
 	replace All = round(All, .1) if SS_Tertiles != "Pre-retirement" | SS_Tertiles != "Post-retirement" 
 	
 	tostring First Second Third All, replace force format(%9.1f)
-	
+	//appropriate comma placement for spending
 	replace First = substr(First, 1, 2) if (SS_Tertiles == "Pre-retirement" | SS_Tertiles == "Post-retirement") & strlen(First) == 4
 	replace Second = substr(Second, 1, 2) if (SS_Tertiles == "Pre-retirement" | SS_Tertiles == "Post-retirement") & strlen(Second) == 4
 	replace Third = substr(Third, 1, 2) if (SS_Tertiles == "Pre-retirement" | SS_Tertiles == "Post-retirement") & strlen(Third) == 4
@@ -348,11 +349,16 @@ foreach var of varlist total durables nondurables food foodhome foodaway transpo
 	replace Second = substr(Second, 1, 2) + "," + substr(Second, 3, 3) if (SS_Tertiles == "Pre-retirement" | SS_Tertiles == "Post-retirement") & strlen(Second) == 7
 	replace Third = substr(Third, 1, 2) + "," + substr(Third, 3, 3) if (SS_Tertiles == "Pre-retirement" | SS_Tertiles == "Post-retirement") & strlen(Third) == 7
 	replace All = substr(All, 1, 2) + "," + substr(All, 3, 3) if (SS_Tertiles == "Pre-retirement" | SS_Tertiles == "Post-retirement") & strlen(All) == 7
+	replace First = substr(First, 1, 3) + "," + substr(First, 4, 3) if (SS_Tertiles == "Pre-retirement" | SS_Tertiles == "Post-retirement") & strlen(First) == 8
+	replace Second = substr(Second, 1, 3) + "," + substr(Second, 4, 3) if (SS_Tertiles == "Pre-retirement" | SS_Tertiles == "Post-retirement") & strlen(Second) == 8
+	replace Third = substr(Third, 1, 3) + "," + substr(Third, 4, 3) if (SS_Tertiles == "Pre-retirement" | SS_Tertiles == "Post-retirement") & strlen(Third) == 8
+	replace All = substr(All, 1, 3) + "," + substr(All, 4, 3) if (SS_Tertiles == "Pre-retirement" | SS_Tertiles == "Post-retirement") & strlen(All) == 8
 	replace First = "0" if (SS_Tertiles == "Pre-retirement" | SS_Tertiles == "Post-retirement") & First == "0.0"
 	replace Second = "0" if (SS_Tertiles == "Pre-retirement" | SS_Tertiles == "Post-retirement") & Second == "0.0"
 	replace Third = "0" if (SS_Tertiles == "Pre-retirement" | SS_Tertiles == "Post-retirement") & Third == "0.0"
 	replace All = "0" if (SS_Tertiles == "Pre-retirement" | SS_Tertiles == "Post-retirement") & All == "0.0"
 	
+	//clean up table with empty space
 	replace First = "" if SS_Tertiles == "Means:" | SS_Tertiles == "Medians:"
 	replace Second = "" if SS_Tertiles == "Means:" | SS_Tertiles == "Medians:"
 	replace Third = "" if SS_Tertiles == "Means:" | SS_Tertiles == "Medians:"
@@ -360,15 +366,15 @@ foreach var of varlist total durables nondurables food foodhome foodaway transpo
 	list
 
 	if "`var'" == "total" {
-		texsave SS_Tertiles First Second Third All using $folder\Final\table2.5totalraw.tex, frag title("Real total spending before and after retirement by social security income tertiles (CAMS category).") footnote("*These values are not medians but percentiles, as indicated in the parentheses. \linebreak --- \linebreak This table references Table 2 of Hurd and Rohwedder's paper: Heterogeneity in spending change at retirement. \linebreak --- \linebreak This spending category is defined in accordance with page 9 (Table 1: Variable Names Across Waves) of the RAND_CAMS_2015V2 Data Documentation file. \linebreak --- \linebreak Mean percent change is not reported because observation error on spending can produce large outliers when spending is put in ratio form. \linebreak --- \linebreak N = `count'.") hlines(1 4 5) replace
+		texsave SS_Tertiles First Second Third All using $folder\Final\table2.5totalraw.tex, frag title("Real total spending before and after retirement by social security income tertiles (RAND category).") footnote("*These values are not medians but percentiles, as indicated in the parentheses. \linebreak --- \linebreak This table references Table 2 of Hurd and Rohwedder's paper: Heterogeneity in spending change at retirement. \linebreak --- \linebreak This spending category is defined in accordance with page 9 (Table 1: Variable Names Across Waves) of the RAND_CAMS_2015V2 Data Documentation file. \linebreak --- \linebreak Mean percent change is not reported because observation error on spending can produce large outliers when spending is put in ratio form. \linebreak --- \linebreak N = `count'.") hlines(1 4 5) replace
 		save $folder\Intermediate\table2.5totaldata.dta, replace
 	}
 	if "`var'" == "durables" {		
-		texsave SS_Tertiles First Second Third All using $folder\Final\table2.5durablesraw.tex, frag title("Real durables spending before and after retirement by social security income tertiles (CAMS category).") footnote("*These values are not medians but percentiles, as indicated in the parentheses. \linebreak --- \linebreak This table references Table 2 of Hurd and Rohwedder's paper: Heterogeneity in spending change at retirement. \linebreak --- \linebreak This spending category is defined in accordance with page 9 (Table 1: Variable Names Across Waves) of the RAND_CAMS_2015V2 Data Documentation file. \linebreak --- \linebreak Mean percent change is not reported because observation error on spending can produce large outliers when spending is put in ratio form. \linebreak --- \linebreak N = `count'.") hlines(1 4 5) replace
+		texsave SS_Tertiles First Second Third All using $folder\Final\table2.5durablesraw.tex, frag title("Real durables spending before and after retirement by social security income tertiles (RAND category).") footnote("*These values are not medians but percentiles, as indicated in the parentheses. \linebreak --- \linebreak This table references Table 2 of Hurd and Rohwedder's paper: Heterogeneity in spending change at retirement. \linebreak --- \linebreak This spending category is defined in accordance with page 9 (Table 1: Variable Names Across Waves) of the RAND_CAMS_2015V2 Data Documentation file. \linebreak --- \linebreak Mean percent change is not reported because observation error on spending can produce large outliers when spending is put in ratio form. \linebreak --- \linebreak N = `count'.") hlines(1 4 5) replace
 		save $folder\Intermediate\table2.5durablesdata.dta, replace
 	}
 	if "`var'" == "nondurables" {
-		texsave SS_Tertiles First Second Third All using $folder\Final\table2.5nondurablesraw.tex, frag title("Real nondurables spending before and after retirement by social security income tertiles (CAMS category).") footnote("*These values are not medians but percentiles, as indicated in the parentheses. \linebreak --- \linebreak This table references Table 2 of Hurd and Rohwedder's paper: Heterogeneity in spending change at retirement. \linebreak --- \linebreak This spending category is defined in accordance with page 9 (Table 1: Variable Names Across Waves) of the RAND_CAMS_2015V2 Data Documentation file. \linebreak --- \linebreak Mean percent change is not reported because observation error on spending can produce large outliers when spending is put in ratio form. \linebreak --- \linebreak N = `count'.") hlines(1 4 5) replace		
+		texsave SS_Tertiles First Second Third All using $folder\Final\table2.5nondurablesraw.tex, frag title("Real nondurables spending before and after retirement by social security income tertiles (RAND category).") footnote("*These values are not medians but percentiles, as indicated in the parentheses. \linebreak --- \linebreak This table references Table 2 of Hurd and Rohwedder's paper: Heterogeneity in spending change at retirement. \linebreak --- \linebreak This spending category is defined in accordance with page 9 (Table 1: Variable Names Across Waves) of the RAND_CAMS_2015V2 Data Documentation file. \linebreak --- \linebreak Mean percent change is not reported because observation error on spending can produce large outliers when spending is put in ratio form. \linebreak --- \linebreak N = `count'.") hlines(1 4 5) replace		
 		save $folder\Intermediate\table2.5nondurablesdata.dta, replace
 	}
 	if "`var'" == "food" {
@@ -384,7 +390,7 @@ foreach var of varlist total durables nondurables food foodhome foodaway transpo
 		save $folder\Intermediate\table2.5foodawaydata.dta, replace
 	}
 	if "`var'" == "transport" {
-		texsave SS_Tertiles First Second Third All using $folder\Final\table2.5transportraw.tex, frag title("Real transportation spending before and after retirement by social security income tertiles (CAMS and PSID category).") footnote("*These values are not medians but percentiles, as indicated in the parentheses. \linebreak --- \linebreak This table references Table 2 of Hurd and Rohwedder's paper: Heterogeneity in spending change at retirement. \linebreak --- \linebreak This spending category is defined in accordance with page 9 (Table 1: Variable Names Across Waves) of the RAND_CAMS_2015V2 Data Documentation file. \linebreak --- \linebreak Mean percent change is not reported because observation error on spending can produce large outliers when spending is put in ratio form. \linebreak --- \linebreak N = `count'.") hlines(1 4 5) replace		
+		texsave SS_Tertiles First Second Third All using $folder\Final\table2.5transportraw.tex, frag title("Real transportation spending before and after retirement by social security income tertiles (RAND and PSID category).") footnote("*These values are not medians but percentiles, as indicated in the parentheses. \linebreak --- \linebreak This table references Table 2 of Hurd and Rohwedder's paper: Heterogeneity in spending change at retirement. \linebreak --- \linebreak This spending category is defined in accordance with page 9 (Table 1: Variable Names Across Waves) of the RAND_CAMS_2015V2 Data Documentation file. \linebreak --- \linebreak Mean percent change is not reported because observation error on spending can produce large outliers when spending is put in ratio form. \linebreak --- \linebreak N = `count'.") hlines(1 4 5) replace		
 		save $folder\Intermediate\table2.5transportdata.dta, replace
 	}
 	if "`var'" == "health" {
@@ -392,7 +398,7 @@ foreach var of varlist total durables nondurables food foodhome foodaway transpo
 		save $folder\Intermediate\table2.5healthdata.dta, replace
 	}
 	if "`var'" == "housing" {
-		texsave SS_Tertiles First Second Third All using $folder\Final\table2.5housingraw.tex, frag title("Real housing spending before and after retirement by social security income tertiles (CAMS and PSID category).") footnote("*These values are not medians but percentiles, as indicated in the parentheses. \linebreak --- \linebreak This table references Table 2 of Hurd and Rohwedder's paper: Heterogeneity in spending change at retirement. \linebreak --- \linebreak This spending category is defined in accordance with page 9 (Table 1: Variable Names Across Waves) of the RAND_CAMS_2015V2 Data Documentation file. \linebreak --- \linebreak Mean percent change is not reported because observation error on spending can produce large outliers when spending is put in ratio form. \linebreak --- \linebreak N = `count'.") hlines(1 4 5) replace		
+		texsave SS_Tertiles First Second Third All using $folder\Final\table2.5housingraw.tex, frag title("Real housing spending before and after retirement by social security income tertiles (RAND and PSID category).") footnote("*These values are not medians but percentiles, as indicated in the parentheses. \linebreak --- \linebreak This table references Table 2 of Hurd and Rohwedder's paper: Heterogeneity in spending change at retirement. \linebreak --- \linebreak This spending category is defined in accordance with page 9 (Table 1: Variable Names Across Waves) of the RAND_CAMS_2015V2 Data Documentation file. \linebreak --- \linebreak Mean percent change is not reported because observation error on spending can produce large outliers when spending is put in ratio form. \linebreak --- \linebreak N = `count'.") hlines(1 4 5) replace		
 		save $folder\Intermediate\table2.5housingdata.dta, replace
 	}
 	if "`var'" == "recreation" {
@@ -402,5 +408,9 @@ foreach var of varlist total durables nondurables food foodhome foodaway transpo
 	if "`var'" == "clothes" {
 		texsave SS_Tertiles First Second Third All using $folder\Final\table2.5clothesraw.tex, frag title("Real clothing spending before and after retirement by social security income tertiles (PSID category).") footnote("*These values are not medians but percentiles, as indicated in the parentheses. \linebreak --- \linebreak This table references Table 2 of Hurd and Rohwedder's paper: Heterogeneity in spending change at retirement. \linebreak --- \linebreak This spending category is defined by clothing in CAMS. \linebreak --- \linebreak Mean percent change is not reported because observation error on spending can produce large outliers when spending is put in ratio form. \linebreak --- \linebreak N = `count'.") hlines(1 4 5) replace
 		save $folder\Intermediate\table2.5clothesdata.dta, replace
+	}
+	if "`var'" == "h_itot_real" {
+		texsave SS_Tertiles First Second Third All using $folder\Final\table3.5incomeraw.tex, frag title("Real household income before and after retirement by social security income tertiles.") footnote("*These values are not medians but percentiles, as indicated in the parentheses. \linebreak --- \linebreak This table references Table 3 of Hurd and Rohwedder's paper: Heterogeneity in spending change at retirement. \linebreak --- \linebreak Mean percent change is not reported because observation error on spending can produce large outliers when spending is put in ratio form. \linebreak --- \linebreak N = `count'.") hlines(1 4 5) replace
+		save $folder\Intermediate\table3.5incomeraw.dta, replace
 	}
 }

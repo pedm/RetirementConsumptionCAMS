@@ -66,8 +66,10 @@ use $folder\Raw\randhrs2000_2014v2.dta, clear
 merge 1:1 hhidpn using $folder\Raw\randcams_2001_2015v2\randcams_2001_2015v2.dta, keep(2 3)
 drop _merge
 
-keep hhidpn raedyrs *isret *atota *atotb *atotw *atotn *c10rep *agey_b *cwgthh *lbrf *sayret *retemp *lbrfh *lbrfy *inlbrf *cmstat *ctots *cdurs *cndur *ctranss *chouss *cautoall *ccarpay *cmort *cmortint *ctotc *cdurc *ctransc *chousc *chmeqf
+save $folder\Raw\randhrsrandcams2000_2014merge.dta, replace
+use $folder\Raw\randhrsrandcams2000_2014merge.dta, clear
 
+keep hhidpn raedyrs *finpln *itot *isret *atota *atotb *atotw *atotn *c10rep *agey_b *cwgthh *lbrf *sayret *retemp *lbrfh *lbrfy *inlbrf *cmstat *ctots *cdurs *cndur *ctranss *chouss *cautoall *ccarpay *cmort *cmortint *ctotc *cdurc *ctransc *chousc *chmeqf
 //make variables with wave value for variables that don't change across waves to prepare for reshaping
 gen raedyrs5 = raedyrs
 gen raedyrs6 = raedyrs
@@ -80,7 +82,7 @@ gen raedyrs12 = raedyrs
 drop raedyrs
 
 //renaming variables to prepare for reshaping (example: h5cndurf -> h_cndurf5)
-foreach var of varlist *isret *atota *atotb *atotw *atotn *c10rep *agey_b *cwgthh *lbrf *sayret *retemp *lbrfh *lbrfy *cmstat *ctots *cdurs *cndur *ctranss *chouss *cautoall *ccarpay *cmort *cmortint *ctotc *cdurc *ctransc *chousc *chmeqf {
+foreach var of varlist *finpln *itot *isret *atota *atotb *atotw *atotn *c10rep *agey_b *cwgthh *lbrf *sayret *retemp *lbrfh *lbrfy *cmstat *ctots *cdurs *cndur *ctranss *chouss *cautoall *ccarpay *cmort *cmortint *ctotc *cdurc *ctransc *chousc *chmeqf {
 	//if wave value is less than 10
 	if !(substr("`var'", 3, 1) == "0" | substr("`var'", 3, 1) == "1" | substr("`var'", 3, 1) == "2" | substr("`var'", 3, 1) == "3") {
 		local newvarname = substr("`var'", 1, 1) + "_" + substr("`var'", 3, .) + substr("`var'", 2, 1) 
@@ -94,7 +96,7 @@ foreach var of varlist *isret *atota *atotb *atotw *atotn *c10rep *agey_b *cwgth
 }
 
 //reshape from wide to long panel data
-reshape long raedyrs r_isret s_isret h_atota h_atotb h_atotw h_atotn h_c10rep s_agey_b r_agey_b h_cwgthh s_lbrf r_lbrf s_inlbrf r_inlbrf  s_sayret r_sayret s_retemp r_retemp s_lbrfh r_lbrfh s_lbrfy r_lbrfy h_cmstat h_ctots h_cdurs h_cndur h_ctranss h_chouss h_cautoall h_ccarpay h_cmort h_cmortint h_ctotc h_cdurc h_ctransc h_chousc h_chmeqf, i(hhidpn) j(wave)
+reshape long r_finpln s_finpln h_itot raedyrs r_isret s_isret h_atota h_atotb h_atotw h_atotn h_c10rep s_agey_b r_agey_b h_cwgthh s_lbrf r_lbrf s_inlbrf r_inlbrf  s_sayret r_sayret s_retemp r_retemp s_lbrfh r_lbrfh s_lbrfy r_lbrfy h_cmstat h_ctots h_cdurs h_cndur h_ctranss h_chouss h_cautoall h_ccarpay h_cmort h_cmortint h_ctotc h_cdurc h_ctransc h_chousc h_chmeqf, i(hhidpn) j(wave)
 
 //sort and declare data set as panel data
 //NOTE: wave refers to HRS waves not CAMS waves
@@ -2158,7 +2160,7 @@ tab wave if _merge == 3
 drop _merge
 
 //create real variables for spending values
-foreach var of varlist r_isret s_isret h_atota h_atotb h_atotw h_atotn auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur houseyardsupplies housesupplies yardsupplies houseservices yardservices fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbiessports hobbies sports contributions gifts personalcare hhfurnishings carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsuppliesservices hrepsupplies hrepservices *ctots *cdurs *cndur *ctranss *chouss *cautoall *ccarpay *cmort *cmortint *ctotc *cdurc *ctransc *chousc *chmeqf {
+foreach var of varlist h_itot r_isret s_isret h_atota h_atotb h_atotw h_atotn auto1 auto2 auto3 refrig washdry dishwash tv computer electricity water heat phonecableinternet healthinsur houseyardsupplies housesupplies yardsupplies houseservices yardservices fooddrink diningout clothing drugs healthservices medicalsupplies vacations tickets hobbiessports hobbies sports contributions gifts personalcare hhfurnishings carpayments autoinsur gas vehicleservices mortgage homerentinsur propertytax rent hrepsuppliesservices hrepsupplies hrepservices *ctots *cdurs *cndur *ctranss *chouss *cautoall *ccarpay *cmort *cmortint *ctotc *cdurc *ctransc *chousc *chmeqf {
 	local realvar = "`var'" + "_real"
 	gen `realvar' = 100 * `var' / CPI_base_2003
 }

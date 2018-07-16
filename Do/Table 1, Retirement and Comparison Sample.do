@@ -35,7 +35,7 @@ drop if r_age < 50 | r_age > 70
 //drop if recollect == . & retired == 1
 //drop if expect == . & retired == 5
 
-//generate wave consistent spending categories by generating from individual wave CAMS data
+//generate wave consistent RAND spending categories by generating from individual wave CAMS data
 egen total = rowtotal(auto1_real auto2_real auto3_real refrig_real washdry_real dishwash_real tv_real computer_real electricity_real water_real heat_real phonecableinternet_real healthinsur_real houseyardsupplies_real housesupplies_real yardsupplies_real fooddrink_real diningout_real clothing_real drugs_real healthservices_real medicalsupplies_real vacations_real tickets_real hobbiessports_real hobbies_real sports_real contributions_real gifts_real carpayments_real autoinsur_real gas_real vehicleservices_real mortgage_real homerentinsur_real propertytax_real rent_real hrepsuppliesservices_real hrepsupplies_real hrepservices_real)
 egen nondurables = rowtotal(electricity_real water_real heat_real phonecableinternet_real healthinsur_real houseyardsupplies_real housesupplies_real yardsupplies_real fooddrink_real diningout_real clothing_real drugs_real healthservices_real medicalsupplies_real vacations_real tickets_real hobbiessports_real hobbies_real sports_real contributions_real gifts_real carpayments_real autoinsur_real gas_real vehicleservices_real mortgage_real homerentinsur_real propertytax_real rent_real hrepsuppliesservices_real hrepsupplies_real hrepservices_real)
 egen durables = rowtotal(auto1_real auto2_real auto3_real refrig_real washdry_real dishwash_real tv_real computer_real)
@@ -52,7 +52,11 @@ egen recreation = rowtotal(vacations_real tickets_real hobbiessports_real hobbie
 gen clothes = clothing_real
 
 //generate max social security across all waves
-egen max_ssinc_head = max(r_isret), by(id)
+egen max_ssinc_head = max(r_isret_real), by(id)
+
+//create financial planning horizon by short/long (short means one year or less)
+gen shortHorizon = 1 if r_finpln == 1 | r_finpln == 2
+replace shortHorizon = 0 if r_finpln == 3 | r_finpln == 4 | r_finpln == 5
 
 save $folder\Intermediate\pretable1.dta, replace
 use $folder\Intermediate\pretable1.dta, clear
@@ -152,6 +156,7 @@ replace Spending = "Median Percent Change (p90)*" in 15
 replace Spending = "95% confidence interval (p50)" in 16
 keep Spending Total Nondurables Food
 
+//appropriate rounding (to the 0 for spending, to the .1 for percents)
 replace Total = round(Total) if Spending == "Pre-retirement" | Spending == "Post-retirement"
 replace Nondurables = round(Nondurables) if Spending == "Pre-retirement" | Spending == "Post-retirement"
 replace Food = round(Food) if Spending == "Pre-retirement" | Spending == "Post-retirement"
@@ -159,11 +164,13 @@ replace Total = round(Total, .1) if Spending != "Pre-retirement" | Spending != "
 replace Nondurables = round(Nondurables, .1) if Spending != "Pre-retirement" | Spending != "Post-retirement"
 replace Food = round(Food, .1) if Spending != "Pre-retirement" | Spending != "Post-retirement"
 
+//appropriate comma placement for spending
 tostring Total Nondurables Food, replace force format(%9.1f)
 replace Total = substr(Total, 1, 2) + "," + substr(Total, 3, 3) if Spending == "Pre-retirement" | Spending == "Post-retirement"
 replace Nondurables = substr(Nondurables, 1, 2) + "," + substr(Nondurables, 3, 3) if Spending == "Pre-retirement" | Spending == "Post-retirement"
 replace Food = substr(Food, 1, 1) + "," + substr(Food, 2, 3) if Spending == "Pre-retirement" | Spending == "Post-retirement"
 
+//clean up table with empty space
 replace Total = "" if Spending == "Means:" | Spending == "Medians:"
 replace Nondurables = "" if Spending == "Means:" | Spending == "Medians:"
 replace Food = "" if Spending == "Means:" | Spending == "Medians:"
@@ -376,6 +383,7 @@ replace Spending = "Median Percent Change (p90)*" in 15
 replace Spending = "95% confidence interval (p50)" in 16
 keep Spending Total Nondurables Food
 
+//appropriate rounding (to the 0 for spending, to the .1 for percents)
 replace Total = round(Total) if Spending == "Pre-wave" | Spending == "Post-wave"
 replace Nondurables = round(Nondurables) if Spending == "Pre-wave" | Spending == "Post-wave"
 replace Food = round(Food) if Spending == "Pre-wave" | Spending == "Post-wave"
@@ -383,11 +391,13 @@ replace Total = round(Total, .1) if Spending != "Pre-wave" | Spending != "Post-w
 replace Nondurables = round(Nondurables, .1) if Spending != "Pre-wave" | Spending != "Post-wave"
 replace Food = round(Food, .1) if Spending != "Pre-wave" | Spending != "Post-wave"
 
+//appropriate comma placement for spending
 tostring Total Nondurables Food, replace force format(%9.1f)
 replace Total = substr(Total, 1, 2) + "," + substr(Total, 3, 3) if Spending == "Pre-wave" | Spending == "Post-wave"
 replace Nondurables = substr(Nondurables, 1, 2) + "," + substr(Nondurables, 3, 3) if Spending == "Pre-wave" | Spending == "Post-wave"
 replace Food = substr(Food, 1, 1) + "," + substr(Food, 2, 3) if Spending == "Pre-wave" | Spending == "Post-wave"
 
+//clean up table with empty space
 replace Total = "" if Spending == "Means:" | Spending == "Medians:"
 replace Nondurables = "" if Spending == "Means:" | Spending == "Medians:"
 replace Food = "" if Spending == "Means:" | Spending == "Medians:"
