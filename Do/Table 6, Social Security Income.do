@@ -53,7 +53,7 @@ foreach var of varlist total durables nondurables food foodhome foodaway transpo
 	tab time
 
 	//Median Percent Change
-	gen dif`var' = (`var' - L.`var') / L.`var'
+	gen dif`var' = (`var' - L.`var') / L.`var' * 100
 
 	count if time == "Pre-retirement"
 	local count = r(N)
@@ -137,9 +137,9 @@ foreach var of varlist total durables nondurables food foodhome foodaway transpo
 		gen `var'3 = .
 				
 		replace time = "Percent with short horizon" in 1
-		replace `var'1 = `countshortHorizon1' / `countall1' in 1
-		replace `var'2 = `countshortHorizon2' / `countall2' in 1
-		replace `var'3 = `countshortHorizon3' / `countall3' in 1
+		replace `var'1 = `countshortHorizon1' / `countall1' * 100 in 1
+		replace `var'2 = `countshortHorizon2' / `countall2' * 100 in 1
+		replace `var'3 = `countshortHorizon3' / `countall3' * 100 in 1
 
 		save $folder\Intermediate\table6.5tertilespercent, replace
 	restore
@@ -170,7 +170,7 @@ foreach var of varlist total durables nondurables food foodhome foodaway transpo
 	tab time
 
 	//Median Percent Change
-	gen dif`var' = (`var' - L.`var') / L.`var'
+	gen dif`var' = (`var' - L.`var') / L.`var' * 100
 	
 	//short financial planning horizon
 	preserve 
@@ -231,7 +231,7 @@ foreach var of varlist total durables nondurables food foodhome foodaway transpo
 		gen `var' = .
 				
 		replace time = "Percent with short horizon" in 1
-		replace `var' = `countshortHorizon' / `countall' in 1
+		replace `var' = `countshortHorizon' / `countall' * 100 in 1
 
 		save $folder\Intermediate\table6.5allpercent, replace
 	restore
@@ -251,12 +251,6 @@ foreach var of varlist total durables nondurables food foodhome foodaway transpo
 	rename `var'2 Second
 	rename `var'3 Third
 	rename `var' All
-	
-	//make into percentage
-	replace First = First*100
-	replace Second = Second*100
-	replace Third = Third*100
-	replace All = All*100
 	
 	//appropriate rounding
 	replace First = round(First, .1)

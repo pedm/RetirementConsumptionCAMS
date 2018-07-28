@@ -55,7 +55,7 @@ foreach var of varlist total durables nondurables food foodhome foodaway transpo
 	tab time
 
 	//Median Percent Change
-	gen dif`var' = (`var' - L.`var') / L.`var'
+	gen dif`var' = (`var' - L.`var') / L.`var' * 100
 
 	count if time == "Pre-retirement"
 	local count = r(N)
@@ -206,7 +206,7 @@ foreach var of varlist total durables nondurables food foodhome foodaway transpo
 	tab time
 
 	//Median Percent Change
-	gen dif`var' = (`var' - L.`var') / L.`var'
+	gen dif`var' = (`var' - L.`var') / L.`var' * 100
 
 	preserve 
 		collapse (mean) `var', by(time)
